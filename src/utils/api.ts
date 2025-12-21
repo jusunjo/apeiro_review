@@ -21,9 +21,8 @@ export const searchProducts = async (
     },
   };
 
-  const apiUrl = import.meta.env.PROD 
-    ? '/api/search' 
-    : 'http://localhost:3001/api/search';
+  // 프로덕션에서는 상대 경로 사용 (같은 도메인의 Express 서버)
+  const apiUrl = '/api/search';
   
   const response = await axios.post<SearchResponse>(
     apiUrl,
@@ -44,9 +43,8 @@ export const fetchReviews = async (
   page: number = 0,
   size: number = 100
 ): Promise<ReviewResponse> => {
-  const apiUrl = import.meta.env.PROD 
-    ? '/api/reviews' 
-    : 'http://localhost:3001/api/reviews';
+  // 프로덕션에서는 상대 경로 사용 (같은 도메인의 Express 서버)
+  const apiUrl = '/api/reviews';
   
   const response = await axios.get<ReviewResponse>(
     apiUrl,
