@@ -1,0 +1,3311 @@
+{
+    "meta": {
+        "result": "SUCCESS"
+    },
+    "data": {
+        "keywordTypes": ["category"],
+        "list": [
+            {
+                "itemId": 3666533,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3666533",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3666533"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3666533,
+                        "itemName": "[1/15 이후 예약 출고 예정][O,LD X OWNOS] PART, PART. note package",
+                        "brandNo": 3171,
+                        "brandName": "오롤리데이",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 29700,
+                        "discountRate": 10,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "[1/15 이후 예약 출고 예정][O,LD X OWNOS] PART, PART. note package",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202512/11f0d71167906f66a3c0f5b0d4eee11f.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 33000,
+                    "displayPrice": 29700,
+                    "saleRate": 10.0,
+                    "brandId": 3171,
+                    "brandName": "오롤리데이",
+                    "reviewScore": 4.0,
+                    "reviewCount": 34,
+                    "likeCount": 797,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3666570,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3666570",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3666570"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3666570,
+                        "itemName": "[1/15 이후 예약 출고 예정][O,LD X OWNOS] PART, PART. note_paper 내지 3종",
+                        "brandNo": 3171,
+                        "brandName": "오롤리데이",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 2700,
+                        "discountRate": 10,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "[1/15 이후 예약 출고 예정][O,LD X OWNOS] PART, PART. note_paper 내지 3종",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202512/11f0d71df5e738b2a3c071852940456b.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 3000,
+                    "displayPrice": 2700,
+                    "saleRate": 10.0,
+                    "brandId": 3171,
+                    "brandName": "오롤리데이",
+                    "reviewScore": 0.0,
+                    "reviewCount": 0,
+                    "likeCount": 350,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraFees": [
+                        {
+                            "text": "옵션비 별도"
+                        }
+                    ],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3011508,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3011508",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3011508"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3011508,
+                        "itemName": "책책 손가방 _ 야암색",
+                        "brandNo": 1293,
+                        "brandName": "오이뮤",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 56050,
+                        "discountRate": 5,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": true
+                        },
+                        "isAd": false
+                    },
+                    "impression": {},
+                    "onClick": {}
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "책책 손가방 _ 야암색",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202511/11f0b877766b2e608388f58444d5b81f.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 59000,
+                    "displayPrice": 56050,
+                    "saleRate": 5.0,
+                    "brandId": 1293,
+                    "brandName": "오이뮤",
+                    "reviewScore": 5.0,
+                    "reviewCount": 268,
+                    "likeCount": 6570,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3534888,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3534888",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3534888"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3534888,
+                        "itemName": "[2026 다이어리] twenty,twenty six_2026_mini",
+                        "brandNo": 3171,
+                        "brandName": "오롤리데이",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 11000,
+                        "discountRate": 12,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "[2026 다이어리] twenty,twenty six_2026_mini",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202509/11f0990c12e94538920c091911858797.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 12500,
+                    "displayPrice": 11000,
+                    "saleRate": 12.0,
+                    "brandId": 3171,
+                    "brandName": "오롤리데이",
+                    "reviewScore": 5.0,
+                    "reviewCount": 143,
+                    "likeCount": 1062,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3534889,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3534889",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3534889"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3534889,
+                        "itemName": " [2026 다이어리] twenty,twenty six_2026_big",
+                        "brandNo": 3171,
+                        "brandName": "오롤리데이",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 12760,
+                        "discountRate": 12,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": " [2026 다이어리] twenty,twenty six_2026_big",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202509/11f099100d19b3b0920cdb174077f343.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 14500,
+                    "displayPrice": 12760,
+                    "saleRate": 12.0,
+                    "brandId": 3171,
+                    "brandName": "오롤리데이",
+                    "reviewScore": 5.0,
+                    "reviewCount": 88,
+                    "likeCount": 972,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3531164,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3531164",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3531164"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3531164,
+                        "itemName": "[2026 캘린더] 2026 Desk calendar_big",
+                        "brandNo": 3171,
+                        "brandName": "오롤리데이",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 9680,
+                        "discountRate": 12,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "[2026 캘린더] 2026 Desk calendar_big",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202509/11f095562c3852a193fb1fa76d2e14eb.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 11000,
+                    "displayPrice": 9680,
+                    "saleRate": 12.0,
+                    "brandId": 3171,
+                    "brandName": "오롤리데이",
+                    "reviewScore": 5.0,
+                    "reviewCount": 68,
+                    "likeCount": 1313,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3642247,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3642247",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3642247"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3642247,
+                        "itemName": "2026 레이오버 데일리 다이어리",
+                        "brandNo": 83061,
+                        "brandName": "비온뒤",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 19840,
+                        "discountRate": 36,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "2026 레이오버 데일리 다이어리",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202511/11f0c029e61d30ce8388c5aa5138f122.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 31000,
+                    "displayPrice": 19840,
+                    "saleRate": 36.0,
+                    "brandId": 83061,
+                    "brandName": "비온뒤",
+                    "reviewScore": 5.0,
+                    "reviewCount": 3,
+                    "likeCount": 484,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "쿠폰",
+                            "size": "small",
+                            "variant": "secondary"
+                        },
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3521139,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3521139",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3521139"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3521139,
+                        "itemName": "리틀띵스 올시즌 드로잉 다이어리 ver.3",
+                        "brandNo": 7647,
+                        "brandName": "라이브워크",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 13610,
+                        "discountRate": 19,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "리틀띵스 올시즌 드로잉 다이어리 ver.3",
+                    "thumbnailUrl": "https://img.29cm.co.kr/next-product/2025/09/17/23c6812042ca474fb6c6bd1a2193ea0b_20250917132904.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 16800,
+                    "displayPrice": 13610,
+                    "saleRate": 19.0,
+                    "brandId": 7647,
+                    "brandName": "라이브워크",
+                    "reviewScore": 4.5,
+                    "reviewCount": 19,
+                    "likeCount": 717,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "쿠폰",
+                            "size": "small",
+                            "variant": "secondary"
+                        },
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3666115,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3666115",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3666115"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3666115,
+                        "itemName": "[TROLLS PAPER] 2026 Diary (1year)",
+                        "brandNo": 7526,
+                        "brandName": "트롤스페이퍼",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 18000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "[TROLLS PAPER] 2026 Diary (1year)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202511/11f0caf1fd7e3109a5635b8239efbb80.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 18000,
+                    "displayPrice": 18000,
+                    "saleRate": 0.0,
+                    "brandId": 7526,
+                    "brandName": "트롤스페이퍼",
+                    "reviewScore": 5.0,
+                    "reviewCount": 7,
+                    "likeCount": 330,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3568139,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3568139",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3568139"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3568139,
+                        "itemName": "[가계부] 머니 캘린더 2026",
+                        "brandNo": 5466,
+                        "brandName": "도큐멘토",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 17500,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "[가계부] 머니 캘린더 2026",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202510/11f0a10e17c31490be461fe98890de22.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 17500,
+                    "displayPrice": 17500,
+                    "saleRate": 0.0,
+                    "brandId": 5466,
+                    "brandName": "도큐멘토",
+                    "reviewScore": 5.0,
+                    "reviewCount": 8,
+                    "likeCount": 1019,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 2288694,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/2288694",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F2288694"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 2288694,
+                        "itemName": "argentum",
+                        "brandNo": 3955,
+                        "brandName": "백상점",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 14000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "argentum",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202310/11ee6bf4f37976df8a7f45d101260833.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 14000,
+                    "displayPrice": 14000,
+                    "saleRate": 0.0,
+                    "brandId": 3955,
+                    "brandName": "백상점",
+                    "reviewScore": 5.0,
+                    "reviewCount": 256,
+                    "likeCount": 7223,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraFees": [
+                        {
+                            "text": "옵션비 별도"
+                        }
+                    ],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3662758,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3662758",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3662758"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3662758,
+                        "itemName": "26 Old Book Journal (Autume Leaves)",
+                        "brandNo": 11854,
+                        "brandName": "호텔파리칠",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 25220,
+                        "discountRate": 3,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": true
+                        },
+                        "isAd": false
+                    },
+                    "impression": {},
+                    "onClick": {}
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "26 Old Book Journal (Autume Leaves)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202511/11f0cbfb04329993a563e72e4ce1398f.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 26000,
+                    "displayPrice": 25220,
+                    "saleRate": 3.0,
+                    "brandId": 11854,
+                    "brandName": "호텔파리칠",
+                    "reviewScore": 5.0,
+                    "reviewCount": 5,
+                    "likeCount": 305,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3521121,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3521121",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3521121"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3521121,
+                        "itemName": "2026 리틀띵스 투웨이 캘린더",
+                        "brandNo": 7647,
+                        "brandName": "라이브워크",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 8910,
+                        "discountRate": 19,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "2026 리틀띵스 투웨이 캘린더",
+                    "thumbnailUrl": "https://img.29cm.co.kr/next-product/2025/09/17/e8e95d06b83c4cf394ffea81f904d091_20250917132747.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 11000,
+                    "displayPrice": 8910,
+                    "saleRate": 19.0,
+                    "brandId": 7647,
+                    "brandName": "라이브워크",
+                    "reviewScore": 5.0,
+                    "reviewCount": 21,
+                    "likeCount": 517,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "쿠폰",
+                            "size": "small",
+                            "variant": "secondary"
+                        },
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3674934,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3674934",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3674934"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3674934,
+                        "itemName": "하프다이어리 2026",
+                        "brandNo": 1447,
+                        "brandName": "소소문구",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 23000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "하프다이어리 2026",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202512/11f0d01c03bd3adbab9d538e57af4e5b.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 23000,
+                    "displayPrice": 23000,
+                    "saleRate": 0.0,
+                    "brandId": 1447,
+                    "brandName": "소소문구",
+                    "reviewScore": 5.0,
+                    "reviewCount": 4,
+                    "likeCount": 116,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraFees": [
+                        {
+                            "text": "옵션비 별도"
+                        }
+                    ],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 2885198,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/2885198",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F2885198"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 2885198,
+                        "itemName": "[다이어리] Happier 365 diary",
+                        "brandNo": 3171,
+                        "brandName": "오롤리데이",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 21120,
+                        "discountRate": 12,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "[다이어리] Happier 365 diary",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202410/11ef8778871f5ee58519c5d2099c2cd1.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 24000,
+                    "displayPrice": 21120,
+                    "saleRate": 12.0,
+                    "brandId": 3171,
+                    "brandName": "오롤리데이",
+                    "reviewScore": 5.0,
+                    "reviewCount": 61,
+                    "likeCount": 2304,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 1331225,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/1331225",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F1331225"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 1331225,
+                        "itemName": "Essential note - Daily diary",
+                        "brandNo": 7526,
+                        "brandName": "트롤스페이퍼",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 17000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "Essential note - Daily diary",
+                    "thumbnailUrl": "https://img.29cm.co.kr/next-product/2021/11/25/e8bd2e2d7c6640d7963362e3aeedab29_20211125034355.png",
+                    "isSoldOut": false,
+                    "originalPrice": 17000,
+                    "displayPrice": 17000,
+                    "saleRate": 0.0,
+                    "brandId": 7526,
+                    "brandName": "트롤스페이퍼",
+                    "reviewScore": 5.0,
+                    "reviewCount": 210,
+                    "likeCount": 1892,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3539583,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3539583",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3539583"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3539583,
+                        "itemName": "2026 라이프앤피시스 메모연력",
+                        "brandNo": 7647,
+                        "brandName": "라이브워크",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 11510,
+                        "discountRate": 19,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "2026 라이프앤피시스 메모연력",
+                    "thumbnailUrl": "https://img.29cm.co.kr/next-product/2025/10/23/7d00d21b018149c6a1f48677a6f830e4_20251023100634.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 14200,
+                    "displayPrice": 11510,
+                    "saleRate": 19.0,
+                    "brandId": 7647,
+                    "brandName": "라이브워크",
+                    "reviewScore": 4.5,
+                    "reviewCount": 10,
+                    "likeCount": 566,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "쿠폰",
+                            "size": "small",
+                            "variant": "secondary"
+                        },
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3491368,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3491368",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3491368"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3491368,
+                        "itemName": "[대시앤도트]2026 오디너리 오르빗 다이어리(날짜형)",
+                        "brandNo": 2825,
+                        "brandName": "대시앤도트",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 12580,
+                        "discountRate": 15,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "[대시앤도트]2026 오디너리 오르빗 다이어리(날짜형)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202509/11f08c52053965fab69ce78e998f7490.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 14800,
+                    "displayPrice": 12580,
+                    "saleRate": 15.0,
+                    "brandId": 2825,
+                    "brandName": "대시앤도트",
+                    "reviewScore": 4.5,
+                    "reviewCount": 7,
+                    "likeCount": 268,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3561623,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3561623",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3561623"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3561623,
+                        "itemName": "MOHS YWD Diary 만년형-06 RED BLUE + Card Calendar",
+                        "brandNo": 13996,
+                        "brandName": "모스",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 25200,
+                        "discountRate": 10,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "MOHS YWD Diary 만년형-06 RED BLUE + Card Calendar",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202510/11f09e9bfd6a801fa8b74bdacd949ace.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 28000,
+                    "displayPrice": 25200,
+                    "saleRate": 10.0,
+                    "brandId": 13996,
+                    "brandName": "모스",
+                    "reviewScore": 5.0,
+                    "reviewCount": 5,
+                    "likeCount": 367,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3669990,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3669990",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3669990"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3669990,
+                        "itemName": "Easy Going Diary_할머니의 스웨터 (만년필 호환)",
+                        "brandNo": 5591,
+                        "brandName": "썸무드 디자인",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 23800,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "Easy Going Diary_할머니의 스웨터 (만년필 호환)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202511/11f0cc6bd2c94d43a56325a4f746c7e5.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 23800,
+                    "displayPrice": 23800,
+                    "saleRate": 0.0,
+                    "brandId": 5591,
+                    "brandName": "썸무드 디자인",
+                    "reviewScore": 5.0,
+                    "reviewCount": 3,
+                    "likeCount": 174,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3568132,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3568132",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3568132"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3568132,
+                        "itemName": "오렌지 듀얼 데스크 캘린더 2026",
+                        "brandNo": 5466,
+                        "brandName": "도큐멘토",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 17000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "오렌지 듀얼 데스크 캘린더 2026",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202510/11f0a10c1d2ea17ebe46ef4b130904f0.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 17000,
+                    "displayPrice": 17000,
+                    "saleRate": 0.0,
+                    "brandId": 5466,
+                    "brandName": "도큐멘토",
+                    "reviewScore": 5.0,
+                    "reviewCount": 12,
+                    "likeCount": 605,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3533568,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3533568",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3533568"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3533568,
+                        "itemName": "2026 새틴북 다이어리 (날짜형)",
+                        "brandNo": 83061,
+                        "brandName": "비온뒤",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 15680,
+                        "discountRate": 36,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "2026 새틴북 다이어리 (날짜형)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202510/11f0a585f5a74973b27d89cf1e129135.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 24500,
+                    "displayPrice": 15680,
+                    "saleRate": 36.0,
+                    "brandId": 83061,
+                    "brandName": "비온뒤",
+                    "reviewScore": 5.0,
+                    "reviewCount": 8,
+                    "likeCount": 390,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "쿠폰",
+                            "size": "small",
+                            "variant": "secondary"
+                        },
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3541031,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3541031",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3541031"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3541031,
+                        "itemName": "[날짜형] 2026 노이에 먼슬리 플래너 Pocket",
+                        "brandNo": 76280,
+                        "brandName": "페이퍼리안",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 13600,
+                        "discountRate": 15,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "[날짜형] 2026 노이에 먼슬리 플래너 Pocket",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202509/11f099048d431cc2b563eb5dfd289506.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 16000,
+                    "displayPrice": 13600,
+                    "saleRate": 15.0,
+                    "brandId": 76280,
+                    "brandName": "페이퍼리안",
+                    "reviewScore": 5.0,
+                    "reviewCount": 4,
+                    "likeCount": 309,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3662755,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3662755",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3662755"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3662755,
+                        "itemName": "26 Old Book Journal (Pink)",
+                        "brandNo": 11854,
+                        "brandName": "호텔파리칠",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 25220,
+                        "discountRate": 3,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": true
+                        },
+                        "isAd": false
+                    },
+                    "impression": {},
+                    "onClick": {}
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "26 Old Book Journal (Pink)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202511/11f0cbfc8a3017c3ab9d79d504411d8c.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 26000,
+                    "displayPrice": 25220,
+                    "saleRate": 3.0,
+                    "brandId": 11854,
+                    "brandName": "호텔파리칠",
+                    "reviewScore": 5.0,
+                    "reviewCount": 1,
+                    "likeCount": 150,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 1125962,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/1125962",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F1125962"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 1125962,
+                        "itemName": "[POV original] 애플 저널 스몰 플레인 Apple Journal Small - Plain",
+                        "brandNo": 17582,
+                        "brandName": "포인트오브뷰",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "price": 22000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "[POV original] 애플 저널 스몰 플레인 Apple Journal Small - Plain",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202408/11ef588ce4e0d4bfaad21d84afa60e98.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 22000,
+                    "displayPrice": 22000,
+                    "saleRate": 0.0,
+                    "brandId": 17582,
+                    "brandName": "포인트오브뷰",
+                    "reviewScore": 5.0,
+                    "reviewCount": 296,
+                    "likeCount": 3784,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 2966898,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/2966898",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F2966898"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 2966898,
+                        "itemName": "ask diary 만년 다이어리",
+                        "brandNo": 31770,
+                        "brandName": "오에이비",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 23000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "ask diary 만년 다이어리",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202411/11efad6a9de31c7d852197b8e01d33a0.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 23000,
+                    "displayPrice": 23000,
+                    "saleRate": 0.0,
+                    "brandId": 31770,
+                    "brandName": "오에이비",
+                    "reviewScore": 5.0,
+                    "reviewCount": 90,
+                    "likeCount": 1772,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 2947294,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/2947294",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F2947294"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 2947294,
+                        "itemName": "MMMG 투마로우 S 바우하우스 아이보리",
+                        "brandNo": 66811,
+                        "brandName": "밀리미터밀리그람",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 19500,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "MMMG 투마로우 S 바우하우스 아이보리",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202411/11efa0c48a6c6b619876679448e48613.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 19500,
+                    "displayPrice": 19500,
+                    "saleRate": 0.0,
+                    "brandId": 66811,
+                    "brandName": "밀리미터밀리그람",
+                    "reviewScore": 4.5,
+                    "reviewCount": 6,
+                    "likeCount": 296,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3662754,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3662754",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3662754"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3662754,
+                        "itemName": "26 Old Book Journal (Redwood)",
+                        "brandNo": 11854,
+                        "brandName": "호텔파리칠",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 25220,
+                        "discountRate": 3,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": true
+                        },
+                        "isAd": false
+                    },
+                    "impression": {},
+                    "onClick": {}
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "26 Old Book Journal (Redwood)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202511/11f0cbfbe53a058da563f123274ff409.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 26000,
+                    "displayPrice": 25220,
+                    "saleRate": 3.0,
+                    "brandId": 11854,
+                    "brandName": "호텔파리칠",
+                    "reviewScore": 4.5,
+                    "reviewCount": 3,
+                    "likeCount": 177,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 2085920,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/2085920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F2085920"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 2085920,
+                        "itemName": "MD 노트 (S) - 유선 A",
+                        "brandNo": 4614,
+                        "brandName": "미도리",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110106,
+                        "smallCategoryName": "노트/메모",
+                        "price": 11000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "MD 노트 (S) - 유선 A",
+                    "thumbnailUrl": "https://img.29cm.co.kr/next-product/2023/05/19/320a611b139240438d7dfff69f8228ec_20230519151655.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 11000,
+                    "displayPrice": 11000,
+                    "saleRate": 0.0,
+                    "brandId": 4614,
+                    "brandName": "미도리",
+                    "reviewScore": 5.0,
+                    "reviewCount": 23,
+                    "likeCount": 680,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110106
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3531163,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3531163",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3531163"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3531163,
+                        "itemName": "[2026 캘린더] 2026 Desk calendar_mini",
+                        "brandNo": 3171,
+                        "brandName": "오롤리데이",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 7920,
+                        "discountRate": 12,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "[2026 캘린더] 2026 Desk calendar_mini",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202509/11f095547c545b4ea7fa81a3ddfef4a7.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 9000,
+                    "displayPrice": 7920,
+                    "saleRate": 12.0,
+                    "brandId": 3171,
+                    "brandName": "오롤리데이",
+                    "reviewScore": 5.0,
+                    "reviewCount": 23,
+                    "likeCount": 472,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3640322,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3640322",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3640322"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3640322,
+                        "itemName": "mail diary 2026 만년형 다이어리",
+                        "brandNo": 31770,
+                        "brandName": "오에이비",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 23000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "mail diary 2026 만년형 다이어리",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202511/11f0c0f243b9bd7483887d990af5d729.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 23000,
+                    "displayPrice": 23000,
+                    "saleRate": 0.0,
+                    "brandId": 31770,
+                    "brandName": "오에이비",
+                    "reviewScore": 5.0,
+                    "reviewCount": 8,
+                    "likeCount": 310,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3561626,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3561626",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3561626"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3561626,
+                        "itemName": "MOHS YWD Diary 만년형-07 BRWON MINT + Card Calendar",
+                        "brandNo": 13996,
+                        "brandName": "모스",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 25200,
+                        "discountRate": 10,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "MOHS YWD Diary 만년형-07 BRWON MINT + Card Calendar",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202510/11f09e9c4c7e077fa8b795d382644e57.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 28000,
+                    "displayPrice": 25200,
+                    "saleRate": 10.0,
+                    "brandId": 13996,
+                    "brandName": "모스",
+                    "reviewScore": 5.0,
+                    "reviewCount": 8,
+                    "likeCount": 441,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3603726,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3603726",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3603726"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3603726,
+                        "itemName": "2026 데이브레이커 다이어리 A5 - 플래너",
+                        "brandNo": 81853,
+                        "brandName": "모트모트",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 16800,
+                        "discountRate": 35,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "2026 데이브레이커 다이어리 A5 - 플래너",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202511/11f0bba204bf09788388017a1b6a3a64.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 25800,
+                    "displayPrice": 16800,
+                    "saleRate": 35.0,
+                    "brandId": 81853,
+                    "brandName": "모트모트",
+                    "reviewScore": 5.0,
+                    "reviewCount": 21,
+                    "likeCount": 208,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraFees": [
+                        {
+                            "text": "옵션비 별도"
+                        }
+                    ],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 2866318,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/2866318",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F2866318"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 2866318,
+                        "itemName": "타이벡 프라이빗 북커버 - Black (4 Size)",
+                        "brandNo": 4278,
+                        "brandName": "큐클리프",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 25000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "타이벡 프라이빗 북커버 - Black (4 Size)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202410/11ef807b02f5f174a27f996831996c0f.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 25000,
+                    "displayPrice": 25000,
+                    "saleRate": 0.0,
+                    "brandId": 4278,
+                    "brandName": "큐클리프",
+                    "reviewScore": 5.0,
+                    "reviewCount": 151,
+                    "likeCount": 1216,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraFees": [
+                        {
+                            "text": "옵션비 별도"
+                        }
+                    ],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3539587,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3539587",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3539587"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3539587,
+                        "itemName": "2026 라이프앤피시스 메모 위클리 탁상 달력 (가로형)",
+                        "brandNo": 7647,
+                        "brandName": "라이브워크",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 12800,
+                        "discountRate": 19,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "2026 라이프앤피시스 메모 위클리 탁상 달력 (가로형)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/next-product/2025/10/22/a776f0d0e1634ac68c2062ae7bcda8ec_20251022104947.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 15800,
+                    "displayPrice": 12800,
+                    "saleRate": 19.0,
+                    "brandId": 7647,
+                    "brandName": "라이브워크",
+                    "reviewScore": 4.5,
+                    "reviewCount": 5,
+                    "likeCount": 268,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "쿠폰",
+                            "size": "small",
+                            "variant": "secondary"
+                        },
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 2717218,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/2717218",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F2717218"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 2717218,
+                        "itemName": "now diary 만년 핸디 다이어리 스케줄러",
+                        "brandNo": 31770,
+                        "brandName": "오에이비",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 14000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "now diary 만년 핸디 다이어리 스케줄러",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202407/11ef3f547cbda21783629550441df04e.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 14000,
+                    "displayPrice": 14000,
+                    "saleRate": 0.0,
+                    "brandId": 31770,
+                    "brandName": "오에이비",
+                    "reviewScore": 5.0,
+                    "reviewCount": 86,
+                    "likeCount": 2300,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3568137,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3568137",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3568137"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3568137,
+                        "itemName": "오렌지 월 캘린더 2026 (A3,A4)",
+                        "brandNo": 5466,
+                        "brandName": "도큐멘토",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 9000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "오렌지 월 캘린더 2026 (A3,A4)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202510/11f0a10d904a7199a8b71564a6ff46e8.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 9000,
+                    "displayPrice": 9000,
+                    "saleRate": 0.0,
+                    "brandId": 5466,
+                    "brandName": "도큐멘토",
+                    "reviewScore": 5.0,
+                    "reviewCount": 8,
+                    "likeCount": 318,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraFees": [
+                        {
+                            "text": "옵션비 별도"
+                        }
+                    ],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3586822,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3586822",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3586822"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3586822,
+                        "itemName": "2026 A Piece Of 위클리 다이어리 (날짜형)",
+                        "brandNo": 83061,
+                        "brandName": "비온뒤",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 10180,
+                        "discountRate": 36,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "2026 A Piece Of 위클리 다이어리 (날짜형)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202510/11f0aa5654cd8651b27d4b6a36276054.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 15900,
+                    "displayPrice": 10180,
+                    "saleRate": 36.0,
+                    "brandId": 83061,
+                    "brandName": "비온뒤",
+                    "reviewScore": 5.0,
+                    "reviewCount": 1,
+                    "likeCount": 117,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "쿠폰",
+                            "size": "small",
+                            "variant": "secondary"
+                        },
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 968444,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/968444",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F968444"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 968444,
+                        "itemName": "일기 - 강아지",
+                        "brandNo": 4614,
+                        "brandName": "미도리",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 18000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "일기 - 강아지",
+                    "thumbnailUrl": "https://img.29cm.co.kr/next-product/2021/01/29/cbdd8c24ff0e4564800ffd66a150d08c_20210129194245.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 18000,
+                    "displayPrice": 18000,
+                    "saleRate": 0.0,
+                    "brandId": 4614,
+                    "brandName": "미도리",
+                    "reviewScore": 5.0,
+                    "reviewCount": 124,
+                    "likeCount": 2767,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 2872974,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/2872974",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F2872974"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 2872974,
+                        "itemName": "리틀띵스 올인원 레코딩 시스템 다이어리",
+                        "brandNo": 7647,
+                        "brandName": "라이브워크",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 14180,
+                        "discountRate": 19,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "리틀띵스 올인원 레코딩 시스템 다이어리",
+                    "thumbnailUrl": "https://img.29cm.co.kr/next-product/2024/10/04/a875540d3f764facb0f8fc1bf561d63a_20241004164840.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 17500,
+                    "displayPrice": 14180,
+                    "saleRate": 19.0,
+                    "brandId": 7647,
+                    "brandName": "라이브워크",
+                    "reviewScore": 4.5,
+                    "reviewCount": 78,
+                    "likeCount": 2079,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "쿠폰",
+                            "size": "small",
+                            "variant": "secondary"
+                        },
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3654203,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3654203",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3654203"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3654203,
+                        "itemName": "해피니스 날짜형 다이어리 2026",
+                        "brandNo": 5466,
+                        "brandName": "도큐멘토",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 17000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "해피니스 날짜형 다이어리 2026",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202511/11f0c5a7ccfd06ba838881b65a1a9e73.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 17000,
+                    "displayPrice": 17000,
+                    "saleRate": 0.0,
+                    "brandId": 5466,
+                    "brandName": "도큐멘토",
+                    "reviewScore": 5.0,
+                    "reviewCount": 3,
+                    "likeCount": 123,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraFees": [
+                        {
+                            "text": "옵션비 별도"
+                        }
+                    ],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3593025,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3593025",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3593025"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3593025,
+                        "itemName": "루카랩 2026 레코드 아카이브 A6 다이어리",
+                        "brandNo": 4084,
+                        "brandName": "루카랩",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 12500,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "루카랩 2026 레코드 아카이브 A6 다이어리",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202510/11f0ad7b294e8696a9184bf5f9ad597b.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 12500,
+                    "displayPrice": 12500,
+                    "saleRate": 0.0,
+                    "brandId": 4084,
+                    "brandName": "루카랩",
+                    "reviewScore": 0.0,
+                    "reviewCount": 0,
+                    "likeCount": 156,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 309387,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/309387",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F309387"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 309387,
+                        "itemName": "3년 일기",
+                        "brandNo": 4614,
+                        "brandName": "미도리",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 44000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "3년 일기",
+                    "thumbnailUrl": "https://img.29cm.co.kr/next-product/2019/02/08/64c450db461e45a99f38bffe507f01c0_20190208142841.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 44000,
+                    "displayPrice": 44000,
+                    "saleRate": 0.0,
+                    "brandId": 4614,
+                    "brandName": "미도리",
+                    "reviewScore": 5.0,
+                    "reviewCount": 70,
+                    "likeCount": 790,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3457509,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3457509",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3457509"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3457509,
+                        "itemName": "2026 두들 탁상달력 데스크 캘린더",
+                        "brandNo": 71904,
+                        "brandName": "아이코닉",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 7800,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "2026 두들 탁상달력 데스크 캘린더",
+                    "thumbnailUrl": "https://img.29cm.co.kr/next-product/2025/08/26/1298ce3dde1b4b75b3f4de207ad4c3cc_20250826095631.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 7800,
+                    "displayPrice": 7800,
+                    "saleRate": 0.0,
+                    "brandId": 71904,
+                    "brandName": "아이코닉",
+                    "reviewScore": 5.0,
+                    "reviewCount": 16,
+                    "likeCount": 434,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3486731,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3486731",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3486731"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3486731,
+                        "itemName": "2026 오디너리 아카이브 다이어리",
+                        "brandNo": 83061,
+                        "brandName": "비온뒤",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 6980,
+                        "discountRate": 36,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "2026 오디너리 아카이브 다이어리",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202509/11f0895fba31a7ccb69c2765898b1523.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 10900,
+                    "displayPrice": 6980,
+                    "saleRate": 36.0,
+                    "brandId": 83061,
+                    "brandName": "비온뒤",
+                    "reviewScore": 5.0,
+                    "reviewCount": 4,
+                    "likeCount": 323,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "쿠폰",
+                            "size": "small",
+                            "variant": "secondary"
+                        },
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3569593,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3569593",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3569593"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3569593,
+                        "itemName": "2026 Wall Calendar 벽걸이 달력 캘린더",
+                        "brandNo": 16291,
+                        "brandName": "가위",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 28000,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "2026 Wall Calendar 벽걸이 달력 캘린더",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202510/11f0a4f09e9e0e04bb2a8767a3736990.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 28000,
+                    "displayPrice": 28000,
+                    "saleRate": 0.0,
+                    "brandId": 16291,
+                    "brandName": "가위",
+                    "reviewScore": 5.0,
+                    "reviewCount": 15,
+                    "likeCount": 363,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraFees": [
+                        {
+                            "text": "옵션비 별도"
+                        }
+                    ],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 1783218,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/1783218",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F1783218"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 1783218,
+                        "itemName": "Conversations with my self (만년형 다이어리 2종)",
+                        "brandNo": 4032,
+                        "brandName": "웬아이워즈영",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 8500,
+                        "discountRate": 37,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "Conversations with my self (만년형 다이어리 2종)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/next-product/2022/12/20/0916db5bc1814849a121622702b68fce_20221220150822.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 13500,
+                    "displayPrice": 8500,
+                    "saleRate": 37.0,
+                    "brandId": 4032,
+                    "brandName": "웬아이워즈영",
+                    "reviewScore": 5.0,
+                    "reviewCount": 58,
+                    "likeCount": 980,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3527416,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3527416",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3527416"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3527416,
+                        "itemName": "오첵 2026년 대형 큰 포스터 한장 벽 달력 레트로",
+                        "brandNo": 1021,
+                        "brandName": "오첵",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 3900,
+                        "discountRate": 0,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "오첵 2026년 대형 큰 포스터 한장 벽 달력 레트로",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202509/11f09470f97f68d393fbeb21b8c2c6f1.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 3900,
+                    "displayPrice": 3900,
+                    "saleRate": 0.0,
+                    "brandId": 1021,
+                    "brandName": "오첵",
+                    "reviewScore": 4.5,
+                    "reviewCount": 5,
+                    "likeCount": 477,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3514258,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3514258",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3514258"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3514258,
+                        "itemName": "2026 위클리 스케줄러 플랜집 (날짜형)",
+                        "brandNo": 83061,
+                        "brandName": "비온뒤",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 7620,
+                        "discountRate": 36,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "2026 위클리 스케줄러 플랜집 (날짜형)",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202509/11f09202c8b1f1d494a2afbf2003aba4.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 11900,
+                    "displayPrice": 7620,
+                    "saleRate": 36.0,
+                    "brandId": 83061,
+                    "brandName": "비온뒤",
+                    "reviewScore": 4.5,
+                    "reviewCount": 7,
+                    "likeCount": 267,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "쿠폰",
+                            "size": "small",
+                            "variant": "secondary"
+                        },
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            },
+            {
+                "itemId": 3613615,
+                "itemType": "PRODUCT",
+                "itemUrl": {
+                    "webLink": "https://product.29cm.co.kr/catalog/3613615",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F3613615"
+                },
+                "itemEvent": {
+                    "eventProperties": {
+                        "itemNo": 3613615,
+                        "itemName": "루카랩 2026 언바운더리 데스크 캘린더 탁상 달력",
+                        "brandNo": 4084,
+                        "brandName": "루카랩",
+                        "largeCategoryNo": 291100100,
+                        "largeCategoryName": "가구/인테리어",
+                        "middleCategoryNo": 291110100,
+                        "middleCategoryName": "스테이셔너리",
+                        "smallCategoryNo": 291110102,
+                        "smallCategoryName": "다이어리/플래너",
+                        "price": 6240,
+                        "discountRate": 20,
+                        "isSoldout": false,
+                        "isDeliveryToday": false,
+                        "isColorchip": false,
+                        "experimentData": {
+                            "is_colorchip_item": false
+                        },
+                        "isAd": false
+                    }
+                },
+                "itemInfo": {
+                    "itemType": "PRODUCT",
+                    "productName": "루카랩 2026 언바운더리 데스크 캘린더 탁상 달력",
+                    "thumbnailUrl": "https://img.29cm.co.kr/item/202510/11f0b48925617b14a918d1eb02434572.jpg",
+                    "isSoldOut": false,
+                    "originalPrice": 7800,
+                    "displayPrice": 6240,
+                    "saleRate": 20.0,
+                    "brandId": 4084,
+                    "brandName": "루카랩",
+                    "reviewScore": 5.0,
+                    "reviewCount": 3,
+                    "likeCount": 228,
+                    "isLiked": false,
+                    "textBadges": [
+                        {
+                            "text": "조건부 무료배송",
+                            "size": "small",
+                            "variant": "secondary"
+                        }
+                    ],
+                    "imageBadges": [],
+                    "extraInfo": {
+                        "categories": [
+                            {
+                                "largeCategoryCode": 291100100,
+                                "mediumCategoryCode": 291110100,
+                                "smallCategoryCode": 291110102
+                            }
+                        ]
+                    },
+                    "isCategoryFirstPurchaseOnly": false
+                }
+            }
+        ],
+        "pagination": {
+            "page": 1,
+            "size": 50,
+            "hasNext": true,
+            "totalCount": 1104
+        }
+    }
+}

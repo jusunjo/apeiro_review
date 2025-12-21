@@ -1,0 +1,874 @@
+{
+    "result": "SUCCESS",
+    "data": {
+        "count": 317,
+        "giftCount": 0,
+        "averagePoint": 5.0,
+        "results": [
+            {
+                "itemReviewNo": 15471901,
+                "itemNo": 221920,
+                "optionValue": ["[월 선택]12월 _ december [커버추가]추가안함"],
+                "userNo": 5825529,
+                "userId": "jun***********",
+                "point": 5,
+                "contents": "매일 가지고 다니면서 업무나 사적으로 이것저것 기억해야되는 것들을 적기 딱 좋은 노트예요. 다이어리처럼 쓰는데 부담가지지 않고 막 쓰면서 이번 한달 빡세게 보내보려고 구매했습니다. 이틀째 사용중인데 은근 비침도 적고 맘에 들어요! 얇고 계속 가방에 넣고빼고 하려면 PVC 커버는 필수인 것 같습니다",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "1000080488.jpg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2025/12/02/a777dde2328e4bbba452c0a960c94ad9_20251202213344.jpg",
+                        "size": 4906011,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2025-12-02 21:37:53",
+                        "updatedTimestamp": "2025-12-02 21:37:53"
+                    },
+                    {
+                        "filename": "1000080489.jpg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2025/12/02/4618c1aad22d4821af3960afc92032e8_20251202213358.jpg",
+                        "size": 2561806,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2025-12-02 21:37:53",
+                        "updatedTimestamp": "2025-12-02 21:37:53"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2025-12-02 21:37:53",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 14416918,
+                "itemNo": 221920,
+                "optionValue": ["[월 선택]9월 _ september [커버추가]추가안함"],
+                "userNo": 3876189,
+                "userId": "cha******",
+                "point": 5,
+                "contents": "몇년동안 아이패드로 다이어리를 작성하다가 아날로그가 그리워지더라구요.. 다시 한번 종이로된 다이어리를 적어볼까해서 부담스럽지 않은 한달용 다이어리를 사봤습니당 \n아직 구월 전이지만 미리 몇가지 손으로 적으니 너무 좋네요! 종이 질도 좋고 디자인도 맘에들고 P인 저에기 부담스럽지 않은 내용이에욤 희희\n구월 잘 써보도 10월도 주문 해 볼게요 : )",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "IMG_6618.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2025/08/31/763bdc8462b54534a9e2590c026d1ce7_20250831020318.jpeg",
+                        "size": 1988082,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2025-08-31 02:07:11",
+                        "updatedTimestamp": "2025-08-31 02:07:11"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2025-08-31 02:07:11",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 9991459,
+                "itemNo": 221920,
+                "optionValue": [
+                    "[월 선택]10월 _ october [커버추가]추가안함",
+                    "[월 선택]9월 _ september [커버추가]추가안함",
+                    "[월 선택]12월 _ december [커버추가]추가안함",
+                    "[월 선택]11월 _ november [커버추가]추가안함",
+                    "[월 선택]8월 _ august [커버추가]추가안함"
+                ],
+                "userNo": 3348794,
+                "userId": "rla*********",
+                "point": 5,
+                "contents": "우선 너무 귀여운 포장지에 들어왔어요.\n사실 날짜형 다이어리가 편한데 날짜형은 다쓰기에 부담이 되고, 빈칸을 두자니 보기 싫고\n만년형을 쓰자니 날짜를 모두 일일이 쓰는게 부담스라웠는데 그 중간 지점을 오롤데가 해결했어요!\n가볍고 작아서 부담없이 매달 다이어리 쓸 것 같아용\n게다가 예쁜 디자인까지!! 넘 마음에 들어서 8월부터 12월까지 미리 샀습니당!",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "IMG_6286.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2024/08/06/53b0324bd6984b7b8690d0a352d72f3a_20240806220541.jpeg",
+                        "size": 3642659,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2024-08-06 22:08:16",
+                        "updatedTimestamp": "2024-08-06 22:08:16"
+                    },
+                    {
+                        "filename": "IMG_6284.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2024/08/06/5c81e703eee94b83a3ad8023f32efe42_20240806220602.jpeg",
+                        "size": 3420404,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2024-08-06 22:08:16",
+                        "updatedTimestamp": "2024-08-06 22:08:16"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2024-08-06 22:08:16",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 7863411,
+                "itemNo": 221920,
+                "optionValue": ["[월 선택]5월 _ may [커버추가]추가", "[월 선택]4월 _ april [커버추가]추가", "[월 선택]3월 _ march [커버추가]추가"],
+                "userNo": 3263586,
+                "userId": "lov********",
+                "point": 5,
+                "contents": "파워P라 칸많은 다이어리 못써요\n작년에 시간까지 기록하는 1년다이어리 샀다가 한페이지쓰고 구석행\n파워P 파워N이라 산만해서 기록은 해야 생활가능한데 여태 빈노트 쓰다가 1월만 써봤는데,\n끝이 짧고 단순해서 잘써져요ㅎㅎ 5월까지 구매함\n그이후는 5월쓰는거봐서 구매할거에여",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "20240130_143924.jpg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2024/01/31/a2ac1114e79b4d43a40fad0915e875a9_20240131003720.jpg",
+                        "size": 3133357,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2024-01-31 00:40:23",
+                        "updatedTimestamp": "2024-01-31 00:40:23"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2024-01-31 00:40:23",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 6570026,
+                "itemNo": 221920,
+                "optionValue": [
+                    "[월 선택]10월 _ october [커버추가] 추가안함",
+                    "[월 선택]9월 _ september [커버추가] 추가안함",
+                    "[월 선택]12월 _ december [커버추가] 추가안함",
+                    "[월 선택]11월 _ november [커버추가] 추가안함"
+                ],
+                "userNo": 2104665,
+                "userId": "sep*********",
+                "point": 4,
+                "contents": "9-12월 샀어요 근데 12월만 저런 비닐포장지여서 뭐지 싶었음 (스티커는 뜯어봐서 갈라진거예요)\n겉표지는 스치면 무광으로 상처남는 그런종이재질이라 표지 씌우는게 좋을거같아요 ㅋㅋㅋ비닐 바로 은 새제품도 스탠드 밑에서 보면 이미 긁혀져있고 그래요\n속지는 심플하고 직관적이고 차분한 블루톤이라 좋습니다.",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "IMG_3343.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2023/09/06/0ce1ba5ec12e429589d28ce6c325782b_20230906174237.jpeg",
+                        "size": 4412468,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2023-09-06 17:46:00",
+                        "updatedTimestamp": "2023-09-06 17:46:00"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2023-09-06 17:46:00",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 6529781,
+                "itemNo": 221920,
+                "optionValue": [
+                    "[월 선택]10월 _ october [커버추가] 추가안함",
+                    "[월 선택]9월 _ september [커버추가] 추가안함",
+                    "[월 선택]12월 _ december [커버추가] 추가안함",
+                    "[월 선택]11월 _ november [커버추가] 추가안함"
+                ],
+                "userNo": 6345766,
+                "userId": "yes***",
+                "point": 5,
+                "contents": "이번 연도에 다이어리를 구입을 못해서 스케줄 관리가 제대로 안되어서 불편했는데 이제 4개월 남짓 남은 기간때문에 다이어리 사기에는 아깝고.. 관리를 어떻게 할까 고민하고 있었는데 마침 다달이 쓸 수 있는 이 다이어리 정말 획기적입니다!!!! 휴대하기에도 가볍고 작고 너무 좋고 어딜 가든 가방속에 넣고 다니기에도 좋습니다.. 너무 감사합니다!!",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "62E8714C-F4FF-4C51-894A-DEC26B568910.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2023/08/31/e54fbb9b85e94c14ac11f8b841be5cc6_20230831181024.jpeg",
+                        "size": 2750908,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2023-08-31 18:12:15",
+                        "updatedTimestamp": "2023-08-31 18:12:15"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2023-08-31 18:12:15",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 6229044,
+                "itemNo": 221920,
+                "optionValue": [
+                    "[월 선택]10월 _ october [커버추가] 추가안함",
+                    "[월 선택]9월 _ september [커버추가] 추가안함",
+                    "[월 선택]8월 _ august [커버추가] 추가",
+                    "[월 선택]12월 _ december [커버추가] 추가안함",
+                    "[월 선택]7월 _july [커버추가] 추가",
+                    "[월 선택]11월 _ november [커버추가] 추가안함"
+                ],
+                "userNo": 5417872,
+                "userId": "rab******",
+                "point": 4,
+                "contents": "요 다이어리만 2년정도 쓰다가 해외에 나오게 됐는데 이거 없으니까 넘 힘들어서ㅎㅎ 집으로 배송해서 해외로 받았네용..!! 이제 맘이 넘 편합니다ㅎㅎ 저랑 정말 찰떡이에요!! 해외라 받기가 힘든데 와중에 커버가 누락돼서.. 너무 아쉽지만ㅠ 다이어리는 넘 만족합니다! 커버 값은 환불부탁드려요!",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "IMG_7613.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2023/07/21/4c019c87dfa44eda85489ed037991a2e_20230721075034.jpeg",
+                        "size": 1744496,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2023-07-21 07:52:10",
+                        "updatedTimestamp": "2023-07-21 07:52:10"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2023-07-21 07:52:10",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 6092847,
+                "itemNo": 221920,
+                "optionValue": [
+                    "[월 선택]10월 _ october [커버추가] 추가안함",
+                    "[월 선택]9월 _ september [커버추가] 추가안함",
+                    "[월 선택]12월 _ december [커버추가] 추가안함",
+                    "[월 선택]11월 _ november [커버추가] 추가안함",
+                    "[월 선택]8월 _ august [커버추가] 추가안함",
+                    "[월 선택]7월 _july [커버추가] 추가안함"
+                ],
+                "userNo": 657384,
+                "userId": "sj1***",
+                "point": 5,
+                "contents": "예전에 한번 써보고 편해서 7월부터 12월까지 다 사버렸어요!! 아무래도 한달씩 있으니가 들고다니기도 편하고, 매달 다른 수첩에 쓰니까 질리지도 않아서 좋아요! 그리고 하루에 한장씩 쓸수있는게 좋은 것 같아요! 할일 왼쪽에 쓰고 마무리하거나 메모할건 오른쪽에 쓰면 되서 편해요",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "4873EF21-9ACE-4A96-BFF2-6AE195EF4D38.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2023/07/04/133018d61774493fbc67e2d7b193e960_20230704190339.jpeg",
+                        "size": 4428855,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2023-07-04 19:05:44",
+                        "updatedTimestamp": "2023-07-04 19:05:44"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2023-07-04 19:05:44",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 794083,
+                "itemNo": 221920,
+                "optionValue": [],
+                "userNo": 724220,
+                "userId": "tnd******",
+                "point": 5,
+                "contents": "너무귀여워요 \uD83D\uDE0D 배송은 2일 정도 걸렸구요 포장도 너무 귀엽게 도착했네요 ㅎㅎ 속지는 더욱 더 맘에 들어요\uD83D\uDE0B 제가 딱 8/1일 부터 쓰지 못해서 버리는 종이가 있으면 어떡하지 걱정을 했는데 일별 스케쥴 종이에 따로 날짜 동그라미가 안 쳐져 있어서 거의 처음부터 끝까지 제대로 활용할 수 있을것 같아요! 이번 한달 잘 써보고 다음달도 구매하러 올게요 ㅎㅎ",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "A59D12A5-5FB1-4422-84B5-D226CCC00449.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2020/08/05/7a5aef20478c4d658311a7ab433e968a_20200805133052.jpeg",
+                        "size": 1546458,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2020-08-05 13:33:12",
+                        "updatedTimestamp": "2022-11-24 00:30:59"
+                    },
+                    {
+                        "filename": "A02BD879-22AF-470B-A529-2227781916CB.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2020/08/05/01e8a6663ed34b0e95bf0858da13f0c7_20200805133052.jpeg",
+                        "size": 1400254,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2020-08-05 13:33:12",
+                        "updatedTimestamp": "2022-11-24 00:30:59"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2020-08-05 13:33:12",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 14487061,
+                "itemNo": 221920,
+                "optionValue": ["[월 선택]9월 _ september [커버추가]추가안함", "[월 선택]10월 _ october [커버추가]추가안함"],
+                "userNo": 3213114,
+                "userId": "jun*******",
+                "point": 5,
+                "contents": "얇고 가벼워서 갖고 다니기 편해요\uD83D\uDC97\n연초에 두꺼운 다이어리 사놓고 안쓰는 중인데 이건 휴대성도 좋고 딱 한달씩 쓰는거라 부담도 없어요\n1년 중 가장 좋아하는 달이 9월이라 사봤는데 일주일 째 매일 일기를 쓰고 있습니다..!\uD83D\uDC4F\uD83C\uDFFB \n스티커도 같이 받아서 붙였는데 마음에 들어요",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "IMG_3709.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2025/09/05/82c5403b39e6409394c42526e18a84eb_20250905104441.jpeg",
+                        "size": 2298696,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2025-09-05 10:46:22",
+                        "updatedTimestamp": "2025-09-05 10:46:22"
+                    },
+                    {
+                        "filename": "IMG_3711.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2025/09/05/48e899d5e8ab41feb2b9f6a431ff1e45_20250905104441.jpeg",
+                        "size": 2329440,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2025-09-05 10:46:22",
+                        "updatedTimestamp": "2025-09-05 10:46:22"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2025-09-05 10:46:22",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 11629304,
+                "itemNo": 221920,
+                "optionValue": [
+                    "[월 선택]10월 _ october [커버추가]추가안함",
+                    "[월 선택]9월 _ september [커버추가]추가안함",
+                    "[월 선택]12월 _ december [커버추가]추가안함",
+                    "[월 선택]11월 _ november [커버추가]추가안함",
+                    "[월 선택]2월 _ february [커버추가]추가안함",
+                    "[월 선택]1월 _ january [커버추가]추가안함",
+                    "[월 선택]4월 _ april [커버추가]추가안함",
+                    "[월 선택]3월 _ march [커버추가]추가안함",
+                    "[월 선택]6월 _ june [커버추가]추가안함",
+                    "[월 선택]5월 _ may [커버추가]추가안함",
+                    "[월 선택]8월 _ august [커버추가]추가안함",
+                    "[월 선택]7월 _july [커버추가]추가안함"
+                ],
+                "userNo": 8209639,
+                "userId": "k17******",
+                "point": 5,
+                "contents": "연 다이어리 구매하면서 먼슬리로 세분화 하면 뭔가 플랜 실행력이 올라갈까 싶어서 구매했습니다. 달마다 권이 나눠져 있으니 무언가 미션 클리어 하듯이 플랜을 이뤄나가기 좋을 것 같아요. 알찬 내년을 기약해 봅니다. 배송은 조금 걸렸으니 미리 주문하셔요~",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "IMG_5528.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2024/12/23/1f5a9a01e4d4493b80bea929cce40335_20241223054342.jpeg",
+                        "size": 1902641,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2024-12-23 05:45:10",
+                        "updatedTimestamp": "2024-12-23 05:45:10"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2024-12-23 05:45:10",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 3817284,
+                "itemNo": 221920,
+                "optionValue": ["[월 선택]9월 _ september [커버추가] 추가안함", "[월 선택]8월 _ august [커버추가] 추가안함"],
+                "userNo": 703703,
+                "userId": "bor*****",
+                "point": 5,
+                "contents": "1년 다이어리 항상 끝까지 못 써 월간으로 교체해 보았습니다.  날짜도 캘린더에 날짜가 비어져 있어 직접 적는게 좋았고 6주 적게 되어 있어 남은 칸에 월간 목표 적을 수 있어 좋았습니다. 첫번째 장에 월간 목표 적는 공간에 별도로 표시 되면 좋을 것 같습니다. ",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "86D707FB-EC00-47EE-B712-6CB5A1195E96.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2022/08/03/c5b521f39d5c4611a90ca69515a33ed1_20220803232203.jpeg",
+                        "size": 2538618,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2022-08-03 23:24:51",
+                        "updatedTimestamp": "2022-11-26 14:34:27"
+                    },
+                    {
+                        "filename": "image.jpg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2022/08/03/fdc6957e3e1c4e6a9e8e2223ff8579e5_20220803232440.jpg",
+                        "size": 2063900,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2022-08-03 23:24:51",
+                        "updatedTimestamp": "2022-11-26 14:34:27"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2022-08-03 23:24:51",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 3878345,
+                "itemNo": 221920,
+                "optionValue": ["[월 선택]9월 _ september [커버추가] 추가", "[월 선택]8월 _ august [커버추가] 추가안함", "[월 선택]7월 _july [커버추가] 추가안함"],
+                "userNo": 3075904,
+                "userId": "hw7***",
+                "point": 5,
+                "contents": "분기마다 3개월치 주문해서 쓰고 있어요\n체크리스트 쓰고 지워가면서 일하는 타입이라 회사 다이어리보다 데일리한 업무 정리하기 좋아요!!\n가볍고 사이즈도 적당해서 가지고 다니거나 펼쳐놓고 기입할때 불편함 없어 좋습니다!",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "image.jpg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2022/08/14/f8f403c6cba948429c22b2ccbd84cf2d_20220814203651.jpg",
+                        "size": 3414371,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2022-08-14 20:39:01",
+                        "updatedTimestamp": "2022-11-26 15:34:14"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2022-08-14 20:39:01",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 11401771,
+                "itemNo": 221920,
+                "optionValue": ["[월 선택]12월 _ december [커버추가]추가안함", "[월 선택]11월 _ november [커버추가]추가안함"],
+                "userNo": 2050895,
+                "userId": "vod*****",
+                "point": 5,
+                "contents": "2024년에는 다이어리를 사지 않고 그냥 달력에 대충 적는 것으로 하루 계획을 세웠는데 연말이 되니 더 자세하게 한 달 한 달을 기록하고 싶어져 11,12월 다이어리 구입했습니다. 스티커로 꾸몄는데 더 귀여워졌어용 ㅎㅎ",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "image.jpg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2024/12/04/f557b15863cb49c4995c8fa761123939_20241204193227.jpg",
+                        "size": 2276987,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2024-12-04 19:34:20",
+                        "updatedTimestamp": "2024-12-04 19:34:20"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2024-12-04 19:34:20",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 4226873,
+                "itemNo": 221920,
+                "optionValue": ["[월 선택]10월 _ october [커버추가] 추가안함", "[월 선택]12월 _ december [커버추가] 추가안함", "[월 선택]11월 _ november [커버추가] 추가안함"],
+                "userNo": 3075904,
+                "userId": "hw7***",
+                "point": 5,
+                "contents": "업무 스케줄 관리용으로 너무 잘 쓰고 있습니다\n분기에 한번씩 3개월치 구매하고 있는데 월별로 한 일들 확인하기가 용이해서 좋아요\n가볍고 사이즈가 적당해서 휴대성이 너무 좋고 필기하는 데 불편함도 없어요!",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "3C8D62A7-878B-404F-A85A-BD2958671C6C.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2022/10/10/d77cdfded2b446ce86f1b9f48b0557f5_20221010170625.jpeg",
+                        "size": 4184724,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2022-10-10 17:06:30",
+                        "updatedTimestamp": "2022-11-26 20:59:24"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2022-10-10 17:06:30",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 13069535,
+                "itemNo": 221920,
+                "optionValue": ["[월 선택]4월 _ april [커버추가]추가안함", "[월 선택]3월 _ march [커버추가]추가안함", "[월 선택]5월 _ may [커버추가]추가안함"],
+                "userNo": 3838842,
+                "userId": "rye******",
+                "point": 5,
+                "contents": "2월에 3-5월 3개월분 써보고 좋아서 재구매했습니다. 1년 다이어리는 무거워서 잘 안가지고 다니게 되는데 이건 작고 가벼워서 어디든지 가지고 다닐 수 있어 활용도가 높아요.다음에 또 구매하겠습니다!",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "1000018626.jpg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2025/05/12/a7ef90145b7a4c9ba2993b1acf8e96a2_20250512132158.jpg",
+                        "size": 2448740,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2025-05-12 13:23:35",
+                        "updatedTimestamp": "2025-05-12 13:23:35"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2025-05-12 13:23:35",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 114401,
+                "itemNo": 221920,
+                "optionValue": [],
+                "userNo": 225973,
+                "userId": "aaa****",
+                "point": 4,
+                "contents": "7월것이 품절이라 전화받고 8월걸로 받았어요. 매번 쓰던거라 큰 불편함 없고, 거의 7개째 쓰고있지만 한번에 여러개 사서 다 쓸 자신은 여전히 없네요 ㅠㅠ 그런 저라서 오히려 더 잘 쓰고 있기도 한것 같구용 ㅎㄹ",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "A90A55DC-A717-4BED-A9E7-05E122529C6A.jpeg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-mypage/2018/07/17/8ceccea49cf14ee7983414fbd7b468c9_20180717102133.jpeg",
+                        "size": 1690387,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2018-07-17 10:23:59",
+                        "updatedTimestamp": "2022-11-22 23:18:21"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2018-07-17 10:23:59",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 8027093,
+                "itemNo": 221920,
+                "optionValue": ["[월 선택]2월 _ february [커버추가]추가안함", "[월 선택]4월 _ april [커버추가]추가안함", "[월 선택]3월 _ march [커버추가]추가안함"],
+                "userNo": 5885441,
+                "userId": "yun****",
+                "point": 5,
+                "contents": "일년짜리사도 맨날 반정도밖에 못쓰는 성격이라 한달짜리씩 이쁜 패키지를 발견해서 구입했어요!\n완전만족이에요 ㅎㅎ 달마다 색상이 달라서 이뿌기도하고 데일리가 넓직하게있어서 이것저것 쓰기 편합니다",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "image.jpg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2024/02/16/cae9b759885c4cf799cb4b4259a176e3_20240216224057.jpg",
+                        "size": 2747159,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2024-02-16 22:42:00",
+                        "updatedTimestamp": "2024-02-16 22:42:00"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2024-02-16 22:42:00",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 2795857,
+                "itemNo": 221920,
+                "optionValue": ["[월 선택]4월 _ april [커버추가] 추가안함", "[월 선택]3월 _ march [커버추가] 추가안함", "[월 선택]5월 _ may [커버추가] 추가안함"],
+                "userNo": 4272988,
+                "userId": "jii***",
+                "point": 3,
+                "contents": "딱 필요한 것들만 들어있는 기본에 충실한 다이어리라 제일 마음에 들었어요. 다만 오롤리데이는 포장까지 예쁜게 마음에 들었는데 이번에 시킨 제품 중 하나만 포장 비닐이 잘못되어있어서 아쉽네요.",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "1645687512131.jpg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2022/02/24/a6ea8d29a75f41bbaf7788a5a8dc09fc_20220224162513.jpg",
+                        "size": 524288,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2022-02-24 16:25:45",
+                        "updatedTimestamp": "2022-11-25 21:24:39"
+                    },
+                    {
+                        "filename": "1645687529786.jpg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2022/02/24/2c9ed70de2c54774b9407b6be23ee18b_20220224162530.jpg",
+                        "size": 507904,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2022-02-24 16:25:45",
+                        "updatedTimestamp": "2022-11-25 21:24:39"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2022-02-24 16:25:45",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            },
+            {
+                "itemReviewNo": 11175344,
+                "itemNo": 221920,
+                "optionValue": [
+                    "[월 선택]10월 _ october [커버추가]추가안함",
+                    "[월 선택]9월 _ september [커버추가]추가안함",
+                    "[월 선택]12월 _ december [커버추가]추가안함",
+                    "[월 선택]11월 _ november [커버추가]추가안함"
+                ],
+                "userNo": 7683095,
+                "userId": "ebc*******",
+                "point": 5,
+                "contents": "한 달 단위로 나와 가볍게 들고 다니기 좋고, 구성도 실용적입니다. 색감도 예쁘고, 디자인도 뭔가 심플하면서 세련돼서 맘에 듭니다. 앞면은 영어, 뒷면은 불어로 각 달의 이름이 쓰여 있어요.",
+                "reviewType": 0,
+                "reviewTypeDef": "PRODUCT",
+                "registrationType": "USER",
+                "isGift": "F",
+                "isGiftBuyer": false,
+                "isGiftReceiver": false,
+                "isReported": "F",
+                "giftReview": null,
+                "userSize": [],
+                "uploadFiles": [
+                    {
+                        "filename": "1000010592.jpg",
+                        "contentType": "image/jpeg",
+                        "url": "/next-product/2024/11/17/3818f44416e24323bafdb963ff427736_20241117203132.jpg",
+                        "size": 3030341,
+                        "isDeleted": "F",
+                        "insertTimestamp": "2024-11-17 20:33:33",
+                        "updatedTimestamp": "2024-11-17 20:33:33"
+                    }
+                ],
+                "partnerComment": null,
+                "surveyList": [],
+                "insertTimestamp": "2024-11-17 20:33:33",
+                "link": {
+                    "webLink": "https://product.29cm.co.kr/catalog/221920",
+                    "appLink": "app29cm://web/https%3A%2F%2Fproduct.29cm.co.kr%2Fcatalog%2F221920"
+                },
+                "isBlind": false,
+                "isPreuserReview": false
+            }
+        ]
+    },
+    "message": null,
+    "errorCode": null
+}
