@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Platform, ProductItem, Review } from './types';
-import { searchProducts, fetchAllReviews } from './utils/api';
+import { searchProducts, fetchAllReviews, searchMusinsaProducts, fetchAllMusinsaReviews } from './utils/api';
 import { exportToExcel } from './utils/excel';
 
 const App = () => {
@@ -23,45 +23,86 @@ const App = () => {
 
     try {
       // 1. 검색하여 상품 목록 가져오기
-      const allProducts: ProductItem[] = [];
-      for (let page = 1; page <= pageCount; page++) {
-        setStatus(`상품 검색 중... (${page}/${pageCount} 페이지)`);
-        const searchResponse = await searchProducts(keyword, page, 50);
-        allProducts.push(...searchResponse.data.list);
-        
-        // 마지막 페이지거나 더 이상 없으면 중단
-        if (!searchResponse.data.pagination.hasNext || page === pageCount) {
-          break;
-        }
-      }
-
-      if (allProducts.length === 0) {
-        alert('검색 결과가 없습니다.');
-        setIsLoading(false);
-        return;
-      }
-
-      setStatus(`총 ${allProducts.length}개의 상품을 찾았습니다. 리뷰 수집 시작...`);
-      
-      // 2. 각 상품의 리뷰 수집
       const reviewsByProduct = new Map<number, Review[]>();
-      const totalProducts = allProducts.length;
 
-      for (let i = 0; i < allProducts.length; i++) {
-        const product = allProducts[i];
-        const itemNo = product.itemEvent.eventProperties.itemNo;
-        
-        setStatus(`리뷰 수집 중... (${i + 1}/${totalProducts} 상품)`);
-        setProgress({ current: i + 1, total: totalProducts });
+      if (platform === '29cm') {
+        const allProducts: ProductItem[] = [];
+        for (let page = 1; page <= pageCount; page++) {
+          setStatus(`상품 검색 중... (${page}/${pageCount} 페이지)`);
+          const searchResponse = await searchProducts(keyword, page, 50);
+          allProducts.push(...searchResponse.data.list);
 
-        try {
-          const reviews = await fetchAllReviews(itemNo);
-          if (reviews.length > 0) {
-            reviewsByProduct.set(itemNo, reviews);
+          if (!searchResponse.data.pagination.hasNext || page === pageCount) {
+            break;
           }
-        } catch (error) {
-          console.error(`Error fetching reviews for item ${itemNo}:`, error);
-          setStatus(`상품 ${itemNo}의 리뷰를 가져오는 중 오류 발생 (계속 진행)`);
+        }
+
+        if (allProducts.length === 0) {
+          alert('검색 결과가 없습니다.');
+          setIsLoading(false);
+          return;
+        }
+
+        setStatus(`총 ${allProducts.length}개의 상품을 찾았습니다. 리뷰 수집 시작...`);
+
+        const totalProducts = allProducts.length;
+
+        for (let i = 0; i < allProducts.length; i++) {
+          const product = allProducts[i];
+          const itemNo = product.itemEvent.eventProperties.itemNo;
+
+          setStatus(`리뷰 수집 중... (${i + 1}/${totalProducts} 상품)`);
+          setProgress({ current: i + 1, total: totalProducts });
+
+          try {
+            const reviews = await fetchAllReviews(itemNo);
+            if (reviews.length > 0) {
+              reviewsByProduct.set(itemNo, reviews);
+            }
+          } catch (error) {
+            console.error(`Error fetching reviews for item ${itemNo}:`, error);
+            setStatus(`상품 ${itemNo}의 리뷰를 가져오는 중 오류 발생 (계속 진행)`);
+          }
+        }
+      } else if (platform === 'musinsa') {
+        const allGoods: { goodsNo: number }[] = [];
+
+        for (let page = 1; page <= pageCount; page++) {
+          setStatus(`무신사 상품 검색 중... (${page}/${pageCount} 페이지)`);
+          const searchResponse = await searchMusinsaProducts(keyword, page, 60);
+          allGoods.push(...searchResponse.data.list);
+
+          if (!searchResponse.data.pagination.hasNext || page === pageCount) {
+            break;
+          }
+        }
+
+        if (allGoods.length === 0) {
+          alert('검색 결과가 없습니다.');
+          setIsLoading(false);
+          return;
+        }
+
+        setStatus(`총 ${allGoods.length}개의 무신사 상품을 찾았습니다. 리뷰 수집 시작...`);
+
+        const totalProducts = allGoods.length;
+
+        for (let i = 0; i < allGoods.length; i++) {
+          const goods = allGoods[i];
+          const goodsNo = goods.goodsNo;
+
+          setStatus(`무신사 리뷰 수집 중... (${i + 1}/${totalProducts} 상품)`);
+          setProgress({ current: i + 1, total: totalProducts });
+
+          try {
+            const reviews = await fetchAllMusinsaReviews(goodsNo);
+            if (reviews.length > 0) {
+              reviewsByProduct.set(goodsNo, reviews);
+            }
+          } catch (error) {
+            console.error(`Error fetching musinsa reviews for goods ${goodsNo}:`, error);
+            setStatus(`무신사 상품 ${goodsNo}의 리뷰를 가져오는 중 오류 발생 (계속 진행)`);
+          }
         }
       }
 
@@ -73,7 +114,7 @@ const App = () => {
       }
 
       setStatus('Excel 파일 생성 중...');
-      exportToExcel(reviewsByProduct);
+      exportToExcel(platform, reviewsByProduct);
       
       const totalReviews = Array.from(reviewsByProduct.values()).reduce(
         (sum, reviews) => sum + reviews.length,
@@ -115,6 +156,18 @@ const App = () => {
               disabled={isLoading}
             >
               29cm
+            </button>
+            <button
+              type="button"
+              onClick={() => setPlatform('musinsa')}
+              className={`px-4 py-2 rounded-md font-medium transition-colors ${
+                platform === 'musinsa'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+              disabled={isLoading}
+            >
+              무신사
             </button>
           </div>
         </div>

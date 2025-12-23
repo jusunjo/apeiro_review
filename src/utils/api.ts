@@ -1,10 +1,11 @@
 import axios from 'axios';
-import type { SearchRequestBody, SearchResponse, ReviewResponse } from '../types';
+import type { SearchRequestBody, SearchResponse, ReviewResponse, Review } from '../types';
 
 const API_DELAY = 500; // API 호출 간 딜레이 (ms)
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
+// 29CM 검색
 export const searchProducts = async (
   keyword: string,
   page: number,
@@ -38,6 +39,7 @@ export const searchProducts = async (
   return response.data;
 };
 
+// 29CM 리뷰
 export const fetchReviews = async (
   itemId: number,
   page: number = 0,
@@ -86,6 +88,134 @@ export const fetchAllReviews = async (itemId: number): Promise<ReviewResponse['d
       }
     } catch (error) {
       console.error(`Error fetching reviews for item ${itemId} page ${page}:`, error);
+      hasMore = false;
+    }
+  }
+
+  return allReviews;
+};
+
+// 무신사 타입
+interface MusinsaSearchGoods {
+  goodsNo: number;
+  goodsName: string;
+}
+
+interface MusinsaSearchResponse {
+  data: {
+    list: MusinsaSearchGoods[];
+    pagination: {
+      page: number;
+      size: number;
+      totalCount: number;
+      totalPages: number;
+      hasNext: boolean;
+    };
+  };
+  meta: {
+    result: string;
+  };
+}
+
+interface MusinsaReviewUserProfileInfo {
+  userNickName: string;
+}
+
+interface MusinsaReviewGoods {
+  goodsNo: number;
+}
+
+interface MusinsaReviewItem {
+  no: number;
+  content: string;
+  grade: string;
+  createDate: string;
+  goodsOption?: string;
+  userProfileInfo: MusinsaReviewUserProfileInfo;
+  goods: MusinsaReviewGoods;
+}
+
+interface MusinsaReviewPageInfo {
+  page: number;
+  totalPages: number;
+}
+
+interface MusinsaReviewResponse {
+  data: {
+    list: MusinsaReviewItem[];
+    page: MusinsaReviewPageInfo;
+  };
+}
+
+// 무신사 검색
+export const searchMusinsaProducts = async (
+  keyword: string,
+  page: number,
+  size: number = 60
+): Promise<MusinsaSearchResponse> => {
+  const response = await axios.get<MusinsaSearchResponse>(
+    '/api/musinsa/search',
+    {
+      timeout: 10000,
+      params: {
+        keyword,
+        page,
+        size,
+      },
+    }
+  );
+
+  await delay(API_DELAY);
+  return response.data;
+};
+
+// 무신사 리뷰 전체 수집 (공통 Review 타입으로 변환)
+export const fetchAllMusinsaReviews = async (goodsNo: number): Promise<Review[]> => {
+  const allReviews: Review[] = [];
+  let page = 0;
+  const pageSize = 20;
+  let hasMore = true;
+
+  while (hasMore) {
+    try {
+      const response = await axios.get<MusinsaReviewResponse>(
+        '/api/musinsa/reviews',
+        {
+          timeout: 10000,
+          params: {
+            goodsNo,
+            page,
+            pageSize,
+          },
+        }
+      );
+
+      const list = response.data.data.list;
+
+      if (list.length === 0) {
+        hasMore = false;
+      } else {
+        const mapped: Review[] = list.map((item) => ({
+          itemReviewNo: item.no,
+          itemNo: item.goods.goodsNo,
+          optionValue: item.goodsOption ? [item.goodsOption] : [],
+          userId: item.userProfileInfo.userNickName,
+          contents: item.content,
+          point: Number(item.grade),
+          insertTimestamp: item.createDate,
+        }));
+
+        allReviews.push(...mapped);
+
+        const pageInfo = response.data.data.page;
+        if (pageInfo.page + 1 >= pageInfo.totalPages) {
+          hasMore = false;
+        } else {
+          page++;
+        }
+      }
+    } catch (error) {
+      console.error(`Error fetching musinsa reviews for goods ${goodsNo} page ${page}:`, error);
       hasMore = false;
     }
   }

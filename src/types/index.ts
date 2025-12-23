@@ -54,5 +54,5 @@ export interface Review {
   insertTimestamp: string;
 }
 
-export type Platform = '29cm';
+export type Platform = '29cm' | 'musinsa';
 
