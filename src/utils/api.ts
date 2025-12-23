@@ -214,6 +214,10 @@ export const fetchAllMusinsaReviews = async (goodsNo: number): Promise<Review[]>
           page++;
         }
       }
+
+      // 랜덤 딜레이 300~400ms
+      const randomDelay = 300 + Math.random() * 100;
+      await delay(randomDelay);
     } catch (error) {
       console.error(`Error fetching musinsa reviews for goods ${goodsNo} page ${page}:`, error);
       hasMore = false;
