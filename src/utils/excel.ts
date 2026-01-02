@@ -1,5 +1,36 @@
 import * as XLSX from 'xlsx';
-import type { Review, Platform } from '../types';
+import type { Review, Platform, InstagramFollower } from '../types';
+
+export const exportInstagramToExcel = (username: string, followers: InstagramFollower[]) => {
+  // 헤더 정의: A열(insta_id), B열(follower_id), C열(follower_txt)
+  const headers = ['insta_id', 'follower_id', 'follower_txt'];
+  
+  // 각 팔로워를 하나의 행으로 변환
+  const rows: unknown[][] = followers.map((follower) => [
+    username,
+    follower.username,
+    follower.full_name,
+  ]);
+  
+  // 워크북 생성
+  const wsData = [headers, ...rows];
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+  
+  // 컬럼 너비 조정
+  ws['!cols'] = [
+    { wch: 20 }, // insta_id
+    { wch: 25 }, // follower_id
+    { wch: 30 }, // follower_txt
+  ];
+  
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, '팔로워');
+  
+  // 파일 저장: 날짜_인스타ID.xlsx
+  const today = new Date().toISOString().split('T')[0];
+  const fileName = `${today}_${username}.xlsx`;
+  XLSX.writeFile(wb, fileName);
+};
 
 export const exportToExcel = (platform: Platform, reviewsByProduct: Map<number, Review[]>) => {
   // 헤더 정의: 각 리뷰가 하나의 행으로 저장됨

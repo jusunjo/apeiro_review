@@ -1,8 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
+import https from 'https';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import zlib from 'zlib';
+import { promisify } from 'util';
+
+const gunzip = promisify(zlib.gunzip);
+const brotliDecompress = promisify(zlib.brotliDecompress);
+const inflate = promisify(zlib.inflate);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -168,6 +175,297 @@ app.get('/api/musinsa/reviews', async (req, res) => {
     res.json(response.data);
   } catch (error) {
     console.error('[Musinsa Review] Error:', {
+      message: error.message,
+      code: error.code,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+    });
+    
+    if (!res.headersSent) {
+      res.status(error.response?.status || 500).json({
+        error: error.message,
+        code: error.code,
+        data: error.response?.data,
+      });
+    }
+  }
+});
+
+// Instagram User ID 추출 API
+app.post('/api/instagram/user-id', async (req, res) => {
+  console.log('[Instagram User ID] 1. Request received:', req.body);
+  
+  try {
+    const { url, headers } = req.body;
+
+    if (!url) {
+      console.log('[Instagram User ID] ERROR: URL is missing');
+      return res.status(400).json({ error: 'url is required' });
+    }
+
+    console.log('[Instagram User ID] 2. URL validated:', url);
+    console.log('[Instagram User ID] 3. Calling Instagram with headers...');
+    
+    const httpsAgent = new https.Agent({
+      rejectUnauthorized: false
+    });
+    
+    const response = await axios.get(url, {
+      timeout: 10000,
+      httpsAgent,
+      responseType: 'arraybuffer', // 바이너리 데이터로 받기
+      decompress: false, // 수동으로 압축 해제
+      headers: {
+        'accept': headers.accept || '*/*',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': headers['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+        'cookie': headers.cookie,
+        'priority': headers.priority || 'u=1, i',
+        'referer': url,
+        'sec-ch-prefers-color-scheme': headers['sec-ch-prefers-color-scheme'] || 'dark',
+        'sec-ch-ua': headers['sec-ch-ua'] || '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+        'sec-ch-ua-full-version-list': headers['sec-ch-ua-full-version-list'] || '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
+        'sec-ch-ua-mobile': headers['sec-ch-ua-mobile'] || '?0',
+        'sec-ch-ua-model': headers['sec-ch-ua-model'] || '""',
+        'sec-ch-ua-platform': headers['sec-ch-ua-platform'] || '"macOS"',
+        'sec-ch-ua-platform-version': headers['sec-ch-ua-platform-version'] || '"15.6.0"',
+        'sec-fetch-dest': headers['sec-fetch-dest'] || 'empty',
+        'sec-fetch-mode': headers['sec-fetch-mode'] || 'cors',
+        'sec-fetch-site': headers['sec-fetch-site'] || 'same-origin',
+        'user-agent': headers['user-agent'] || 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+        'x-asbd-id': headers['x-asbd-id'] || '359341',
+        'x-csrftoken': headers['x-csrftoken'],
+        'x-ig-app-id': headers['x-ig-app-id'] || '936619743392459',
+        'x-ig-www-claim': headers['x-ig-www-claim'],
+        'x-requested-with': headers['x-requested-with'] || 'XMLHttpRequest',
+        'x-web-session-id': headers['x-web-session-id']
+      },
+    });
+
+    console.log('[Instagram User ID] 4. Instagram response received, status:', response.status);
+    console.log('[Instagram User ID] 4a. Content-Encoding:', response.headers['content-encoding']);
+    console.log('[Instagram User ID] 4b. Response data type:', typeof response.data);
+    console.log('[Instagram User ID] 4c. Is Buffer?:', Buffer.isBuffer(response.data));
+    
+    let html = '';
+    
+    // 압축 해제 처리
+    const contentEncoding = response.headers['content-encoding'];
+    console.log('[Instagram User ID] 5. Decompressing data...');
+    
+    try {
+      if (Buffer.isBuffer(response.data)) {
+        if (contentEncoding === 'gzip') {
+          console.log('[Instagram User ID] 5a. Decompressing gzip...');
+          const decompressed = await gunzip(response.data);
+          html = decompressed.toString('utf-8');
+        } else if (contentEncoding === 'br') {
+          console.log('[Instagram User ID] 5a. Decompressing brotli...');
+          const decompressed = await brotliDecompress(response.data);
+          html = decompressed.toString('utf-8');
+        } else if (contentEncoding === 'deflate') {
+          console.log('[Instagram User ID] 5a. Decompressing deflate...');
+          const decompressed = await inflate(response.data);
+          html = decompressed.toString('utf-8');
+        } else if (!contentEncoding) {
+          console.log('[Instagram User ID] 5a. No compression header, trying auto-detect...');
+          // 압축 헤더가 없는 경우, gzip 시도
+          try {
+            const decompressed = await gunzip(response.data);
+            html = decompressed.toString('utf-8');
+            console.log('[Instagram User ID] 5a-1. Auto-detected as gzip');
+          } catch (e) {
+            // gzip이 아니면 그냥 문자열로 변환
+            html = response.data.toString('utf-8');
+            console.log('[Instagram User ID] 5a-1. Not compressed, using raw data');
+          }
+        } else {
+          console.log('[Instagram User ID] 5a. Unknown compression:', contentEncoding);
+          console.log('[Instagram User ID] 5a. Trying raw conversion...');
+          html = response.data.toString('utf-8');
+        }
+      } else if (typeof response.data === 'string') {
+        console.log('[Instagram User ID] 5a. Data is already string');
+        html = response.data;
+      } else {
+        console.log('[Instagram User ID] 5a. Converting data to string...');
+        html = String(response.data);
+      }
+      
+      console.log('[Instagram User ID] 5b. Decompression complete, HTML length:', html.length);
+    } catch (decompressError) {
+      console.error('[Instagram User ID] 5c. Decompression error:', decompressError.message);
+      console.error('[Instagram User ID] 5c. Stack:', decompressError.stack);
+      // 압축 해제 실패시 원본 그대로 시도
+      html = response.data.toString('utf-8');
+    }
+
+    console.log('[Instagram User ID] 6. Response data length:', html.length);
+    
+    // HTML 앞부분 일부 출력 (디버깅용)
+    console.log('[Instagram User ID] 7. HTML preview (first 500 chars):', html.substring(0, 500));
+    
+    // HTML에서 <script type="application/json" data-content-len="..." data-sjs> 태그 찾기
+    const scriptRegex = /<script type="application\/json" data-content-len="[^"]*" data-sjs>(.*?)<\/script>/gs;
+    const matches = Array.from(html.matchAll(scriptRegex));
+    
+    console.log('[Instagram User ID] 8. Found script tags count:', matches.length);
+    
+    let targetId = null;
+    let scriptIndex = 0;
+    
+    for (const match of matches) {
+      scriptIndex++;
+      console.log(`[Instagram User ID] 9-${scriptIndex}. Processing script tag ${scriptIndex}/${matches.length}`);
+      
+      try {
+        const jsonStr = match[1];
+        console.log(`[Instagram User ID] 9-${scriptIndex}a. JSON string length:`, jsonStr.length);
+        
+        const jsonData = JSON.parse(jsonStr);
+        console.log(`[Instagram User ID] 9-${scriptIndex}b. JSON parsed successfully`);
+        
+        // JSON 깊이 탐색하여 target_id 찾기
+        const findTargetId = (obj, depth = 0) => {
+          if (depth > 20) return null; // 무한 루프 방지
+          
+          if (obj && typeof obj === 'object') {
+            if ('target_id' in obj) {
+              console.log(`[Instagram User ID] 9-${scriptIndex}c. Found target_id at depth ${depth}:`, obj.target_id);
+              return obj.target_id;
+            }
+            for (const key in obj) {
+              const result = findTargetId(obj[key], depth + 1);
+              if (result) return result;
+            }
+          }
+          return null;
+        };
+        
+        targetId = findTargetId(jsonData);
+        if (targetId) {
+          console.log(`[Instagram User ID] 10. SUCCESS! Found target_id in script ${scriptIndex}:`, targetId);
+          break;
+        } else {
+          console.log(`[Instagram User ID] 9-${scriptIndex}d. No target_id found in this script tag`);
+        }
+      } catch (e) {
+        console.log(`[Instagram User ID] 9-${scriptIndex}e. JSON parse error:`, e.message);
+        // JSON 파싱 실패하면 다음 스크립트 태그 시도
+        continue;
+      }
+    }
+    
+    if (!targetId) {
+      console.log('[Instagram User ID] 11. FAILED: target_id not found in any script tag');
+      console.log('[Instagram User ID] 12. Attempting alternative method - looking for "profile_id"');
+      
+      // 대안: profile_id 찾기
+      const profileIdMatch = html.match(/"profile_id":"(\d+)"/);
+      if (profileIdMatch) {
+        targetId = profileIdMatch[1];
+        console.log('[Instagram User ID] 13. SUCCESS! Found profile_id:', targetId);
+      } else {
+        console.log('[Instagram User ID] 14. FAILED: profile_id also not found');
+        
+        // 추가 대안: user_id 찾기
+        console.log('[Instagram User ID] 15. Attempting another method - looking for "user_id"');
+        const userIdMatch = html.match(/"user_id":"(\d+)"/);
+        if (userIdMatch) {
+          targetId = userIdMatch[1];
+          console.log('[Instagram User ID] 16. SUCCESS! Found user_id:', targetId);
+        } else {
+          console.log('[Instagram User ID] 17. FAILED: All methods exhausted');
+          return res.status(404).json({ error: 'target_id not found in HTML' });
+        }
+      }
+    }
+
+    console.log('[Instagram User ID] FINAL SUCCESS, target_id:', targetId);
+    res.json({ targetId });
+  } catch (error) {
+    console.error('[Instagram User ID] EXCEPTION ERROR:', {
+      message: error.message,
+      code: error.code,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      stack: error.stack?.split('\n').slice(0, 3).join('\n'),
+    });
+    
+    if (!res.headersSent) {
+      res.status(error.response?.status || 500).json({
+        error: error.message,
+        code: error.code,
+        data: error.response?.data,
+      });
+    }
+  }
+});
+
+// Instagram Followers API
+app.post('/api/instagram/followers', async (req, res) => {
+  console.log('[Instagram Followers] Request received:', req.body);
+  
+  try {
+    const { targetId, count = 12, maxId, headers } = req.body;
+
+    if (!targetId) {
+      return res.status(400).json({ error: 'targetId is required' });
+    }
+
+    console.log('[Instagram Followers] Calling Instagram API...');
+    
+    const httpsAgent = new https.Agent({
+      rejectUnauthorized: false
+    });
+    
+    const params = {
+      count,
+      search_surface: 'follow_list_page'
+    };
+    
+    if (maxId) {
+      params.max_id = maxId;
+    }
+    
+    const response = await axios.get(
+      `https://www.instagram.com/api/v1/friendships/${targetId}/followers/`,
+      {
+        timeout: 10000,
+        httpsAgent,
+        headers: {
+          'accept': headers.accept || '*/*',
+          'accept-encoding': 'gzip, deflate, br',
+          'accept-language': headers['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+          'cookie': headers.cookie,
+          'priority': headers.priority || 'u=1, i',
+          'referer': headers.referer || `https://www.instagram.com/${targetId}/followers/`,
+          'sec-ch-prefers-color-scheme': headers['sec-ch-prefers-color-scheme'] || 'dark',
+          'sec-ch-ua': headers['sec-ch-ua'] || '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+          'sec-ch-ua-full-version-list': headers['sec-ch-ua-full-version-list'] || '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
+          'sec-ch-ua-mobile': headers['sec-ch-ua-mobile'] || '?0',
+          'sec-ch-ua-model': headers['sec-ch-ua-model'] || '""',
+          'sec-ch-ua-platform': headers['sec-ch-ua-platform'] || '"macOS"',
+          'sec-ch-ua-platform-version': headers['sec-ch-ua-platform-version'] || '"15.6.0"',
+          'sec-fetch-dest': headers['sec-fetch-dest'] || 'empty',
+          'sec-fetch-mode': headers['sec-fetch-mode'] || 'cors',
+          'sec-fetch-site': headers['sec-fetch-site'] || 'same-origin',
+          'user-agent': headers['user-agent'] || 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+          'x-asbd-id': headers['x-asbd-id'] || '359341',
+          'x-csrftoken': headers['x-csrftoken'],
+          'x-ig-app-id': headers['x-ig-app-id'] || '936619743392459',
+          'x-ig-www-claim': headers['x-ig-www-claim'],
+          'x-requested-with': headers['x-requested-with'] || 'XMLHttpRequest',
+          'x-web-session-id': headers['x-web-session-id']
+        },
+        params
+      }
+    );
+
+    console.log('[Instagram Followers] Success, users count:', response.data.users?.length || 0);
+    res.json(response.data);
+  } catch (error) {
+    console.error('[Instagram Followers] Error:', {
       message: error.message,
       code: error.code,
       status: error.response?.status,

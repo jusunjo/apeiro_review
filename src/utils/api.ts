@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { SearchRequestBody, SearchResponse, ReviewResponse, Review } from '../types';
+import type { SearchRequestBody, SearchResponse, ReviewResponse, Review, InstagramHeaders, InstagramFollowersResponse, InstagramFollower } from '../types';
 
 const API_DELAY = 500; // API 호출 간 딜레이 (ms)
 
@@ -225,5 +225,105 @@ export const fetchAllMusinsaReviews = async (goodsNo: number): Promise<Review[]>
   }
 
   return allReviews;
+};
+
+// Instagram - Target ID 추출
+export const getInstagramUserId = async (
+  url: string,
+  headers: InstagramHeaders
+): Promise<string> => {
+  console.log('[Frontend] 1. Calling getInstagramUserId with URL:', url);
+  console.log('[Frontend] 2. Headers being sent:', {
+    hasCookie: !!headers.cookie,
+    cookieLength: headers.cookie?.length,
+    csrfToken: headers['x-csrftoken'],
+    appId: headers['x-ig-app-id'],
+  });
+  
+  try {
+    console.log('[Frontend] 3. Making POST request to /api/instagram/user-id');
+    
+    const response = await axios.post<{ targetId: string }>(
+      '/api/instagram/user-id',
+      {
+        url,
+        headers,
+      }
+    );
+    
+    console.log('[Frontend] 4. Response received:', response.data);
+    console.log('[Frontend] 5. Target ID extracted:', response.data.targetId);
+    
+    await delay(API_DELAY);
+    return response.data.targetId;
+  } catch (error) {
+    console.error('[Frontend] ERROR in getInstagramUserId:', {
+      message: error.message,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      data: error.response?.data,
+    });
+    throw error;
+  }
+};
+
+// Instagram - 팔로워 가져오기
+export const fetchInstagramFollowers = async (
+  targetId: string,
+  headers: InstagramHeaders,
+  maxId?: string,
+  count: number = 12
+): Promise<InstagramFollowersResponse> => {
+  const response = await axios.post<InstagramFollowersResponse>(
+    '/api/instagram/followers',
+    {
+      targetId,
+      count,
+      maxId,
+      headers,
+    }
+  );
+  
+  await delay(API_DELAY);
+  return response.data;
+};
+
+// Instagram - 모든 팔로워 가져오기
+export const fetchAllInstagramFollowers = async (
+  targetId: string,
+  headers: InstagramHeaders,
+  maxFollowers?: number
+): Promise<InstagramFollower[]> => {
+  const allFollowers: InstagramFollower[] = [];
+  let maxId: string | undefined = undefined;
+  let hasMore = true;
+  
+  while (hasMore) {
+    try {
+      const response = await fetchInstagramFollowers(targetId, headers, maxId, 50);
+      
+      if (response.users && response.users.length > 0) {
+        allFollowers.push(...response.users);
+        
+        if (maxFollowers && allFollowers.length >= maxFollowers) {
+          // 최대 팔로워 수 도달
+          return allFollowers.slice(0, maxFollowers);
+        }
+        
+        if (response.has_more && response.next_max_id) {
+          maxId = response.next_max_id;
+        } else {
+          hasMore = false;
+        }
+      } else {
+        hasMore = false;
+      }
+    } catch (error) {
+      console.error('Error fetching Instagram followers:', error);
+      hasMore = false;
+    }
+  }
+  
+  return allFollowers;
 };
 
