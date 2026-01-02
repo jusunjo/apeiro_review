@@ -272,7 +272,7 @@ const App = () => {
               }`}
               disabled={isLoading}
             >
-              Instagram
+              인스타 팔로워
             </button>
           </div>
         </div>
