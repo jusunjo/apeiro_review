@@ -89,11 +89,13 @@ const App = () => {
       console.log('[App] 9. SUCCESS! Export complete');
     } catch (error) {
       console.error('[App] ERROR during Instagram crawl:', error);
-      console.error('[App] Error details:', {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status,
-      });
+      if (error && typeof error === 'object' && 'message' in error) {
+        console.error('[App] Error details:', {
+          message: error.message,
+          response: 'response' in error ? (error as any).response?.data : undefined,
+          status: 'response' in error ? (error as any).response?.status : undefined,
+        });
+      }
       alert('오류가 발생했습니다. 콘솔을 확인해주세요.');
       setStatus('오류 발생');
     } finally {

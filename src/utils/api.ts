@@ -257,12 +257,16 @@ export const getInstagramUserId = async (
     await delay(API_DELAY);
     return response.data.targetId;
   } catch (error) {
-    console.error('[Frontend] ERROR in getInstagramUserId:', {
-      message: error.message,
-      status: error.response?.status,
-      statusText: error.response?.statusText,
-      data: error.response?.data,
-    });
+    if (error && typeof error === 'object' && 'message' in error) {
+      console.error('[Frontend] ERROR in getInstagramUserId:', {
+        message: error.message,
+        status: 'response' in error ? (error as any).response?.status : undefined,
+        statusText: 'response' in error ? (error as any).response?.statusText : undefined,
+        data: 'response' in error ? (error as any).response?.data : undefined,
+      });
+    } else {
+      console.error('[Frontend] ERROR in getInstagramUserId:', error);
+    }
     throw error;
   }
 };
