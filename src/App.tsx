@@ -16,8 +16,8 @@ const App = () => {
   const [maxFollowers, setMaxFollowers] = useState<number>(0);
   
   // 하드코딩된 Instagram 인증 정보
-  const instagramCookie = 'datr=pplIaROuaDR-Eteezj66cqMu; ig_did=B58512E5-3D06-429B-9DAA-D7764F93040A; mid=aUiZpgAEAAGIUG6ENeYq6qCQjWjJ; ig_nrcb=1; csrftoken=O0DiqsRbFYR72ekesEyzf3WA3OLwDCZL; ds_user_id=2000629733; dpr=1; sessionid=2000629733%3AubFEgWWf0zAGAg%3A20%3AAYh4uVZI7OGa-zK-0TLnxHKDl96KxE8fklzE2CW5sQ; wd=925x488; rur="HIL\\0542000629733\\0541798857031:01fefd886304945651de892872ab8d55c7509a0d84e66408659ab6ea2fb59eeed48893a8"';
-  const instagramCsrfToken = 'O0DiqsRbFYR72ekesEyzf3WA3OLwDCZL';
+  const instagramCookie = 'datr=pplIaROuaDR-Eteezj66cqMu; ig_did=B58512E5-3D06-429B-9DAA-D7764F93040A; mid=aUiZpgAEAAGIUG6ENeYq6qCQjWjJ; ig_nrcb=1; dpr=1; csrftoken=RmXzsdz237PHF7M0YzhbZnpdt51cbFx8; ds_user_id=79962333435; sessionid=79962333435%3AbTae2IQc9BCWpo%3A9%3AAYjCq36DjHHplUQ4j_bdi1gv2gVGywQWK7F9G1-qsg; wd=1012x968; rur="EAG\\05479962333435\\0541798864250:01fe0558b69806e51e197412de470f736c24d6c909adbf509bfd8ad675edb35bb22234d0"';
+  const instagramCsrfToken = 'RmXzsdz237PHF7M0YzhbZnpdt51cbFx8';
 
   const handleInstagramCrawl = async () => {
     console.log('[App] =================================');
@@ -54,6 +54,8 @@ const App = () => {
         'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
         'x-ig-app-id': '936619743392459',
         'x-requested-with': 'XMLHttpRequest',
+        'x-ig-www-claim': 'hmac.AR0dSxfApOzgibnur3BvQQ8sbUZRzBbJoly1580wKwSKMfnB',
+        'x-web-session-id': 'nb1v9e:9kojab:npd8on',
       };
       console.log('[App] 3. Headers prepared');
 
