@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
 import https from 'https';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import zlib from 'zlib';
@@ -381,8 +382,102 @@ app.post('/api/instagram/user-id', async (req, res) => {
       }
     }
 
+    // 게시물 수, 팔로워 수, 팔로우 수 추출
+    let postCount = null;
+    let followerCount = null;
+    let followingCount = null;
+    
+    // JSON 데이터에서 찾기
+    for (const match of matches) {
+      try {
+        const jsonStr = match[1];
+        const jsonData = JSON.parse(jsonStr);
+        
+        // 깊이 탐색하여 정보 찾기
+        const findValue = (obj, keys, depth = 0) => {
+          if (depth > 20) return null;
+          
+          if (obj && typeof obj === 'object') {
+            // 키 배열의 모든 키가 존재하는지 확인
+            let current = obj;
+            for (const key of keys) {
+              if (current && typeof current === 'object' && key in current) {
+                current = current[key];
+              } else {
+                return null;
+              }
+            }
+            if (current !== null && current !== undefined) {
+              return current;
+            }
+            
+            // 재귀적으로 탐색
+            for (const key in current) {
+              const result = findValue(current[key], keys, depth + 1);
+              if (result !== null) return result;
+            }
+          }
+          return null;
+        };
+        
+        // edge_owner_to_timeline_media.count (게시물 수)
+        if (!postCount) {
+          postCount = findValue(jsonData, ['edge_owner_to_timeline_media', 'count']) ||
+                     findValue(jsonData, ['edge_owner_to_timeline_media', 'edge_count']) ||
+                     findValue(jsonData, ['media_count']);
+        }
+        
+        // edge_followed_by.count (팔로워 수)
+        if (!followerCount) {
+          followerCount = findValue(jsonData, ['edge_followed_by', 'count']) ||
+                         findValue(jsonData, ['follower_count']) ||
+                         findValue(jsonData, ['edge_followed_by', 'edge_count']);
+        }
+        
+        // edge_follow.count (팔로우 수)
+        if (!followingCount) {
+          followingCount = findValue(jsonData, ['edge_follow', 'count']) ||
+                          findValue(jsonData, ['following_count']) ||
+                          findValue(jsonData, ['edge_follow', 'edge_count']);
+        }
+        
+        if (postCount && followerCount && followingCount) {
+          break; // 모두 찾았으면 중단
+        }
+      } catch (e) {
+        continue;
+      }
+    }
+    
+    // 정규식으로도 시도
+    if (!postCount) {
+      const postMatch = html.match(/"edge_owner_to_timeline_media":\{"count":(\d+)/);
+      if (postMatch) postCount = parseInt(postMatch[1]);
+    }
+    
+    if (!followerCount) {
+      const followerMatch = html.match(/"edge_followed_by":\{"count":(\d+)/);
+      if (followerMatch) followerCount = parseInt(followerMatch[1]);
+    }
+    
+    if (!followingCount) {
+      const followingMatch = html.match(/"edge_follow":\{"count":(\d+)/);
+      if (followingMatch) followingCount = parseInt(followingMatch[1]);
+    }
+    
+    console.log('[Instagram User ID] Extracted counts:', {
+      postCount,
+      followerCount,
+      followingCount,
+    });
+    
     console.log('[Instagram User ID] FINAL SUCCESS, target_id:', targetId);
-    res.json({ targetId });
+    res.json({ 
+      targetId,
+      postCount: postCount || null,
+      followerCount: followerCount || null,
+      followingCount: followingCount || null,
+    });
   } catch (error) {
     console.error('[Instagram User ID] EXCEPTION ERROR:', {
       message: error.message,
@@ -404,7 +499,11 @@ app.post('/api/instagram/user-id', async (req, res) => {
 
 // Instagram Followers API
 app.post('/api/instagram/followers', async (req, res) => {
-  console.log('[Instagram Followers] Request received:', req.body);
+  console.log('[Instagram Followers] 1. Request received:', {
+    targetId: req.body.targetId,
+    count: req.body.count,
+    maxId: req.body.maxId,
+  });
   
   try {
     const { targetId, count = 12, maxId, headers } = req.body;
@@ -413,7 +512,7 @@ app.post('/api/instagram/followers', async (req, res) => {
       return res.status(400).json({ error: 'targetId is required' });
     }
 
-    console.log('[Instagram Followers] Calling Instagram API...');
+    console.log('[Instagram Followers] 2. Calling Instagram API with params:', { targetId, count, maxId });
     
     const httpsAgent = new https.Agent({
       rejectUnauthorized: false
@@ -426,6 +525,7 @@ app.post('/api/instagram/followers', async (req, res) => {
     
     if (maxId) {
       params.max_id = maxId;
+      console.log('[Instagram Followers] 2a. Using max_id for pagination:', maxId);
     }
     
     const response = await axios.get(
@@ -462,7 +562,19 @@ app.post('/api/instagram/followers', async (req, res) => {
       }
     );
 
-    console.log('[Instagram Followers] Success, users count:', response.data.users?.length || 0);
+    console.log('[Instagram Followers] 3. Success! Response details:', {
+      usersCount: response.data.users?.length || 0,
+      hasMore: response.data.has_more,
+      nextMaxId: response.data.next_max_id,
+      bigList: response.data.big_list,
+      pageSize: response.data.page_size,
+      status: response.data.status,
+    });
+    
+    // 전체 응답 구조 확인 (디버깅용)
+    console.log('[Instagram Followers] 3a. Full response keys:', Object.keys(response.data));
+    console.log('[Instagram Followers] 3b. Full response data:', JSON.stringify(response.data, null, 2));
+    
     res.json(response.data);
   } catch (error) {
     console.error('[Instagram Followers] Error:', {
@@ -472,6 +584,244 @@ app.post('/api/instagram/followers', async (req, res) => {
       statusText: error.response?.statusText,
     });
     
+    if (!res.headersSent) {
+      res.status(error.response?.status || 500).json({
+        error: error.message,
+        code: error.code,
+        data: error.response?.data,
+      });
+    }
+  }
+});
+
+// Instagram 검색 API
+app.get('/api/instagram/search', async (req, res) => {
+  console.log('[Instagram Search] 1. Request received:', {
+    query: req.query.query,
+  });
+  
+  try {
+    const { query } = req.query;
+    const headersJson = req.headers['x-instagram-headers'];
+
+    if (!query) {
+      return res.status(400).json({ error: 'query is required' });
+    }
+
+    if (!headersJson) {
+      return res.status(400).json({ error: 'Instagram headers are required' });
+    }
+
+    const headers = JSON.parse(headersJson);
+    console.log('[Instagram Search] 2. Headers parsed');
+
+    // query가 이미 인코딩되어 올 수도 있으므로, #이 포함되어 있는지 확인
+    // #이 없으면 원본 query를 인코딩, 있으면 이미 인코딩된 것으로 간주
+    let encodedQuery;
+    if (query.includes('%23') || query.includes('#')) {
+      // 이미 인코딩되어 있거나 #이 포함된 경우
+      encodedQuery = query.includes('%23') ? query : encodeURIComponent(query);
+    } else {
+      encodedQuery = encodeURIComponent(query);
+    }
+    
+    console.log('[Instagram Search] 2a. Original query:', query);
+    console.log('[Instagram Search] 2b. Encoded query:', encodedQuery);
+    
+    // 하드코딩된 search_session_id
+    const searchSessionId = '05dba6cb-78c6-4852-9899-4ca819bbff2d';
+    
+    const url = `https://www.instagram.com/api/v1/fbsearch/web/top_serp/?enable_metadata=true&query=${encodedQuery}&search_session_id=${searchSessionId}`;
+
+    console.log('[Instagram Search] 3. Calling Instagram API:', url);
+    console.log('[Instagram Search] 3a. Search session ID:', searchSessionId);
+    
+    const httpsAgent = new https.Agent({
+      rejectUnauthorized: false
+    });
+    
+    console.log('[Instagram Search] 3b. Making request with headers...');
+    const requestStartTime = Date.now();
+    
+    try {
+      // referer를 검색 URL로 동적 생성
+      const refererUrl = `https://www.instagram.com/explore/search/keyword/?q=${encodedQuery}`;
+      
+      const response = await axios.get(url, {
+        timeout: 30000, // 30초로 증가
+        httpsAgent,
+        // axios가 자동으로 gzip, deflate, br 압축 해제를 처리함
+        headers: {
+          'accept': '*/*',
+          'accept-encoding': 'gzip, deflate, br', // zstd 제거 (Node.js에서 지원 안 함, axios가 자동 압축 해제)
+          'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+          'cookie': headers.cookie || 'datr=pplIaROuaDR-Eteezj66cqMu; ig_did=B58512E5-3D06-429B-9DAA-D7764F93040A; mid=aUiZpgAEAAGIUG6ENeYq6qCQjWjJ; ig_nrcb=1; dpr=1; csrftoken=RmXzsdz237PHF7M0YzhbZnpdt51cbFx8; ds_user_id=2000629733; sessionid=2000629733%3Amaz7UtpYui3dL8%3A3%3AAYjXJdoD0H-JihOv7TAUtGWQqsFj__-KW1fNokMy1Q; wd=766x832; rur="HIL\\0542000629733\\0541799050400:01fe13a0a41b602544f33682b2944d8615c06054fdb1ac948020dbf700ac45fc24210465"',
+          'priority': 'u=1, i',
+          'referer': refererUrl,
+          'sec-ch-prefers-color-scheme': 'dark',
+          'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+          'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
+          'sec-ch-ua-mobile': '?0',
+          'sec-ch-ua-model': '""',
+          'sec-ch-ua-platform': '"macOS"',
+          'sec-ch-ua-platform-version': '"15.6.0"',
+          'sec-fetch-dest': 'empty',
+          'sec-fetch-mode': 'cors',
+          'sec-fetch-site': 'same-origin',
+          'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+          'x-asbd-id': '359341',
+          'x-csrftoken': headers['x-csrftoken'] || 'RmXzsdz237PHF7M0YzhbZnpdt51cbFx8',
+          'x-ig-app-id': '936619743392459',
+          'x-ig-www-claim': headers['x-ig-www-claim'] || 'hmac.AR0dSxfApOzgibnur3BvQQ8sbUZRzBbJoly1580wKwSKMZpl',
+          'x-requested-with': 'XMLHttpRequest',
+          'x-web-session-id': 'rgjrg7:xgqxqe:t4k3v2',
+        },
+      });
+
+      // axios가 자동으로 gzip, deflate, br 압축 해제를 처리함
+      console.log('[Instagram Search] 3c. Content-Encoding:', response.headers['content-encoding']);
+
+      const requestElapsedTime = Date.now() - requestStartTime;
+      console.log(`[Instagram Search] 4. Instagram API responded in ${requestElapsedTime}ms`);
+      console.log('[Instagram Search] 4a. Response status:', response.status);
+      console.log('[Instagram Search] 4b. Response headers:', response.headers);
+      console.log('[Instagram Search] 4c. Has response data:', !!response.data);
+      
+      if (response.data) {
+        // 응답 데이터를 문자열로 변환하여 앞 500자 출력
+        const responseString = JSON.stringify(response.data, null, 2);
+        const first500Chars = responseString.substring(0, 500);
+        console.log('[Instagram Search] 4d. Response data (first 500 chars):');
+        console.log(first500Chars);
+        console.log('[Instagram Search] 4e. Total response length:', responseString.length, 'chars');
+        
+        console.log('[Instagram Search] 5. Response data keys:', Object.keys(response.data));
+        console.log('[Instagram Search] 5a. Response status field:', response.data.status);
+        console.log('[Instagram Search] 5b. Has media_grid:', !!response.data.media_grid);
+        if (response.data.media_grid) {
+          console.log('[Instagram Search] 5c. Sections count:', response.data.media_grid.sections?.length || 0);
+        }
+      } else {
+        console.warn('[Instagram Search] WARNING: Response data is empty!');
+      }
+      
+      console.log('[Instagram Search] 6. Sending response to client...');
+      res.json(response.data);
+      console.log('[Instagram Search] 7. Response sent successfully');
+    } catch (axiosError) {
+      const requestElapsedTime = Date.now() - requestStartTime;
+      console.error(`[Instagram Search] Instagram API request failed after ${requestElapsedTime}ms`);
+      throw axiosError;
+    }
+  } catch (error) {
+    console.error('[Instagram Search] Error:', {
+      message: error.message,
+      code: error.code,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+    });
+    
+    if (!res.headersSent) {
+      res.status(error.response?.status || 500).json({
+        error: error.message,
+        code: error.code,
+        data: error.response?.data,
+      });
+    }
+  }
+});
+
+// Instagram 댓글 API
+app.get('/api/instagram/comments', async (req, res) => {
+  console.log('[Instagram Comments] 1. Request received:', {
+    mediaId: req.query.mediaId,
+  });
+  
+  try {
+    const { mediaId } = req.query;
+    const headersJson = req.headers['x-instagram-headers'];
+
+    if (!mediaId) {
+      return res.status(400).json({ error: 'mediaId is required' });
+    }
+
+    if (!headersJson) {
+      return res.status(400).json({ error: 'Instagram headers are required' });
+    }
+
+    const headers = JSON.parse(headersJson);
+    console.log('[Instagram Comments] 2. Headers parsed');
+
+    const url = `https://www.instagram.com/api/v1/media/${mediaId}/comments/?can_support_threading=true&permalink_enabled=false`;
+
+    console.log('[Instagram Comments] 3. Calling Instagram API:', url);
+    
+    const httpsAgent = new https.Agent({
+      rejectUnauthorized: false
+    });
+    
+    console.log('[Instagram Comments] 3b. Making request with headers...');
+    const requestStartTime = Date.now();
+    
+    try {
+      const response = await axios.get(url, {
+        timeout: 30000, // 30초
+        httpsAgent,
+        headers: {
+          'accept': '*/*',
+          'accept-encoding': 'gzip, deflate, br',
+          'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+          'cookie': headers.cookie || 'datr=pplIaROuaDR-Eteezj66cqMu; ig_did=B58512E5-3D06-429B-9DAA-D7764F93040A; mid=aUiZpgAEAAGIUG6ENeYq6qCQjWjJ; ig_nrcb=1; dpr=1; csrftoken=RmXzsdz237PHF7M0YzhbZnpdt51cbFx8; ds_user_id=2000629733; sessionid=2000629733%3Amaz7UtpYui3dL8%3A3%3AAYjXJdoD0H-JihOv7TAUtGWQqsFj__-KW1fNokMy1Q; wd=766x832; rur="HIL\\0542000629733\\0541799050400:01fe13a0a41b602544f33682b2944d8615c06054fdb1ac948020dbf700ac45fc24210465"',
+          'priority': 'u=1, i',
+          'referer': `https://www.instagram.com/p/${mediaId}/`,
+          'sec-ch-prefers-color-scheme': 'dark',
+          'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+          'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
+          'sec-ch-ua-mobile': '?0',
+          'sec-ch-ua-model': '""',
+          'sec-ch-ua-platform': '"macOS"',
+          'sec-ch-ua-platform-version': '"15.6.0"',
+          'sec-fetch-dest': 'empty',
+          'sec-fetch-mode': 'cors',
+          'sec-fetch-site': 'same-origin',
+          'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+          'x-asbd-id': '359341',
+          'x-csrftoken': headers['x-csrftoken'] || 'RmXzsdz237PHF7M0YzhbZnpdt51cbFx8',
+          'x-ig-app-id': '936619743392459',
+          'x-ig-www-claim': headers['x-ig-www-claim'] || 'hmac.AR0dSxfApOzgibnur3BvQQ8sbUZRzBbJoly1580wKwSKMZpl',
+          'x-requested-with': 'XMLHttpRequest',
+          'x-web-session-id': 'rgjrg7:xgqxqe:t4k3v2',
+        },
+      });
+
+      // axios가 자동으로 gzip, deflate, br 압축 해제를 처리함
+      console.log('[Instagram Comments] 3c. Content-Encoding:', response.headers['content-encoding']);
+
+      const requestElapsedTime = Date.now() - requestStartTime;
+      console.log(`[Instagram Comments] 4. Instagram API responded in ${requestElapsedTime}ms`);
+      console.log('[Instagram Comments] 4a. Response status:', response.status);
+      console.log('[Instagram Comments] 4b. Has response data:', !!response.data);
+      
+      if (response.data) {
+        console.log('[Instagram Comments] 5. Comments count:', response.data.comments?.length || 0);
+      }
+      
+      console.log('[Instagram Comments] 6. Sending response to client...');
+      res.json(response.data);
+      console.log('[Instagram Comments] 7. Response sent successfully');
+    } catch (axiosError) {
+      const requestElapsedTime = Date.now() - requestStartTime;
+      console.error(`[Instagram Comments] Instagram API request failed after ${requestElapsedTime}ms`);
+      throw axiosError;
+    }
+  } catch (error) {
+    console.error('[Instagram Comments] Error:', {
+      message: error.message,
+      code: error.code,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+    });
+
     if (!res.headersSent) {
       res.status(error.response?.status || 500).json({
         error: error.message,

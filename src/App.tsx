@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Platform, ProductItem, Review, InstagramHeaders } from './types';
-import { searchProducts, fetchAllReviews, searchMusinsaProducts, fetchAllMusinsaReviews, getInstagramUserId, fetchAllInstagramFollowers } from './utils/api';
-import { exportToExcel, exportInstagramToExcel } from './utils/excel';
+import { searchProducts, fetchAllReviews, searchMusinsaProducts, fetchAllMusinsaReviews, getInstagramUserId, fetchAllInstagramFollowers, fetchAllInstagramSearchResults } from './utils/api';
+import { exportToExcel, exportInstagramToExcel, exportInstagramSearchToExcel } from './utils/excel';
 
 const App = () => {
   const [platform, setPlatform] = useState<Platform>('29cm');
@@ -14,10 +14,37 @@ const App = () => {
   // Instagram 관련 상태
   const [instagramUrl, setInstagramUrl] = useState('');
   const [maxFollowers, setMaxFollowers] = useState<number>(0);
+  const [instagramSearchQuery, setInstagramSearchQuery] = useState('');
+  const [maxSearchResults, setMaxSearchResults] = useState<number>(0);
   
   // 하드코딩된 Instagram 인증 정보
-  const instagramCookie = 'datr=pplIaROuaDR-Eteezj66cqMu; ig_did=B58512E5-3D06-429B-9DAA-D7764F93040A; mid=aUiZpgAEAAGIUG6ENeYq6qCQjWjJ; ig_nrcb=1; dpr=1; csrftoken=RmXzsdz237PHF7M0YzhbZnpdt51cbFx8; ds_user_id=79962333435; sessionid=79962333435%3AbTae2IQc9BCWpo%3A9%3AAYjCq36DjHHplUQ4j_bdi1gv2gVGywQWK7F9G1-qsg; wd=1012x968; rur="EAG\\05479962333435\\0541798864250:01fe0558b69806e51e197412de470f736c24d6c909adbf509bfd8ad675edb35bb22234d0"';
+  const instagramCookie = 'datr=pplIaROuaDR-Eteezj66cqMu; ig_did=B58512E5-3D06-429B-9DAA-D7764F93040A; mid=aUiZpgAEAAGIUG6ENeYq6qCQjWjJ; ig_nrcb=1; dpr=1; csrftoken=RmXzsdz237PHF7M0YzhbZnpdt51cbFx8; ds_user_id=2000629733; wd=562x832; sessionid=2000629733%3Amaz7UtpYui3dL8%3A3%3AAYjXJdoD0H-JihOv7TAUtGWQqsFj__-KW1fNokMy1Q; rur="HIL\\0542000629733\\0541799048072:01fed911b37bf328e4b3beb0c639cbd78851257157dbe092c7ff16cbe3cdc2d6f5f7a4a1"';
   const instagramCsrfToken = 'RmXzsdz237PHF7M0YzhbZnpdt51cbFx8';
+  
+  const getInstagramHeaders = (): InstagramHeaders => ({
+    cookie: instagramCookie,
+    'x-csrftoken': instagramCsrfToken,
+    'accept': '*/*',
+    'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+    'priority': 'u=1, i',
+    'referer': 'https://www.instagram.com/',
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+    'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-model': '""',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-ch-ua-platform-version': '"15.6.0"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+    'x-asbd-id': '359341',
+    'x-ig-app-id': '936619743392459',
+    'x-ig-www-claim': 'hmac.AR0dSxfApOzgibnur3BvQQ8sbUZRzBbJoly1580wKwSKMZpl',
+    'x-requested-with': 'XMLHttpRequest',
+    'x-web-session-id': 'un9yck:xgqxqe:5sj7kw',
+  });
 
   const handleInstagramCrawl = async () => {
     console.log('[App] =================================');
@@ -44,26 +71,26 @@ const App = () => {
         return;
       }
       const username = urlMatch[1];
+      console.log('[App] Extracted username:', username);
+      console.log('[App] Full URL:', instagramUrl);
       console.log('[App] 2. Username extracted:', username);
 
       // 헤더 준비
-      const headers: InstagramHeaders = {
-        cookie: instagramCookie,
-        'x-csrftoken': instagramCsrfToken,
-        'accept': '*/*',
-        'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
-        'x-ig-app-id': '936619743392459',
-        'x-requested-with': 'XMLHttpRequest',
-        'x-ig-www-claim': 'hmac.AR0dSxfApOzgibnur3BvQQ8sbUZRzBbJoly1580wKwSKMfnB',
-        'x-web-session-id': 'nb1v9e:9kojab:npd8on',
-      };
+      const headers = getInstagramHeaders();
+      headers.referer = instagramUrl.endsWith('/') ? `${instagramUrl}followers/` : `${instagramUrl}/followers/`;
       console.log('[App] 3. Headers prepared');
 
-      // 1. Target ID 추출
+      // 1. Target ID 및 프로필 정보 추출
       console.log('[App] 4. Calling getInstagramUserId...');
       setStatus('사용자 ID를 추출하는 중...');
-      const targetId = await getInstagramUserId(instagramUrl, headers);
+      const userInfo = await getInstagramUserId(instagramUrl, headers);
+      const targetId = userInfo.targetId;
       console.log('[App] 5. Target ID received:', targetId);
+      console.log('[App] 5a. Profile info:', {
+        postCount: userInfo.postCount,
+        followerCount: userInfo.followerCount,
+        followingCount: userInfo.followingCount,
+      });
       
       setStatus(`사용자 ID: ${targetId} - 팔로워 수집 시작...`);
 
@@ -104,6 +131,74 @@ const App = () => {
       setIsLoading(false);
       console.log('[App] =================================');
       console.log('[App] Instagram Crawl Finished');
+      console.log('[App] =================================');
+    }
+  };
+
+  const handleInstagramSearch = async () => {
+    console.log('[App] =================================');
+    console.log('[App] Instagram Search Started');
+    console.log('[App] =================================');
+    
+    if (!instagramSearchQuery.trim()) {
+      alert('검색어를 입력해주세요.');
+      return;
+    }
+
+    setIsLoading(true);
+    setStatus('Instagram 검색 중...');
+    setProgress({ current: 0, total: 0 });
+
+    try {
+      const headers = getInstagramHeaders();
+      
+      setStatus(`검색어 "${instagramSearchQuery}"로 검색 중...`);
+      
+      const rows = await fetchAllInstagramSearchResults(
+        instagramSearchQuery,
+        headers,
+        maxSearchResults > 0 ? maxSearchResults : undefined,
+        (current, total) => {
+          setStatus(`댓글 수집 중... (${current}/${total} 게시글)`);
+          setProgress({ current, total });
+        }
+      );
+
+      console.log(`[App] Search completed, total rows: ${rows.length}`);
+
+      if (rows.length === 0) {
+        alert('검색 결과가 없습니다.');
+        return;
+      }
+
+      try {
+        console.log('[App] Exporting to Excel...');
+        setStatus('Excel 파일 생성 중...');
+        exportInstagramSearchToExcel(rows);
+
+        setStatus(`완료! 총 ${rows.length}개의 검색 결과를 수집했습니다.`);
+        alert(`완료! 총 ${rows.length}개의 검색 결과를 Excel 파일로 저장했습니다.`);
+        console.log('[App] SUCCESS! Export complete');
+      } catch (exportError) {
+        console.error('[App] ERROR during Excel export:', exportError);
+        alert(`데이터는 수집되었지만 Excel 파일 저장 중 오류가 발생했습니다. 콘솔을 확인해주세요. (수집된 데이터: ${rows.length}개)`);
+        setStatus('Excel 저장 오류 발생');
+      }
+    } catch (error) {
+      console.error('[App] ERROR during Instagram search:', error);
+      if (error && typeof error === 'object' && 'message' in error) {
+        console.error('[App] Error details:', {
+          message: error.message,
+          response: 'response' in error ? (error as any).response?.data : undefined,
+          status: 'response' in error ? (error as any).response?.status : undefined,
+        });
+      }
+      alert('오류가 발생했습니다. 콘솔을 확인해주세요.');
+      setStatus('오류 발생');
+    } finally {
+      setIsLoading(false);
+      console.log('[App] =================================');
+      console.log('[App] Instagram Search Finished');
       console.log('[App] =================================');
     }
   };
@@ -268,9 +363,9 @@ const App = () => {
             </button>
             <button
               type="button"
-              onClick={() => setPlatform('instagram')}
+              onClick={() => setPlatform('instagram-followers')}
               className={`px-4 py-2 rounded-md font-medium transition-colors ${
-                platform === 'instagram'
+                platform === 'instagram-followers'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
@@ -278,14 +373,26 @@ const App = () => {
             >
               인스타 팔로워
             </button>
+            <button
+              type="button"
+              onClick={() => setPlatform('instagram-search')}
+              className={`px-4 py-2 rounded-md font-medium transition-colors ${
+                platform === 'instagram-search'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+              disabled={isLoading}
+            >
+              인스타 검색
+            </button>
           </div>
         </div>
 
-        {/* Instagram 전용 입력 */}
-        {platform === 'instagram' ? (
-          <>
+        {/* Instagram 팔로워 전용 입력 */}
+        {platform === 'instagram-followers' ? (
+          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
             {/* Instagram URL */}
-            <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <div className="mb-4">
               <label
                 htmlFor="instagramUrl"
                 className="block text-sm font-medium text-gray-700 mb-2"
@@ -304,7 +411,7 @@ const App = () => {
             </div>
 
             {/* 최대 팔로워 수 */}
-            <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <div className="mb-4">
               <label
                 htmlFor="maxFollowers"
                 className="block text-sm font-medium text-gray-700 mb-2"
@@ -322,22 +429,74 @@ const App = () => {
               />
             </div>
 
-            {/* Instagram 실행 버튼 */}
-            <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-              <button
-                type="button"
-                onClick={handleInstagramCrawl}
-                disabled={isLoading}
-                className={`w-full py-3 px-4 rounded-md font-medium text-white transition-colors ${
-                  isLoading
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-blue-600 hover:bg-blue-700'
-                }`}
+            {/* 팔로워 수집 실행 버튼 */}
+            <button
+              type="button"
+              onClick={handleInstagramCrawl}
+              disabled={isLoading || !instagramUrl.trim()}
+              className={`w-full py-3 px-4 rounded-md font-medium text-white transition-colors ${
+                isLoading || !instagramUrl.trim()
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-blue-600 hover:bg-blue-700'
+              }`}
+            >
+              {isLoading ? '수집 중...' : '팔로워 수집 시작'}
+            </button>
+          </div>
+        ) : platform === 'instagram-search' ? (
+          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+            {/* 검색어 입력 */}
+            <div className="mb-4">
+              <label
+                htmlFor="instagramSearchQuery"
+                className="block text-sm font-medium text-gray-700 mb-2"
               >
-                {isLoading ? '수집 중...' : '팔로워 수집 시작'}
-              </button>
+                검색어 (예: #이벤트, 키워드)
+              </label>
+              <input
+                id="instagramSearchQuery"
+                type="text"
+                value={instagramSearchQuery}
+                onChange={(e) => setInstagramSearchQuery(e.target.value)}
+                placeholder="#이벤트 또는 검색어 입력"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                disabled={isLoading}
+              />
             </div>
-          </>
+
+            {/* 최대 검색 결과 수 */}
+            <div className="mb-4">
+              <label
+                htmlFor="maxSearchResults"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
+                최대 검색 결과 수 (0 = 전체)
+              </label>
+              <input
+                id="maxSearchResults"
+                type="number"
+                min="0"
+                value={maxSearchResults}
+                onChange={(e) => setMaxSearchResults(Number(e.target.value))}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                disabled={isLoading}
+              />
+            </div>
+
+            {/* 검색 실행 버튼 */}
+            <button
+              type="button"
+              onClick={handleInstagramSearch}
+              disabled={isLoading || !instagramSearchQuery.trim()}
+              className={`w-full py-3 px-4 rounded-md font-medium text-white transition-colors ${
+                isLoading || !instagramSearchQuery.trim()
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-green-600 hover:bg-green-700'
+              }`}
+            >
+              {isLoading ? '검색 중...' : '검색 시작'}
+            </button>
+          </div>
         ) : (
           <>
             {/* 검색어 입력 */}
@@ -428,11 +587,19 @@ const App = () => {
         {/* 안내사항 */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <h2 className="text-sm font-semibold text-blue-900 mb-2">안내사항</h2>
-          {platform === 'instagram' ? (
+          {platform === 'instagram-followers' ? (
             <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
               <li>Instagram URL을 입력하면 해당 계정의 팔로워를 수집합니다.</li>
               <li>수집된 팔로워는 Excel 파일로 저장됩니다 (A: 계정명, B: 팔로워명, C: 이름).</li>
               <li>최대 팔로워 수를 설정하지 않으면 모든 팔로워를 수집합니다.</li>
+              <li>인증 정보는 자동으로 사용됩니다.</li>
+            </ul>
+          ) : platform === 'instagram-search' ? (
+            <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
+              <li>검색어(해시태그 포함)를 입력하면 해당 게시글들을 수집합니다.</li>
+              <li>수집된 데이터는 Excel 파일로 저장됩니다 (12개 컬럼: search, ID, post, followers, following, post_date, post_like, post_content, post_comments, text_comments, comment_id, comment_date).</li>
+              <li>현재는 search 데이터만 채워지며, detail과 comment 데이터는 추후 추가 예정입니다.</li>
+              <li>최대 검색 결과 수를 설정하지 않으면 모든 결과를 수집합니다.</li>
               <li>인증 정보는 자동으로 사용됩니다.</li>
             </ul>
           ) : (

@@ -1,5 +1,5 @@
 import * as XLSX from 'xlsx';
-import type { Review, Platform, InstagramFollower } from '../types';
+import type { Review, Platform, InstagramFollower, InstagramSearchRow } from '../types';
 
 export const exportInstagramToExcel = (username: string, followers: InstagramFollower[]) => {
   // 헤더 정의: A열(insta_id), B열(follower_id), C열(follower_txt)
@@ -84,6 +84,70 @@ export const exportToExcel = (platform: Platform, reviewsByProduct: Map<number, 
   // 파일 저장
   const prefix = platform === 'musinsa' ? 'musinsa' : '29cm';
   const fileName = `${prefix}_리뷰_${new Date().toISOString().split('T')[0]}.xlsx`;
+  XLSX.writeFile(wb, fileName);
+};
+
+// Instagram 검색 결과 Excel 내보내기
+export const exportInstagramSearchToExcel = (rows: InstagramSearchRow[]) => {
+  // 헤더 정의: 12개 컬럼
+  const headers = [
+    'search',        // 검색어
+    'ID',            // 게시자 id
+    'post',          // post 개수 (detail - 나중에)
+    'followers',     // follower 수 (detail - 나중에)
+    'following',     // following 수 (detail - 나중에)
+    'post_date',     // 게시 날짜
+    'post_like',     // 게시글 좋아요 수
+    'post_content',  // 게시글 내용
+    'post_comments', // 게시글 댓글 개수
+    'text_comments', // 게시글 댓글 내용 (comment - 나중에)
+    'comment_id',    // 댓글 작성자 (comment - 나중에)
+    'comment_date', // 댓글 작성 날짜 (comment - 나중에)
+  ];
+  
+  // 각 행을 배열로 변환
+  const excelRows: unknown[][] = rows.map((row) => [
+    row.search,
+    row.ID,
+    row.post,
+    row.followers,
+    row.following,
+    row.post_date,
+    row.post_like,
+    row.post_content,
+    row.post_comments,
+    row.text_comments,
+    row.comment_id,
+    row.comment_date,
+  ]);
+  
+  // 워크북 생성
+  const wsData = [headers, ...excelRows];
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+  
+  // 컬럼 너비 조정
+  ws['!cols'] = [
+    { wch: 20 }, // search
+    { wch: 20 }, // ID
+    { wch: 10 }, // post
+    { wch: 12 }, // followers
+    { wch: 12 }, // following
+    { wch: 15 }, // post_date
+    { wch: 12 }, // post_like
+    { wch: 50 }, // post_content
+    { wch: 15 }, // post_comments
+    { wch: 50 }, // text_comments
+    { wch: 20 }, // comment_id
+    { wch: 15 }, // comment_date
+  ];
+  
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, '검색결과');
+  
+  // 파일 저장: 날짜_검색어.xlsx
+  const today = new Date().toISOString().split('T')[0];
+  const searchQuery = rows.length > 0 ? rows[0].search.replace(/[^a-zA-Z0-9가-힣]/g, '_') : 'search';
+  const fileName = `${today}_instagram_search_${searchQuery}.xlsx`;
   XLSX.writeFile(wb, fileName);
 };
 

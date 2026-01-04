@@ -54,7 +54,7 @@ export interface Review {
   insertTimestamp: string;
 }
 
-export type Platform = '29cm' | 'musinsa' | 'instagram';
+export type Platform = '29cm' | 'musinsa' | 'instagram-followers' | 'instagram-search';
 
 export interface InstagramHeaders {
   accept?: string;
@@ -99,5 +99,78 @@ export interface InstagramFollowersResponse {
   next_max_id?: string;
   has_more: boolean;
   status: string;
+}
+
+// Instagram 검색 관련 타입
+export interface InstagramSearchMedia {
+  media: {
+    pk: string;
+    id: string;
+    user?: {
+      username: string;
+    };
+    owner?: {
+      username: string;
+    };
+    caption?: {
+      text: string;
+      created_at: number;
+    };
+    like_count: number;
+    comment_count: number;
+    taken_at: number;
+  };
+}
+
+export interface InstagramSearchResponse {
+  media_grid: {
+    sections: Array<{
+      layout_content: {
+        medias: InstagramSearchMedia[];
+      };
+    }>;
+    next_max_id?: string | null;
+    has_more: boolean;
+  };
+  status: string;
+}
+
+// Instagram 댓글 관련 타입
+export interface InstagramComment {
+  pk: string;
+  user_id: number;
+  text: string;
+  created_at: number;
+  created_at_utc: number;
+  user: {
+    pk: string;
+    username: string;
+    full_name: string;
+  };
+}
+
+export interface InstagramCommentResponse {
+  comments: InstagramComment[];
+  comment_count: number;
+  has_more_comments: boolean;
+  next_max_id?: string | null;
+  status: string;
+}
+
+// Instagram 검색 결과 데이터 (12개 컬럼)
+// 하나의 게시글에 여러 댓글이 있으면 각 댓글마다 행 생성
+export interface InstagramSearchRow {
+  search: string; // 검색어
+  ID: string; // 게시자 id (username)
+  post: string; // post 개수 (detail - 나중에)
+  followers: string; // follower 수 (detail - 나중에)
+  following: string; // following 수 (detail - 나중에)
+  post_date: string; // 게시 날짜 (created_at)
+  post_like: number; // 게시글 좋아요 수 (like_count)
+  post_content: string; // 게시글 내용 (caption.text)
+  post_comments: number; // 게시글 댓글 개수 (comment_count)
+  text_comments: string; // 게시글 댓글 내용 (comment)
+  comment_id: string; // 댓글 작성자 (comment)
+  comment_date: string; // 댓글 작성 날짜 (comment)
 }
 
