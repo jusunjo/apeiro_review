@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Platform, ProductItem, Review, InstagramHeaders } from '../types';
 import { searchProducts, fetchAllReviews, searchMusinsaProducts, fetchAllMusinsaReviews, getInstagramUserId, fetchAllInstagramFollowers, fetchAllInstagramSearchResults } from '../utils/api';
 import { exportToExcel, exportInstagramToExcel, exportInstagramSearchToExcel } from '../utils/excel';
@@ -17,6 +17,25 @@ const HomePage = () => {
   const [instagramSearchQuery, setInstagramSearchQuery] = useState('');
   const [maxSearchResults, setMaxSearchResults] = useState<number>(0);
   const [instagramHeadersInput, setInstagramHeadersInput] = useState('');
+  const [showHeaderGuideModal, setShowHeaderGuideModal] = useState(false);
+  const [headerGuideStep, setHeaderGuideStep] = useState(0);
+  
+  // 로컬 스토리지에서 헤더 불러오기
+  useEffect(() => {
+    const savedHeaders = localStorage.getItem('instagramHeadersInput');
+    if (savedHeaders) {
+      setInstagramHeadersInput(savedHeaders);
+    }
+  }, []);
+  
+  // 헤더 입력 값이 변경될 때마다 로컬 스토리지에 저장
+  useEffect(() => {
+    if (instagramHeadersInput) {
+      localStorage.setItem('instagramHeadersInput', instagramHeadersInput);
+    } else {
+      localStorage.removeItem('instagramHeadersInput');
+    }
+  }, [instagramHeadersInput]);
   
   // 하드코딩된 Instagram 인증 정보
   const instagramCookie = 'datr=pplIaROuaDR-Eteezj66cqMu; ig_did=B58512E5-3D06-429B-9DAA-D7764F93040A; mid=aUiZpgAEAAGIUG6ENeYq6qCQjWjJ; ig_nrcb=1; dpr=1; csrftoken=RmXzsdz237PHF7M0YzhbZnpdt51cbFx8; ds_user_id=2000629733; wd=562x832; sessionid=2000629733%3Amaz7UtpYui3dL8%3A3%3AAYjXJdoD0H-JihOv7TAUtGWQqsFj__-KW1fNokMy1Q; rur="HIL\\0542000629733\\0541799048072:01fed911b37bf328e4b3beb0c639cbd78851257157dbe092c7ff16cbe3cdc2d6f5f7a4a1"';
@@ -48,8 +67,10 @@ const HomePage = () => {
   });
 
   // 헤더 텍스트를 파싱하여 헤더 객체로 변환
-  // 형식: 헤더명\n값\n헤더명\n값...
-  const parseHeaders = (headersText: string): InstagramHeaders | null => {
+  // 지원 형식:
+  // 1. 헤더명\n값\n헤더명\n값...
+  // 2. 헤더명: 값\n헤더명: 값...
+  const parseHeaders = (headersText: string): Partial<InstagramHeaders> | null => {
     if (!headersText.trim()) {
       return null;
     }
@@ -59,6 +80,7 @@ const HomePage = () => {
       const lines = headersText.split('\n');
       
       let currentKey = '';
+      let currentValue = '';
       
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i].trim();
@@ -68,19 +90,49 @@ const HomePage = () => {
           continue;
         }
         
-        // 현재 키가 없으면 헤더명으로 간주
-        if (!currentKey) {
-          currentKey = line;
+        // 콜론이 있는 경우 (헤더명: 값 형식)
+        if (line.includes(':')) {
+          // 이전 키-값 쌍 저장
+          if (currentKey && currentValue) {
+            headers[currentKey.toLowerCase()] = currentValue.trim();
+          }
+          
+          const colonIndex = line.indexOf(':');
+          currentKey = line.substring(0, colonIndex).trim();
+          currentValue = line.substring(colonIndex + 1).trim();
+          
+          // 값이 있으면 바로 저장하고 초기화
+          if (currentValue) {
+            headers[currentKey.toLowerCase()] = currentValue;
+            currentKey = '';
+            currentValue = '';
+          }
         } else {
-          // 현재 키가 있으면 값으로 간주
-          headers[currentKey.toLowerCase()] = line;
-          currentKey = ''; // 다음 헤더명을 위해 초기화
+          // 콜론이 없는 경우
+          if (!currentKey) {
+            // 키가 없으면 헤더명으로 간주
+            currentKey = line;
+          } else {
+            // 키가 있으면 값으로 간주 (여러 줄 값 지원)
+            if (currentValue) {
+              currentValue += ' ' + line;
+            } else {
+              currentValue = line;
+            }
+            // 값이 설정되었으므로 저장
+            headers[currentKey.toLowerCase()] = currentValue.trim();
+            currentKey = '';
+            currentValue = '';
+          }
         }
       }
       
-      // 마지막 헤더명만 있고 값이 없는 경우는 무시
+      // 마지막 키-값 쌍 저장 (값이 있는 경우만)
+      if (currentKey && currentValue) {
+        headers[currentKey.toLowerCase()] = currentValue.trim();
+      }
       
-      return headers as InstagramHeaders;
+      return headers as Partial<InstagramHeaders>;
     } catch (error) {
       console.error('헤더 파싱 오류:', error);
       return null;
@@ -120,10 +172,12 @@ const HomePage = () => {
       let headers: InstagramHeaders;
       const parsedHeaders = parseHeaders(instagramHeadersInput);
       
-      if (parsedHeaders) {
-        headers = parsedHeaders;
-        // referer는 URL 기반으로 자동 설정
-        headers.referer = instagramUrl.endsWith('/') ? `${instagramUrl}followers/` : `${instagramUrl}/followers/`;
+      if (parsedHeaders && parsedHeaders.cookie) {
+        // 파싱된 헤더에 필수 속성(cookie)이 있는 경우 사용
+        headers = {
+          ...parsedHeaders,
+          referer: instagramUrl.endsWith('/') ? `${instagramUrl}followers/` : `${instagramUrl}/followers/`,
+        } as InstagramHeaders;
         console.log('[App] 3. Headers prepared from user input');
       } else {
         headers = getInstagramHeaders();
@@ -373,7 +427,7 @@ const HomePage = () => {
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-          상품 리뷰 크롤러
+          아페로 크롤러
         </h1>
 
         {/* 플랫폼 탭 */}
@@ -476,12 +530,24 @@ const HomePage = () => {
 
             {/* 헤더 입력 */}
             <div className="mb-4">
-              <label
-                htmlFor="instagramHeadersInput"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                헤더 (선택사항, 빈 값이면 기본 헤더 사용)
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label
+                  htmlFor="instagramHeadersInput"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  헤더 (선택사항, 빈 값이면 기본 헤더 사용)
+                </label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowHeaderGuideModal(true);
+                    setHeaderGuideStep(0);
+                  }}
+                  className="text-xs text-blue-600 hover:text-blue-700 underline"
+                >
+                  헤더 추출 방법 보기
+                </button>
+              </div>
               <textarea
                 id="instagramHeadersInput"
                 value={instagramHeadersInput}
@@ -679,6 +745,172 @@ const HomePage = () => {
           )}
         </div>
       </div>
+
+      {/* 헤더 추출 방법 모달 */}
+      {showHeaderGuideModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              {/* 모달 헤더 */}
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">헤더 추출 방법</h2>
+                <button
+                  type="button"
+                  onClick={() => setShowHeaderGuideModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* 단계 표시 */}
+              <div className="flex items-center justify-center mb-6">
+                {[0, 1, 2].map((step) => (
+                  <div key={step} className="flex items-center">
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
+                        headerGuideStep === step
+                          ? 'bg-blue-600 text-white'
+                          : headerGuideStep > step
+                          ? 'bg-green-500 text-white'
+                          : 'bg-gray-200 text-gray-600'
+                      }`}
+                    >
+                      {step + 1}
+                    </div>
+                    {step < 2 && (
+                      <div
+                        className={`w-16 h-1 mx-2 ${
+                          headerGuideStep > step ? 'bg-green-500' : 'bg-gray-200'
+                        }`}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* 이미지 및 설명 */}
+              <div className="mb-6">
+                {headerGuideStep === 0 && (
+                  <div>
+                    <div className="mb-4 flex justify-center">
+                      <img
+                        src="/header-guide-1.png"
+                        alt="Step 1: F12를 누르고 Network 탭에서 Fetch/XHR 클릭"
+                        className="max-w-2xl w-full rounded-lg border border-gray-300 shadow-md"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-3 text-lg">1단계: 개발자 도구 열기</h3>
+                      <ol className="text-blue-800 space-y-2 list-decimal list-inside">
+                        <li>팔로워를 가져오고 싶은 <strong>Instagram 계정 페이지</strong>로 이동합니다</li>
+                        <li>키보드에서 <strong className="bg-blue-100 px-1 rounded">F12</strong> 키를 누릅니다</li>
+                        <li>하단에 나타난 개발자 도구에서 <strong>Network</strong> 탭을 클릭합니다</li>
+                        <li>필터 버튼 중 <strong>Fetch/XHR</strong>을 클릭합니다</li>
+                      </ol>
+                    </div>
+                  </div>
+                )}
+
+                {headerGuideStep === 1 && (
+                  <div>
+                    <div className="mb-4 flex justify-center">
+                      <img
+                        src="/header-guide-2.png"
+                        alt="Step 2: 팔로워 클릭하고 followers/?count로 시작하는 텍스트 클릭"
+                        className="max-w-2xl w-full rounded-lg border border-gray-300 shadow-md"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-3 text-lg">2단계: 팔로워 API 요청 찾기</h3>
+                      <ol className="text-blue-800 space-y-2 list-decimal list-inside">
+                        <li>Instagram 프로필 페이지에서 <strong>"팔로워"</strong> 버튼을 클릭합니다</li>
+                        <li>Network 탭의 요청 목록에서 <strong className="bg-blue-100 px-1 rounded">followers/?count</strong>로 시작하는 항목을 찾습니다</li>
+                        <li>해당 항목을 <strong>클릭</strong>하여 상세 정보를 엽니다</li>
+                      </ol>
+                    </div>
+                  </div>
+                )}
+
+                {headerGuideStep === 2 && (
+                  <div>
+                    <div className="mb-4 flex justify-center">
+                      <img
+                        src="/header-guide-3.png"
+                        alt="Step 3: Request Headers에서 Accept부터 최하단까지 복사"
+                        className="max-w-2xl w-full rounded-lg border border-gray-300 shadow-md"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-3 text-lg">3단계: 헤더 복사하기</h3>
+                      <ol className="text-blue-800 space-y-2 list-decimal list-inside">
+                        <li>우측 상세 패널에서 <strong>Headers</strong> 탭이 선택되어 있는지 확인합니다</li>
+                        <li>아래로 스크롤하여 <strong>Request Headers</strong> 섹션을 찾습니다</li>
+                        <li>
+                          <strong className="text-red-600">제외할 항목:</strong>{' '}
+                          <code className="bg-gray-200 px-1 rounded">:authority</code>,{' '}
+                          <code className="bg-gray-200 px-1 rounded">:method</code>,{' '}
+                          <code className="bg-gray-200 px-1 rounded">:path</code>,{' '}
+                          <code className="bg-gray-200 px-1 rounded">:scheme</code>
+                        </li>
+                        <li>
+                          <strong className="text-green-600">복사할 항목:</strong>{' '}
+                          <code className="bg-gray-200 px-1 rounded">Accept</code>부터 시작하여{' '}
+                          <strong>최하단까지</strong> 모든 헤더를 복사합니다
+                        </li>
+                        <li>복사한 내용을 위의 <strong>"헤더"</strong> 입력란에 붙여넣습니다</li>
+                      </ol>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* 네비게이션 버튼 */}
+              <div className="flex items-center justify-between">
+                <button
+                  type="button"
+                  onClick={() => setHeaderGuideStep(Math.max(0, headerGuideStep - 1))}
+                  disabled={headerGuideStep === 0}
+                  className={`px-4 py-2 rounded-md font-medium transition-colors ${
+                    headerGuideStep === 0
+                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                      : 'bg-gray-600 text-white hover:bg-gray-700'
+                  }`}
+                >
+                  ← 이전
+                </button>
+
+                <div className="text-sm text-gray-600">
+                  {headerGuideStep + 1} / 3
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (headerGuideStep < 2) {
+                      setHeaderGuideStep(headerGuideStep + 1);
+                    } else {
+                      setShowHeaderGuideModal(false);
+                    }
+                  }}
+                  className="px-4 py-2 rounded-md font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                >
+                  {headerGuideStep < 2 ? '다음 →' : '완료'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

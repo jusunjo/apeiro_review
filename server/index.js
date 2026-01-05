@@ -3,6 +3,8 @@ import cors from 'cors';
 import axios from 'axios';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { Builder } from 'selenium-webdriver';
+import chrome from 'selenium-webdriver/chrome.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -96,6 +98,449 @@ app.get('/api/musinsa/search', async (req, res) => {
     res.json(response.data);
   } catch (error) {
     console.error('[Musinsa Search] Error:', {
+      message: error.message,
+      code: error.code,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+    });
+    
+    if (!res.headersSent) {
+      res.status(error.response?.status || 500).json({
+        error: error.message,
+        code: error.code,
+        data: error.response?.data,
+      });
+    }
+  }
+});
+
+// Instagram - User ID 추출
+app.post('/api/instagram/user-id', async (req, res) => {
+  console.log('[Instagram User ID] Request received');
+  
+  try {
+    const { url, headers } = req.body;
+    
+    if (!url) {
+      return res.status(400).json({ error: 'url is required' });
+    }
+    
+    if (!headers) {
+      return res.status(400).json({ error: 'headers is required' });
+    }
+    
+    console.log('[Instagram User ID] Extracting username from URL:', url);
+    
+    // URL에서 username 추출
+    const urlMatch = url.match(/instagram\.com\/([^/?]+)/);
+    if (!urlMatch) {
+      return res.status(400).json({ error: 'Invalid Instagram URL format' });
+    }
+    
+    const username = urlMatch[1];
+    console.log('[Instagram User ID] Username extracted:', username);
+    
+    // Instagram GraphQL API를 사용하여 user ID 가져오기
+    // https://www.instagram.com/api/v1/users/web_profile_info/?username={username}
+    const profileUrl = `https://www.instagram.com/api/v1/users/web_profile_info/?username=${username}`;
+    
+    console.log('[Instagram User ID] Calling Instagram API:', profileUrl);
+    
+    const response = await axios.get(profileUrl, {
+      headers: {
+        ...headers,
+        'accept': '*/*',
+        'accept-language': headers['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+        'referer': headers.referer || `https://www.instagram.com/${username}/`,
+        'x-requested-with': 'XMLHttpRequest',
+      },
+      timeout: 10000,
+    });
+    
+    console.log('[Instagram User ID] Response status:', response.status);
+    
+    if (response.data && response.data.data && response.data.data.user) {
+      const targetId = response.data.data.user.id;
+      console.log('[Instagram User ID] Target ID extracted:', targetId);
+      res.json({ targetId });
+    } else {
+      console.error('[Instagram User ID] Unexpected response structure:', response.data);
+      res.status(500).json({ error: 'Failed to extract user ID from response' });
+    }
+  } catch (error) {
+    console.error('[Instagram User ID] Error:', {
+      message: error.message,
+      code: error.code,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+    });
+    
+    if (!res.headersSent) {
+      res.status(error.response?.status || 500).json({
+        error: error.message,
+        code: error.code,
+        data: error.response?.data,
+      });
+    }
+  }
+});
+
+// Instagram - 검색 API
+app.get('/api/instagram/search', async (req, res) => {
+  console.log('[Instagram Search] Request received');
+  console.log('[Instagram Search] Query:', req.query);
+  console.log('[Instagram Search] Headers:', Object.keys(req.headers));
+  
+  try {
+    const { query } = req.query;
+    
+    if (!query) {
+      return res.status(400).json({ error: 'query is required' });
+    }
+    
+    // 헤더 파싱
+    let headers = null;
+    try {
+      const headersString = req.headers['x-instagram-headers'];
+      if (headersString) {
+        headers = JSON.parse(headersString);
+        console.log('[Instagram Search] Headers parsed successfully');
+      } else {
+        console.log('[Instagram Search] No x-instagram-headers found');
+      }
+    } catch (parseError) {
+      console.error('[Instagram Search] Error parsing headers:', parseError);
+      return res.status(400).json({ error: 'Invalid headers format', details: parseError.message });
+    }
+    
+    if (!headers || !headers.cookie) {
+      return res.status(400).json({ error: 'headers with cookie are required' });
+    }
+    
+    console.log('[Instagram Search] Searching for query:', query);
+    
+    // Instagram 검색 API URL
+    const searchUrl = `https://www.instagram.com/api/v1/fbsearch/web/top_serp/?enable_metadata=true&query=${encodeURIComponent(query)}&search_session_id=05dba6cb-78c6-4852-9899-4ca819bbff2d`;
+    
+    console.log('[Instagram Search] Calling Instagram API:', searchUrl);
+    
+    const response = await axios.get(searchUrl, {
+      headers: {
+        ...headers,
+        'accept': '*/*',
+        'accept-language': headers['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+        'referer': headers.referer || 'https://www.instagram.com/',
+        'x-requested-with': 'XMLHttpRequest',
+      },
+      timeout: 30000,
+    });
+    
+    console.log('[Instagram Search] Response status:', response.status);
+    console.log('[Instagram Search] Response has data:', !!response.data);
+    
+    res.json(response.data);
+  } catch (error) {
+    console.error('[Instagram Search] Error:', {
+      message: error.message,
+      code: error.code,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      stack: error.stack,
+    });
+    
+    if (!res.headersSent) {
+      const statusCode = error.response?.status || 500;
+      const errorMessage = error.message || 'Unknown error';
+      const errorData = error.response?.data || null;
+      
+      console.error('[Instagram Search] Sending error response:', {
+        statusCode,
+        errorMessage,
+        hasErrorData: !!errorData,
+      });
+      
+      res.status(statusCode).json({
+        error: errorMessage,
+        code: error.code || 'UNKNOWN_ERROR',
+        data: errorData,
+      });
+    } else {
+      console.error('[Instagram Search] Response already sent, cannot send error');
+    }
+  }
+});
+
+// Instagram - 댓글 API
+app.get('/api/instagram/comments', async (req, res) => {
+  console.log('[Instagram Comments] Request received');
+  
+  try {
+    const { mediaId } = req.query;
+    const headers = req.headers['x-instagram-headers'] 
+      ? JSON.parse(req.headers['x-instagram-headers']) 
+      : null;
+    
+    if (!mediaId) {
+      return res.status(400).json({ error: 'mediaId is required' });
+    }
+    
+    if (!headers) {
+      return res.status(400).json({ error: 'headers are required' });
+    }
+    
+    console.log('[Instagram Comments] Fetching comments for mediaId:', mediaId);
+    
+    // Instagram 댓글 API URL
+    const commentsUrl = `https://www.instagram.com/api/v1/media/${mediaId}/comments/?can_support_threading=true&permalink_enabled=false`;
+    
+    console.log('[Instagram Comments] Calling Instagram API:', commentsUrl);
+    
+    const response = await axios.get(commentsUrl, {
+      headers: {
+        ...headers,
+        'accept': '*/*',
+        'accept-language': headers['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+        'referer': headers.referer || 'https://www.instagram.com/',
+        'x-requested-with': 'XMLHttpRequest',
+      },
+      timeout: 30000,
+    });
+    
+    console.log('[Instagram Comments] Response status:', response.status);
+    console.log('[Instagram Comments] Comments count:', response.data?.comments?.length || 0);
+    
+    res.json(response.data);
+  } catch (error) {
+    console.error('[Instagram Comments] Error:', {
+      message: error.message,
+      code: error.code,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+    });
+    
+    if (!res.headersSent) {
+      res.status(error.response?.status || 500).json({
+        error: error.message,
+        code: error.code,
+        data: error.response?.data,
+      });
+    }
+  }
+});
+
+// Instagram - Detail API (Selenium 사용)
+app.get('/api/instagram/detail', async (req, res) => {
+  console.log('[Instagram Detail] Request received');
+  
+  let driver = null;
+  
+  try {
+    const { username } = req.query;
+    
+    if (!username) {
+      return res.status(400).json({ error: 'username is required' });
+    }
+    
+    console.log('[Instagram Detail] Fetching detail for username:', username);
+    
+    // Selenium WebDriver 설정
+    const options = new chrome.Options();
+    options.addArguments('--headless');
+    options.addArguments('--no-sandbox');
+    options.addArguments('--disable-dev-shm-usage');
+    options.addArguments('--disable-gpu');
+    options.addArguments('--window-size=1920,1080');
+    options.addArguments('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36');
+    
+    driver = await new Builder()
+      .forBrowser('chrome')
+      .setChromeOptions(options)
+      .build();
+    
+    const profileUrl = `https://www.instagram.com/${username}/`;
+    console.log('[Instagram Detail] Navigating to:', profileUrl);
+    
+    await driver.get(profileUrl);
+    
+    // 페이지 로드 대기
+    console.log('[Instagram Detail] Waiting for page to load...');
+    let attempts = 0;
+    const maxAttempts = 20;
+    
+    while (attempts < maxAttempts) {
+      const bodyText = await driver.executeScript(() => {
+        return document.body ? document.body.innerText : '';
+      });
+      
+      if (bodyText.includes('게시물') || bodyText.includes('Posts')) {
+        console.log('[Instagram Detail] Page loaded successfully');
+        break;
+      }
+      
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      attempts++;
+    }
+    
+    if (attempts >= maxAttempts) {
+      throw new Error('Page did not load properly');
+    }
+    
+    // 추가 대기 시간
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    
+    // 프로필 통계 추출
+    const stats = await driver.executeScript(() => {
+      // 숫자 변환 함수 (만/천/K/M 형식을 숫자로 변환)
+      const convertNumberFormat = (value) => {
+        if (!value || typeof value !== 'string') return value;
+        
+        const trimmed = value.trim();
+        
+        // 숫자만 있는 경우 그대로 반환
+        if (/^\d+$/.test(trimmed)) {
+          return trimmed;
+        }
+        
+        // 만/천/K/M 형식 변환
+        const match = trimmed.match(/^(\d+\.?\d*)(만|천|K|M)?$/i);
+        if (!match) return value;
+        
+        const number = parseFloat(match[1]);
+        const unit = match[2]?.toUpperCase();
+        
+        let multiplier = 1;
+        if (unit === '만') multiplier = 10000;
+        else if (unit === '천') multiplier = 1000;
+        else if (unit === 'K') multiplier = 1000;
+        else if (unit === 'M') multiplier = 1000000;
+        
+        const converted = Math.round(number * multiplier);
+        return converted.toString();
+      };
+      
+      const result = {
+        posts: null,
+        followers: null,
+        following: null
+      };
+      
+      // 방법: "게시물", "팔로워", "팔로우" 텍스트를 포함하는 요소 찾기
+      const divs = Array.from(document.querySelectorAll('div'));
+      for (const div of divs) {
+        const text = div.textContent || '';
+        
+        // 게시물 찾기
+        if (text.includes('게시물') || text.includes('Posts')) {
+          const span = div.querySelector('span.html-span');
+          if (span) {
+            const num = span.textContent.trim();
+            // 숫자만 또는 숫자+만/천/K/M 형식 허용
+            if ((/^\d+$/.test(num) || /^\d+\.?\d*(만|천|K|M)?$/i.test(num)) && !result.posts) {
+              result.posts = convertNumberFormat(num);
+            }
+          }
+        }
+      }
+      
+      // 팔로워/팔로우는 a 태그에 있음
+      const links = Array.from(document.querySelectorAll('a'));
+      for (const link of links) {
+        const text = link.textContent || '';
+        const span = link.querySelector('span.html-span');
+        
+        if (span) {
+          const num = span.textContent.trim();
+          // 숫자만 또는 숫자+만/천/K/M 형식 허용 (예: "1.5만", "15K", "1.2M")
+          if (/^\d+\.?\d*(만|천|K|M)?$/i.test(num)) {
+            if ((text.includes('팔로워') || text.includes('followers')) && !result.followers) {
+              result.followers = convertNumberFormat(num);
+            } else if ((text.includes('팔로우') || text.includes('following')) && !result.following) {
+              result.following = convertNumberFormat(num);
+            }
+          }
+        }
+      }
+      
+      return result;
+    });
+    
+    console.log('[Instagram Detail] Extracted stats:', stats);
+    
+    res.json({
+      posts: stats.posts || '',
+      followers: stats.followers || '',
+      following: stats.following || ''
+    });
+    
+  } catch (error) {
+    console.error('[Instagram Detail] Error:', {
+      message: error.message,
+      code: error.code,
+      stack: error.stack,
+    });
+    
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: error.message,
+        code: error.code,
+      });
+    }
+  } finally {
+    // WebDriver 종료
+    if (driver) {
+      try {
+        await driver.quit();
+        console.log('[Instagram Detail] WebDriver closed');
+      } catch (quitError) {
+        console.error('[Instagram Detail] Error closing WebDriver:', quitError);
+      }
+    }
+  }
+});
+
+// Instagram - 팔로워 가져오기
+app.post('/api/instagram/followers', async (req, res) => {
+  console.log('[Instagram Followers] Request received');
+  
+  try {
+    const { targetId, count = 12, maxId, headers } = req.body;
+    
+    if (!targetId) {
+      return res.status(400).json({ error: 'targetId is required' });
+    }
+    
+    if (!headers) {
+      return res.status(400).json({ error: 'headers is required' });
+    }
+    
+    console.log('[Instagram Followers] Fetching followers for targetId:', targetId);
+    console.log('[Instagram Followers] Count:', count, 'MaxId:', maxId || 'none');
+    
+    // Instagram 팔로워 API URL 구성
+    let followersUrl = `https://www.instagram.com/api/v1/friendships/${targetId}/followers/?count=${count}`;
+    if (maxId) {
+      followersUrl += `&max_id=${maxId}`;
+    }
+    
+    console.log('[Instagram Followers] Calling Instagram API:', followersUrl);
+    
+    const response = await axios.get(followersUrl, {
+      headers: {
+        ...headers,
+        'accept': '*/*',
+        'accept-language': headers['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+        'referer': headers.referer || `https://www.instagram.com/`,
+        'x-requested-with': 'XMLHttpRequest',
+      },
+      timeout: 15000,
+    });
+    
+    console.log('[Instagram Followers] Response status:', response.status);
+    console.log('[Instagram Followers] Users count:', response.data?.users?.length || 0);
+    
+    res.json(response.data);
+  } catch (error) {
+    console.error('[Instagram Followers] Error:', {
       message: error.message,
       code: error.code,
       status: error.response?.status,
