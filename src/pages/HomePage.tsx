@@ -275,8 +275,12 @@ const HomePage = () => {
       const parsedHeaders = parseHeaders(instagramSearchHeadersInput);
       
       if (parsedHeaders && parsedHeaders.cookie) {
-        headers = parsedHeaders as InstagramHeaders;
-        headers.referer = searchReferer;
+        // cookie가 있으면 InstagramHeaders로 안전하게 변환
+        headers = {
+          ...parsedHeaders,
+          cookie: parsedHeaders.cookie,
+          referer: searchReferer,
+        } as InstagramHeaders;
         console.log('[App] 3. Headers prepared from user input (search)');
       } else {
         headers = getInstagramHeaders(searchReferer);
