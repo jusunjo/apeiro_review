@@ -16,6 +16,7 @@ const HomePage = () => {
   const [maxFollowers, setMaxFollowers] = useState<number>(0);
   const [instagramSearchQuery, setInstagramSearchQuery] = useState('');
   const [maxSearchResults, setMaxSearchResults] = useState<number>(0);
+  const [instagramHeadersInput, setInstagramHeadersInput] = useState('');
   
   // 하드코딩된 Instagram 인증 정보
   const instagramCookie = 'datr=pplIaROuaDR-Eteezj66cqMu; ig_did=B58512E5-3D06-429B-9DAA-D7764F93040A; mid=aUiZpgAEAAGIUG6ENeYq6qCQjWjJ; ig_nrcb=1; dpr=1; csrftoken=RmXzsdz237PHF7M0YzhbZnpdt51cbFx8; ds_user_id=2000629733; wd=562x832; sessionid=2000629733%3Amaz7UtpYui3dL8%3A3%3AAYjXJdoD0H-JihOv7TAUtGWQqsFj__-KW1fNokMy1Q; rur="HIL\\0542000629733\\0541799048072:01fed911b37bf328e4b3beb0c639cbd78851257157dbe092c7ff16cbe3cdc2d6f5f7a4a1"';
@@ -45,6 +46,46 @@ const HomePage = () => {
     'x-requested-with': 'XMLHttpRequest',
     'x-web-session-id': 'un9yck:xgqxqe:5sj7kw',
   });
+
+  // 헤더 텍스트를 파싱하여 헤더 객체로 변환
+  // 형식: 헤더명\n값\n헤더명\n값...
+  const parseHeaders = (headersText: string): InstagramHeaders | null => {
+    if (!headersText.trim()) {
+      return null;
+    }
+
+    try {
+      const headers: Record<string, string> = {};
+      const lines = headersText.split('\n');
+      
+      let currentKey = '';
+      
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        
+        // 빈 줄은 무시
+        if (!line) {
+          continue;
+        }
+        
+        // 현재 키가 없으면 헤더명으로 간주
+        if (!currentKey) {
+          currentKey = line;
+        } else {
+          // 현재 키가 있으면 값으로 간주
+          headers[currentKey.toLowerCase()] = line;
+          currentKey = ''; // 다음 헤더명을 위해 초기화
+        }
+      }
+      
+      // 마지막 헤더명만 있고 값이 없는 경우는 무시
+      
+      return headers as InstagramHeaders;
+    } catch (error) {
+      console.error('헤더 파싱 오류:', error);
+      return null;
+    }
+  };
 
   const handleInstagramCrawl = async () => {
     console.log('[App] =================================');
@@ -76,9 +117,19 @@ const HomePage = () => {
       console.log('[App] 2. Username extracted:', username);
 
       // 헤더 준비
-      const headers = getInstagramHeaders();
-      headers.referer = instagramUrl.endsWith('/') ? `${instagramUrl}followers/` : `${instagramUrl}/followers/`;
-      console.log('[App] 3. Headers prepared');
+      let headers: InstagramHeaders;
+      const parsedHeaders = parseHeaders(instagramHeadersInput);
+      
+      if (parsedHeaders) {
+        headers = parsedHeaders;
+        // referer는 URL 기반으로 자동 설정
+        headers.referer = instagramUrl.endsWith('/') ? `${instagramUrl}followers/` : `${instagramUrl}/followers/`;
+        console.log('[App] 3. Headers prepared from user input');
+      } else {
+        headers = getInstagramHeaders();
+        headers.referer = instagramUrl.endsWith('/') ? `${instagramUrl}followers/` : `${instagramUrl}/followers/`;
+        console.log('[App] 3. Headers prepared (default)');
+      }
 
       // 1. Target ID 추출
       console.log('[App] 4. Calling getInstagramUserId...');
@@ -421,6 +472,28 @@ const HomePage = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isLoading}
               />
+            </div>
+
+            {/* 헤더 입력 */}
+            <div className="mb-4">
+              <label
+                htmlFor="instagramHeadersInput"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
+                헤더 (선택사항, 빈 값이면 기본 헤더 사용)
+              </label>
+              <textarea
+                id="instagramHeadersInput"
+                value={instagramHeadersInput}
+                onChange={(e) => setInstagramHeadersInput(e.target.value)}
+                placeholder="헤더명&#10;값&#10;&#10;예:&#10;accept&#10;*/*&#10;cookie&#10;datr=..."
+                rows={10}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+                disabled={isLoading}
+              />
+              <p className="mt-1 text-xs text-gray-500">
+                형식: 헤더명과 값을 줄바꿈으로 구분하여 입력하세요. (예: accept\n*/*)
+              </p>
             </div>
 
             {/* 팔로워 수집 실행 버튼 */}
