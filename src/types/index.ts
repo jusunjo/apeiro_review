@@ -58,6 +58,7 @@ export type Platform = '29cm' | 'musinsa' | 'instagram-followers' | 'instagram-s
 
 export interface InstagramHeaders {
   accept?: string;
+  'accept-encoding'?: string;
   'accept-language'?: string;
   cookie: string;
   priority?: string;

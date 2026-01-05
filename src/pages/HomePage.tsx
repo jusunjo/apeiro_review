@@ -15,12 +15,14 @@ const HomePage = () => {
   const [instagramUrl, setInstagramUrl] = useState('');
   const [maxFollowers, setMaxFollowers] = useState<number>(0);
   const [instagramSearchQuery, setInstagramSearchQuery] = useState('');
-  const [maxSearchResults, setMaxSearchResults] = useState<number>(0);
   const [instagramHeadersInput, setInstagramHeadersInput] = useState('');
+  const [instagramSearchHeadersInput, setInstagramSearchHeadersInput] = useState('');
   const [showHeaderGuideModal, setShowHeaderGuideModal] = useState(false);
+  const [showSearchHeaderGuideModal, setShowSearchHeaderGuideModal] = useState(false);
   const [headerGuideStep, setHeaderGuideStep] = useState(0);
+  const [searchHeaderGuideStep, setSearchHeaderGuideStep] = useState(0);
   
-  // 로컬 스토리지에서 헤더 불러오기
+  // 로컬 스토리지에서 헤더 불러오기 (팔로워)
   useEffect(() => {
     const savedHeaders = localStorage.getItem('instagramHeadersInput');
     if (savedHeaders) {
@@ -28,7 +30,7 @@ const HomePage = () => {
     }
   }, []);
   
-  // 헤더 입력 값이 변경될 때마다 로컬 스토리지에 저장
+  // 헤더 입력 값이 변경될 때마다 로컬 스토리지에 저장 (팔로워)
   useEffect(() => {
     if (instagramHeadersInput) {
       localStorage.setItem('instagramHeadersInput', instagramHeadersInput);
@@ -36,18 +38,33 @@ const HomePage = () => {
       localStorage.removeItem('instagramHeadersInput');
     }
   }, [instagramHeadersInput]);
+
+  // 로컬 스토리지에서 검색 헤더 불러오기
+  useEffect(() => {
+    const savedHeaders = localStorage.getItem('instagramSearchHeadersInput');
+    if (savedHeaders) {
+      setInstagramSearchHeadersInput(savedHeaders);
+    }
+  }, []);
   
-  // 하드코딩된 Instagram 인증 정보
-  const instagramCookie = 'datr=pplIaROuaDR-Eteezj66cqMu; ig_did=B58512E5-3D06-429B-9DAA-D7764F93040A; mid=aUiZpgAEAAGIUG6ENeYq6qCQjWjJ; ig_nrcb=1; dpr=1; csrftoken=RmXzsdz237PHF7M0YzhbZnpdt51cbFx8; ds_user_id=2000629733; wd=562x832; sessionid=2000629733%3Amaz7UtpYui3dL8%3A3%3AAYjXJdoD0H-JihOv7TAUtGWQqsFj__-KW1fNokMy1Q; rur="HIL\\0542000629733\\0541799048072:01fed911b37bf328e4b3beb0c639cbd78851257157dbe092c7ff16cbe3cdc2d6f5f7a4a1"';
-  const instagramCsrfToken = 'RmXzsdz237PHF7M0YzhbZnpdt51cbFx8';
+  // 검색 헤더 입력 값이 변경될 때마다 로컬 스토리지에 저장
+  useEffect(() => {
+    if (instagramSearchHeadersInput) {
+      localStorage.setItem('instagramSearchHeadersInput', instagramSearchHeadersInput);
+    } else {
+      localStorage.removeItem('instagramSearchHeadersInput');
+    }
+  }, [instagramSearchHeadersInput]);
   
-  const getInstagramHeaders = (): InstagramHeaders => ({
-    cookie: instagramCookie,
-    'x-csrftoken': instagramCsrfToken,
+  // 통일된 Instagram 헤더 (search, detail, comment 모두 동일)
+  // zstd는 axios가 자동 디코딩하지 못하므로 제거
+  const getInstagramHeaders = (referer?: string): InstagramHeaders => ({
     'accept': '*/*',
+    'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+    'cookie': 'datr=pplIaROuaDR-Eteezj66cqMu; ig_did=B58512E5-3D06-429B-9DAA-D7764F93040A; mid=aUiZpgAEAAGIUG6ENeYq6qCQjWjJ; ig_nrcb=1; dpr=1; csrftoken=RmXzsdz237PHF7M0YzhbZnpdt51cbFx8; ds_user_id=2000629733; ps_l=1; ps_n=1; sessionid=2000629733%3Amaz7UtpYui3dL8%3A3%3AAYjmxO_IVfIA54zUoaOvrGon7rZCezUHakpRPOG6ZA; wd=967x458; rur="HIL\\0542000629733\\0541799125315:01fea75235a2d65bda93f926b83d414d7bddf1c82c8d5e2ddb3ef212d16659362cd00747"',
     'priority': 'u=1, i',
-    'referer': 'https://www.instagram.com/',
+    'referer': referer || 'https://www.instagram.com/',
     'sec-ch-prefers-color-scheme': 'dark',
     'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
     'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
@@ -60,10 +77,11 @@ const HomePage = () => {
     'sec-fetch-site': 'same-origin',
     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
     'x-asbd-id': '359341',
+    'x-csrftoken': 'RmXzsdz237PHF7M0YzhbZnpdt51cbFx8',
     'x-ig-app-id': '936619743392459',
-    'x-ig-www-claim': 'hmac.AR0dSxfApOzgibnur3BvQQ8sbUZRzBbJoly1580wKwSKMZpl',
+    'x-ig-www-claim': 'hmac.AR0dSxfApOzgibnur3BvQQ8sbUZRzBbJoly1580wKwSKMaab',
     'x-requested-with': 'XMLHttpRequest',
-    'x-web-session-id': 'un9yck:xgqxqe:5sj7kw',
+    'x-web-session-id': 's1tqxu:mbq8y9:56c8fg',
   });
 
   // 헤더 텍스트를 파싱하여 헤더 객체로 변환
@@ -249,14 +267,28 @@ const HomePage = () => {
     setProgress({ current: 0, total: 0 });
 
     try {
-      const headers = getInstagramHeaders();
+      // referer를 검색어에 맞게 동적으로 생성
+      const encodedQuery = encodeURIComponent(instagramSearchQuery);
+      const searchReferer = `https://www.instagram.com/explore/search/keyword/?q=${encodedQuery}`;
+      
+      let headers: InstagramHeaders;
+      const parsedHeaders = parseHeaders(instagramSearchHeadersInput);
+      
+      if (parsedHeaders && parsedHeaders.cookie) {
+        headers = parsedHeaders as InstagramHeaders;
+        headers.referer = searchReferer;
+        console.log('[App] 3. Headers prepared from user input (search)');
+      } else {
+        headers = getInstagramHeaders(searchReferer);
+        console.log('[App] 3. Headers prepared (default, search)');
+      }
       
       setStatus(`검색어 "${instagramSearchQuery}"로 검색 중...`);
       
       const rows = await fetchAllInstagramSearchResults(
         instagramSearchQuery,
         headers,
-        maxSearchResults > 0 ? maxSearchResults : undefined,
+        undefined, // 최대 검색 결과 수 제한 없음
         (current, total) => {
           setStatus(`댓글 수집 중... (${current}/${total} 게시글)`);
           setProgress({ current, total });
@@ -578,6 +610,40 @@ const HomePage = () => {
           </div>
         ) : platform === 'instagram-search' ? (
           <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+            {/* 헤더 입력 */}
+            <div className="mb-4">
+              <div className="flex items-center justify-between mb-2">
+                <label
+                  htmlFor="instagramSearchHeadersInput"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  헤더 (선택사항, 빈 값이면 기본 헤더 사용)
+                </label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowSearchHeaderGuideModal(true);
+                    setSearchHeaderGuideStep(0);
+                  }}
+                  className="text-xs text-blue-600 hover:text-blue-700 underline"
+                >
+                  헤더 추출 방법 보기
+                </button>
+              </div>
+              <textarea
+                id="instagramSearchHeadersInput"
+                value={instagramSearchHeadersInput}
+                onChange={(e) => setInstagramSearchHeadersInput(e.target.value)}
+                placeholder="헤더명&#10;값&#10;&#10;예:&#10;accept&#10;*/*&#10;cookie&#10;datr=..."
+                rows={10}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+                disabled={isLoading}
+              />
+              <p className="mt-1 text-xs text-gray-500">
+                형식: 헤더명과 값을 줄바꿈으로 구분하여 입력하세요. (예: accept\n*/*)
+              </p>
+            </div>
+
             {/* 검색어 입력 */}
             <div className="mb-4">
               <label
@@ -592,25 +658,6 @@ const HomePage = () => {
                 value={instagramSearchQuery}
                 onChange={(e) => setInstagramSearchQuery(e.target.value)}
                 placeholder="#이벤트 또는 검색어 입력"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                disabled={isLoading}
-              />
-            </div>
-
-            {/* 최대 검색 결과 수 */}
-            <div className="mb-4">
-              <label
-                htmlFor="maxSearchResults"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                최대 검색 결과 수 (0 = 전체)
-              </label>
-              <input
-                id="maxSearchResults"
-                type="number"
-                min="0"
-                value={maxSearchResults}
-                onChange={(e) => setMaxSearchResults(Number(e.target.value))}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isLoading}
               />
@@ -731,9 +778,8 @@ const HomePage = () => {
             <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
               <li>검색어(해시태그 포함)를 입력하면 해당 게시글들을 수집합니다.</li>
               <li>수집된 데이터는 Excel 파일로 저장됩니다 (12개 컬럼: search, ID, post, followers, following, post_date, post_like, post_content, post_comments, text_comments, comment_id, comment_date).</li>
-              <li>현재는 search 데이터만 채워지며, detail과 comment 데이터는 추후 추가 예정입니다.</li>
-              <li>최대 검색 결과 수를 설정하지 않으면 모든 결과를 수집합니다.</li>
-              <li>인증 정보는 자동으로 사용됩니다.</li>
+              <li>헤더를 입력하지 않으면 기본 헤더를 사용합니다.</li>
+              <li>모든 검색 결과를 수집합니다.</li>
             </ul>
           ) : (
             <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
@@ -746,7 +792,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* 헤더 추출 방법 모달 */}
+      {/* 헤더 추출 방법 모달 (팔로워) */}
       {showHeaderGuideModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
@@ -905,6 +951,172 @@ const HomePage = () => {
                   className="px-4 py-2 rounded-md font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                 >
                   {headerGuideStep < 2 ? '다음 →' : '완료'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 헤더 추출 방법 모달 (검색) */}
+      {showSearchHeaderGuideModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              {/* 모달 헤더 */}
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">헤더 추출 방법</h2>
+                <button
+                  type="button"
+                  onClick={() => setShowSearchHeaderGuideModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* 단계 표시 */}
+              <div className="flex items-center justify-center mb-6">
+                {[0, 1, 2].map((step) => (
+                  <div key={step} className="flex items-center">
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
+                        searchHeaderGuideStep === step
+                          ? 'bg-blue-600 text-white'
+                          : searchHeaderGuideStep > step
+                          ? 'bg-green-500 text-white'
+                          : 'bg-gray-200 text-gray-600'
+                      }`}
+                    >
+                      {step + 1}
+                    </div>
+                    {step < 2 && (
+                      <div
+                        className={`w-16 h-1 mx-2 ${
+                          searchHeaderGuideStep > step ? 'bg-green-500' : 'bg-gray-200'
+                        }`}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* 이미지 및 설명 */}
+              <div className="mb-6">
+                {searchHeaderGuideStep === 0 && (
+                  <div>
+                    <div className="mb-4 flex justify-center">
+                      <img
+                        src="/header-guide-1.png"
+                        alt="Step 1: F12를 누르고 Network 탭에서 Fetch/XHR 클릭"
+                        className="max-w-2xl w-full rounded-lg border border-gray-300 shadow-md"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-3 text-lg">1단계: 개발자 도구 열기</h3>
+                      <ol className="text-blue-800 space-y-2 list-decimal list-inside">
+                        <li>검색하고 싶은 키워드나 해시태그를 입력한 <strong>Instagram 검색 페이지</strong>로 이동합니다</li>
+                        <li>키보드에서 <strong className="bg-blue-100 px-1 rounded">F12</strong> 키를 누릅니다</li>
+                        <li>하단에 나타난 개발자 도구에서 <strong>Network</strong> 탭을 클릭합니다</li>
+                        <li>필터 버튼 중 <strong>Fetch/XHR</strong>을 클릭합니다</li>
+                      </ol>
+                    </div>
+                  </div>
+                )}
+
+                {searchHeaderGuideStep === 1 && (
+                  <div>
+                    <div className="mb-4 flex justify-center">
+                      <img
+                        src="/header-guide-2.png"
+                        alt="Step 2: 검색 실행 후 top_serp로 시작하는 텍스트 클릭"
+                        className="max-w-2xl w-full rounded-lg border border-gray-300 shadow-md"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-3 text-lg">2단계: 검색 API 요청 찾기</h3>
+                      <ol className="text-blue-800 space-y-2 list-decimal list-inside">
+                        <li>검색어를 입력하고 <strong>검색</strong>을 실행합니다</li>
+                        <li>Network 탭의 요청 목록에서 <strong className="bg-blue-100 px-1 rounded">top_serp</strong>로 시작하는 항목을 찾습니다</li>
+                        <li>해당 항목을 <strong>클릭</strong>하여 상세 정보를 엽니다</li>
+                      </ol>
+                    </div>
+                  </div>
+                )}
+
+                {searchHeaderGuideStep === 2 && (
+                  <div>
+                    <div className="mb-4 flex justify-center">
+                      <img
+                        src="/header-guide-3.png"
+                        alt="Step 3: Request Headers에서 Accept부터 최하단까지 복사"
+                        className="max-w-2xl w-full rounded-lg border border-gray-300 shadow-md"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-3 text-lg">3단계: 헤더 복사하기</h3>
+                      <ol className="text-blue-800 space-y-2 list-decimal list-inside">
+                        <li>우측 상세 패널에서 <strong>Headers</strong> 탭이 선택되어 있는지 확인합니다</li>
+                        <li>아래로 스크롤하여 <strong>Request Headers</strong> 섹션을 찾습니다</li>
+                        <li>
+                          <strong className="text-red-600">제외할 항목:</strong>{' '}
+                          <code className="bg-gray-200 px-1 rounded">:authority</code>,{' '}
+                          <code className="bg-gray-200 px-1 rounded">:method</code>,{' '}
+                          <code className="bg-gray-200 px-1 rounded">:path</code>,{' '}
+                          <code className="bg-gray-200 px-1 rounded">:scheme</code>
+                        </li>
+                        <li>
+                          <strong className="text-green-600">복사할 항목:</strong>{' '}
+                          <code className="bg-gray-200 px-1 rounded">Accept</code>부터 시작하여{' '}
+                          <strong>최하단까지</strong> 모든 헤더를 복사합니다
+                        </li>
+                        <li>복사한 내용을 위의 <strong>"헤더"</strong> 입력란에 붙여넣습니다</li>
+                      </ol>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* 네비게이션 버튼 */}
+              <div className="flex items-center justify-between">
+                <button
+                  type="button"
+                  onClick={() => setSearchHeaderGuideStep(Math.max(0, searchHeaderGuideStep - 1))}
+                  disabled={searchHeaderGuideStep === 0}
+                  className={`px-4 py-2 rounded-md font-medium transition-colors ${
+                    searchHeaderGuideStep === 0
+                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                      : 'bg-gray-600 text-white hover:bg-gray-700'
+                  }`}
+                >
+                  ← 이전
+                </button>
+
+                <div className="text-sm text-gray-600">
+                  {searchHeaderGuideStep + 1} / 3
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (searchHeaderGuideStep < 2) {
+                      setSearchHeaderGuideStep(searchHeaderGuideStep + 1);
+                    } else {
+                      setShowSearchHeaderGuideModal(false);
+                    }
+                  }}
+                  className="px-4 py-2 rounded-md font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                >
+                  {searchHeaderGuideStep < 2 ? '다음 →' : '완료'}
                 </button>
               </div>
             </div>

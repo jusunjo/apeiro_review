@@ -224,13 +224,13 @@ app.get('/api/instagram/search', async (req, res) => {
     
     console.log('[Instagram Search] Calling Instagram API:', searchUrl);
     
+    // referer를 검색어에 맞게 동적으로 설정 (없으면 기본값 사용)
+    const referer = headers.referer || `https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(query)}`;
+    
     const response = await axios.get(searchUrl, {
       headers: {
         ...headers,
-        'accept': '*/*',
-        'accept-language': headers['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
-        'referer': headers.referer || 'https://www.instagram.com/',
-        'x-requested-with': 'XMLHttpRequest',
+        'referer': referer,
       },
       timeout: 30000,
     });
@@ -295,13 +295,13 @@ app.get('/api/instagram/comments', async (req, res) => {
     
     console.log('[Instagram Comments] Calling Instagram API:', commentsUrl);
     
+    // referer는 전달된 헤더의 값을 사용하거나 기본값 사용
+    const referer = headers.referer || 'https://www.instagram.com/';
+    
     const response = await axios.get(commentsUrl, {
       headers: {
         ...headers,
-        'accept': '*/*',
-        'accept-language': headers['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
-        'referer': headers.referer || 'https://www.instagram.com/',
-        'x-requested-with': 'XMLHttpRequest',
+        'referer': referer,
       },
       timeout: 30000,
     });
