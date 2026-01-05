@@ -80,17 +80,11 @@ const App = () => {
       headers.referer = instagramUrl.endsWith('/') ? `${instagramUrl}followers/` : `${instagramUrl}/followers/`;
       console.log('[App] 3. Headers prepared');
 
-      // 1. Target ID 및 프로필 정보 추출
+      // 1. Target ID 추출
       console.log('[App] 4. Calling getInstagramUserId...');
       setStatus('사용자 ID를 추출하는 중...');
-      const userInfo = await getInstagramUserId(instagramUrl, headers);
-      const targetId = userInfo.targetId;
+      const targetId = await getInstagramUserId(instagramUrl, headers);
       console.log('[App] 5. Target ID received:', targetId);
-      console.log('[App] 5a. Profile info:', {
-        postCount: userInfo.postCount,
-        followerCount: userInfo.followerCount,
-        followingCount: userInfo.followingCount,
-      });
       
       setStatus(`사용자 ID: ${targetId} - 팔로워 수집 시작...`);
 

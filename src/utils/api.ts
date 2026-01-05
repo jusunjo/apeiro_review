@@ -227,11 +227,11 @@ export const fetchAllMusinsaReviews = async (goodsNo: number): Promise<Review[]>
   return allReviews;
 };
 
-// Instagram - Target ID 및 프로필 정보 추출
+// Instagram - Target ID 추출
 export const getInstagramUserId = async (
   url: string,
   headers: InstagramHeaders
-): Promise<{ targetId: string; postCount?: number | null; followerCount?: number | null; followingCount?: number | null }> => {
+): Promise<string> => {
   console.log('[Frontend] 1. Calling getInstagramUserId with URL:', url);
   console.log('[Frontend] 2. Headers being sent:', {
     hasCookie: !!headers.cookie,
@@ -243,12 +243,7 @@ export const getInstagramUserId = async (
   try {
     console.log('[Frontend] 3. Making POST request to /api/instagram/user-id');
     
-    const response = await axios.post<{ 
-      targetId: string; 
-      postCount?: number | null; 
-      followerCount?: number | null; 
-      followingCount?: number | null;
-    }>(
+    const response = await axios.post<{ targetId: string }>(
       '/api/instagram/user-id',
       {
         url,
@@ -258,14 +253,9 @@ export const getInstagramUserId = async (
     
     console.log('[Frontend] 4. Response received:', response.data);
     console.log('[Frontend] 5. Target ID extracted:', response.data.targetId);
-    console.log('[Frontend] 5a. Profile counts:', {
-      postCount: response.data.postCount,
-      followerCount: response.data.followerCount,
-      followingCount: response.data.followingCount,
-    });
     
     await delay(API_DELAY);
-    return response.data;
+    return response.data.targetId;
   } catch (error) {
     if (error && typeof error === 'object' && 'message' in error) {
       console.error('[Frontend] ERROR in getInstagramUserId:', {
@@ -427,6 +417,50 @@ export const searchInstagram = async (
   }
 };
 
+// Instagram - Detail 정보 가져오기 (Puppeteer 사용)
+export const fetchInstagramDetail = async (
+  username: string
+): Promise<{ posts: string; followers: string; following: string }> => {
+  console.log('[Frontend] =================================');
+  console.log('[Frontend] fetchInstagramDetail called with username:', username);
+  
+  try {
+    console.log('[Frontend] Making axios request to /api/instagram/detail...');
+    const requestStartTime = Date.now();
+    
+    const response = await axios.get<{ posts: string; followers: string; following: string }>(
+      `/api/instagram/detail?username=${encodeURIComponent(username)}`,
+      {
+        timeout: 60000, // 60초 타임아웃 (Puppeteer는 시간이 걸릴 수 있음)
+      }
+    );
+    
+    const requestElapsedTime = Date.now() - requestStartTime;
+    console.log(`[Frontend] Request completed in ${requestElapsedTime}ms`);
+    console.log('[Frontend] Detail stats:', response.data);
+    console.log('[Frontend] =================================');
+    return response.data;
+  } catch (error) {
+    console.error('[Frontend] =================================');
+    console.error('[Frontend] fetchInstagramDetail ERROR:', error);
+    if (error && typeof error === 'object') {
+      if ('response' in error) {
+        console.error('[Frontend] Error response:', {
+          status: (error as any).response?.status,
+          statusText: (error as any).response?.statusText,
+          data: (error as any).response?.data,
+        });
+      }
+      if ('message' in error) {
+        console.error('[Frontend] Error message:', (error as any).message);
+      }
+    }
+    console.error('[Frontend] =================================');
+    // 에러 발생 시 빈 값 반환
+    return { posts: '', followers: '', following: '' };
+  }
+};
+
 // Instagram - 댓글 API 호출
 export const fetchInstagramComments = async (
   mediaId: string,
@@ -569,9 +603,12 @@ export const fetchAllInstagramSearchResults = async (
     
     console.log(`[Instagram Search] Step 4: Parsing completed. Media count:`, parsedResults.length);
     
-    // 각 게시글에 대해 댓글 가져오기
+    // 각 게시글에 대해 댓글 가져오기 + Detail 정보 가져오기
     const finalRows: InstagramSearchRow[] = [];
     const totalMedia = parsedResults.length;
+    
+    // username별 detail 정보 캐시 (같은 사용자의 여러 게시물이 있을 수 있음)
+    const detailCache = new Map<string, { posts: string; followers: string; following: string }>();
     
     for (let i = 0; i < parsedResults.length; i++) {
       const { row: baseRow, mediaPk } = parsedResults[i];
@@ -580,8 +617,31 @@ export const fetchAllInstagramSearchResults = async (
         onProgress(i + 1, totalMedia);
       }
       
+      // Detail 정보 가져오기 (캐시 확인)
+      let detailInfo = detailCache.get(baseRow.ID);
+      if (!detailInfo && baseRow.ID) {
+        try {
+          console.log(`[Instagram Search] Step 5.${i + 1}a: Fetching detail for username ${baseRow.ID}...`);
+          detailInfo = await fetchInstagramDetail(baseRow.ID);
+          detailCache.set(baseRow.ID, detailInfo);
+          // Detail API 호출 간 딜레이
+          await delay(API_DELAY * 2); // Puppeteer는 시간이 걸리므로 더 긴 딜레이
+        } catch (detailError) {
+          console.error(`[Instagram Search] Error fetching detail for username ${baseRow.ID}:`, detailError);
+          detailInfo = { posts: '', followers: '', following: '' };
+        }
+      }
+      
+      // Detail 정보로 baseRow 업데이트
+      const rowWithDetail: InstagramSearchRow = {
+        ...baseRow,
+        post: detailInfo?.posts || '',
+        followers: detailInfo?.followers || '',
+        following: detailInfo?.following || '',
+      };
+      
       try {
-        console.log(`[Instagram Search] Step 5.${i + 1}: Fetching comments for media ${mediaPk}...`);
+        console.log(`[Instagram Search] Step 5.${i + 1}b: Fetching comments for media ${mediaPk}...`);
         const commentsResponse = await fetchInstagramComments(mediaPk, headers);
         
         if (commentsResponse.comments && commentsResponse.comments.length > 0) {
@@ -592,7 +652,7 @@ export const fetchAllInstagramSearchResults = async (
               : '';
             
             finalRows.push({
-              ...baseRow,
+              ...rowWithDetail,
               text_comments: comment.text || '',
               comment_id: comment.user?.username || '',
               comment_date: commentDate,
@@ -600,7 +660,7 @@ export const fetchAllInstagramSearchResults = async (
           }
         } else {
           // 댓글이 없어도 하나의 행은 생성 (댓글 정보는 빈 값)
-          finalRows.push(baseRow);
+          finalRows.push(rowWithDetail);
         }
         
         // API 호출 간 딜레이
@@ -608,7 +668,7 @@ export const fetchAllInstagramSearchResults = async (
       } catch (commentError) {
         console.error(`[Instagram Search] Error fetching comments for media ${mediaPk}:`, commentError);
         // 댓글 가져오기 실패해도 기본 행은 추가
-        finalRows.push(baseRow);
+        finalRows.push(rowWithDetail);
       }
     }
     
