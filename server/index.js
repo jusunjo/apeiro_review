@@ -272,10 +272,11 @@ app.get('/api/instagram/search', async (req, res) => {
 
 // Instagram - 댓글 API
 app.get('/api/instagram/comments', async (req, res) => {
-  console.log('[Instagram Comments] Request received');
-  
   try {
-    const { mediaId } = req.query;
+    const getQueryValue = (value) => Array.isArray(value) ? value[0] : value;
+    const mediaId = getQueryValue(req.query.mediaId);
+    const minId = getQueryValue(req.query.minId);
+    const sortOrder = getQueryValue(req.query.sortOrder);
     const headers = req.headers['x-instagram-headers'] 
       ? JSON.parse(req.headers['x-instagram-headers']) 
       : null;
@@ -288,12 +289,23 @@ app.get('/api/instagram/comments', async (req, res) => {
       return res.status(400).json({ error: 'headers are required' });
     }
     
-    console.log('[Instagram Comments] Fetching comments for mediaId:', mediaId);
+    const params = new URLSearchParams({
+      can_support_threading: 'true',
+      permalink_enabled: 'false',
+    });
+    
+    if (minId) {
+      params.set('min_id', String(minId));
+    }
+    
+    if (sortOrder) {
+      params.set('sort_order', String(sortOrder));
+    }
     
     // Instagram 댓글 API URL
-    const commentsUrl = `https://www.instagram.com/api/v1/media/${mediaId}/comments/?can_support_threading=true&permalink_enabled=false`;
+    const commentsUrl = `https://www.instagram.com/api/v1/media/${mediaId}/comments/?${params.toString()}`;
     
-    console.log('[Instagram Comments] Calling Instagram API:', commentsUrl);
+    console.log(`[인스타 댓글] 호출 URL: ${commentsUrl}`);
     
     // referer는 전달된 헤더의 값을 사용하거나 기본값 사용
     const referer = headers.referer || 'https://www.instagram.com/';
@@ -306,16 +318,13 @@ app.get('/api/instagram/comments', async (req, res) => {
       timeout: 30000,
     });
     
-    console.log('[Instagram Comments] Response status:', response.status);
-    console.log('[Instagram Comments] Comments count:', response.data?.comments?.length || 0);
+    console.log(`[인스타 댓글] 응답 상태: ${response.status}`);
     
     res.json(response.data);
   } catch (error) {
-    console.error('[Instagram Comments] Error:', {
+    console.error('[인스타 댓글] 에러:', {
       message: error.message,
-      code: error.code,
       status: error.response?.status,
-      statusText: error.response?.statusText,
     });
     
     if (!res.headersSent) {
@@ -336,12 +345,55 @@ app.get('/api/instagram/detail', async (req, res) => {
   
   try {
     const { username } = req.query;
+    const rawHeaders = req.headers['x-instagram-headers'];
     
     if (!username) {
       return res.status(400).json({ error: 'username is required' });
     }
     
     console.log('[Instagram Detail] Fetching detail for username:', username);
+
+    // 헤더가 있으면 Web Profile Info API 우선 시도 (Selenium 대체)
+    let parsedHeaders = null;
+    if (rawHeaders) {
+      try {
+        parsedHeaders = JSON.parse(rawHeaders);
+      } catch (parseError) {
+        console.error('[Instagram Detail] Header parse error:', parseError.message);
+      }
+    }
+    
+    if (parsedHeaders && parsedHeaders.cookie) {
+      try {
+        const profileInfoUrl = `https://www.instagram.com/api/v1/users/web_profile_info/?username=${username}`;
+        const response = await axios.get(profileInfoUrl, {
+          headers: {
+            ...parsedHeaders,
+            'accept': '*/*',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': parsedHeaders['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+            'referer': parsedHeaders.referer || `https://www.instagram.com/${username}/`,
+            'x-requested-with': 'XMLHttpRequest',
+          },
+          timeout: 10000,
+        });
+        
+        const user = response.data?.data?.user;
+        if (user) {
+          const posts = user.edge_owner_to_timeline_media?.count ?? '';
+          const followers = user.edge_followed_by?.count ?? '';
+          const following = user.edge_follow?.count ?? '';
+          
+          return res.json({
+            posts: posts === '' ? '' : String(posts),
+            followers: followers === '' ? '' : String(followers),
+            following: following === '' ? '' : String(following),
+          });
+        }
+      } catch (apiError) {
+        console.error('[Instagram Detail] Web API error:', apiError.message);
+      }
+    }
     
     // Selenium WebDriver 설정
     const options = new chrome.Options();
@@ -368,11 +420,28 @@ app.get('/api/instagram/detail', async (req, res) => {
     const maxAttempts = 20;
     
     while (attempts < maxAttempts) {
-      const bodyText = await driver.executeScript(() => {
-        return document.body ? document.body.innerText : '';
+      const pageState = await driver.executeScript(() => {
+        const bodyText = document.body ? document.body.innerText : '';
+        const hasPostsText = bodyText.includes('게시물') || bodyText.includes('Posts');
+        return {
+          url: window.location.href,
+          title: document.title || '',
+          hasPostsText,
+          textLength: bodyText.length,
+          textPreview: bodyText.slice(0, 200),
+        };
       });
       
-      if (bodyText.includes('게시물') || bodyText.includes('Posts')) {
+      console.log('[Instagram Detail] Load check', {
+        attempt: attempts + 1,
+        url: pageState.url,
+        title: pageState.title,
+        hasPostsText: pageState.hasPostsText,
+        textLength: pageState.textLength,
+        textPreview: pageState.textPreview,
+      });
+      
+      if (pageState.hasPostsText) {
         console.log('[Instagram Detail] Page loaded successfully');
         break;
       }
@@ -480,9 +549,11 @@ app.get('/api/instagram/detail', async (req, res) => {
     });
     
     if (!res.headersSent) {
-      res.status(500).json({
-        error: error.message,
-        code: error.code,
+      // Selenium 실패 시에도 클라이언트가 끊기지 않도록 빈 값 반환
+      res.status(200).json({
+        posts: '',
+        followers: '',
+        following: '',
       });
     }
   } finally {

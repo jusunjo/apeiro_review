@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { SearchRequestBody, SearchResponse, ReviewResponse, Review, InstagramHeaders, InstagramFollowersResponse, InstagramFollower, InstagramSearchResponse, InstagramSearchRow, InstagramCommentResponse } from '../types';
+import type { SearchRequestBody, SearchResponse, ReviewResponse, Review, InstagramHeaders, InstagramFollowersResponse, InstagramFollower, InstagramSearchResponse, InstagramSearchRow, InstagramComment, InstagramCommentResponse } from '../types';
 
 const API_DELAY = 500; // API 호출 간 딜레이 (ms)
 
@@ -419,7 +419,8 @@ export const searchInstagram = async (
 
 // Instagram - Detail 정보 가져오기 (Puppeteer 사용)
 export const fetchInstagramDetail = async (
-  username: string
+  username: string,
+  headers?: InstagramHeaders
 ): Promise<{ posts: string; followers: string; following: string }> => {
   console.log('[Frontend] =================================');
   console.log('[Frontend] fetchInstagramDetail called with username:', username);
@@ -431,6 +432,7 @@ export const fetchInstagramDetail = async (
     const response = await axios.get<{ posts: string; followers: string; following: string }>(
       `/api/instagram/detail?username=${encodeURIComponent(username)}`,
       {
+        headers: headers ? { 'x-instagram-headers': JSON.stringify(headers) } : undefined,
         timeout: 60000, // 60초 타임아웃 (Puppeteer는 시간이 걸릴 수 있음)
       }
     );
@@ -464,17 +466,26 @@ export const fetchInstagramDetail = async (
 // Instagram - 댓글 API 호출
 export const fetchInstagramComments = async (
   mediaId: string,
-  headers: InstagramHeaders
+  headers: InstagramHeaders,
+  minId?: string,
+  sortOrder?: string
 ): Promise<InstagramCommentResponse> => {
-  console.log('[Frontend] =================================');
-  console.log('[Frontend] fetchInstagramComments called with mediaId:', mediaId);
-  
   try {
-    console.log('[Frontend] Making axios request to /api/instagram/comments...');
-    const requestStartTime = Date.now();
+    const params = new URLSearchParams({ mediaId });
+    
+    if (minId) {
+      params.set('minId', minId);
+    }
+    
+    if (sortOrder) {
+      params.set('sortOrder', sortOrder);
+    }
+    
+    const requestUrl = `/api/instagram/comments?${params.toString()}`;
+    console.log(`[인스타 댓글] 요청 URL: ${requestUrl}`);
     
     const response = await axios.get<InstagramCommentResponse>(
-      `/api/instagram/comments?mediaId=${mediaId}`,
+      requestUrl,
       {
         headers: {
           'x-instagram-headers': JSON.stringify(headers),
@@ -483,30 +494,99 @@ export const fetchInstagramComments = async (
       }
     );
     
-    const requestElapsedTime = Date.now() - requestStartTime;
-    console.log(`[Frontend] Request completed in ${requestElapsedTime}ms`);
-    console.log('[Frontend] Response status:', response.status);
-    console.log('[Frontend] Comments count:', response.data.comments?.length || 0);
-    console.log('[Frontend] =================================');
+    const canGoNext = !!response.data.next_min_id && (
+      !!response.data.has_more_comments || !!response.data.has_more_headload_comments
+    );
+    console.log('[인스타 댓글] 응답 상태:', response.status);
+    console.log('[인스타 댓글] 댓글 수:', response.data.comments?.length || 0);
+    console.log('[인스타 댓글] 다음 페이지 가능:', canGoNext ? '예' : '아니오');
     return response.data;
   } catch (error) {
-    console.error('[Frontend] =================================');
-    console.error('[Frontend] fetchInstagramComments ERROR:', error);
+    console.error('[인스타 댓글] 요청 실패:', error);
     if (error && typeof error === 'object') {
       if ('response' in error) {
-        console.error('[Frontend] Error response:', {
-          status: (error as any).response?.status,
-          statusText: (error as any).response?.statusText,
-          data: (error as any).response?.data,
-        });
+        console.error('[인스타 댓글] 응답 상태:', (error as any).response?.status);
       }
       if ('message' in error) {
-        console.error('[Frontend] Error message:', (error as any).message);
+        console.error('[인스타 댓글] 에러 메시지:', (error as any).message);
       }
     }
-    console.error('[Frontend] =================================');
     throw error;
   }
+};
+
+// Instagram - 댓글 전체 가져오기 (페이지네이션)
+export const fetchAllInstagramComments = async (
+  mediaId: string,
+  headers: InstagramHeaders,
+  sortOrder: string = 'popular'
+): Promise<InstagramComment[]> => {
+  const allComments: InstagramComment[] = [];
+  const seenCommentIds = new Set<string>();
+  let minId: string | undefined = undefined;
+  let lastNextMinId: string | undefined = undefined;
+  let lastFirstCommentPk: string | undefined = undefined;
+  let pageCount = 0;
+  const maxPages = 20;
+  
+  while (pageCount < maxPages) {
+    pageCount++;
+    let response: InstagramCommentResponse;
+    try {
+      console.log(`[인스타 댓글] ${pageCount}페이지 요청 시작`);
+      response = await fetchInstagramComments(mediaId, headers, minId, sortOrder);
+    } catch (error) {
+      console.error(`[인스타 댓글] ${pageCount}페이지 요청 실패`, error);
+      break;
+    }
+    const comments = response.comments || [];
+    const firstCommentPk = comments[0]?.pk ? String(comments[0].pk) : '';
+    
+    for (const comment of comments) {
+      const key = String(comment.pk || `${comment.user_id}-${comment.created_at}`);
+      if (!seenCommentIds.has(key)) {
+        seenCommentIds.add(key);
+        allComments.push(comment);
+      }
+    }
+    
+    const nextMinId = response.next_min_id || undefined;
+    const hasMore = !!response.has_more_comments || !!response.has_more_headload_comments;
+    console.log(`[인스타 댓글] ${pageCount}페이지 완료 (댓글 ${comments.length}개)`);
+    
+    if (hasMore && nextMinId) {
+      const nextUrl = `https://www.instagram.com/api/v1/media/${mediaId}/comments/?can_support_threading=true&permalink_enabled=false&min_id=${encodeURIComponent(nextMinId)}&sort_order=${encodeURIComponent(sortOrder)}`;
+      console.log('[인스타 댓글] 다음 페이지 호출 가능: 예');
+      console.log(`[인스타 댓글] 다음 페이지 URL: ${nextUrl}`);
+    } else {
+      console.log('[인스타 댓글] 다음 페이지 호출 가능: 아니오');
+    }
+    
+    if (hasMore && nextMinId && nextMinId === lastNextMinId) {
+      console.warn('[인스타 댓글] next_min_id가 동일해서 중단');
+      break;
+    }
+    
+    if (firstCommentPk && firstCommentPk === lastFirstCommentPk) {
+      console.warn('[인스타 댓글] 동일 페이지로 판단되어 중단');
+      break;
+    }
+    
+    if (!hasMore || !nextMinId) {
+      break;
+    }
+    
+    lastNextMinId = nextMinId;
+    lastFirstCommentPk = firstCommentPk;
+    minId = nextMinId;
+    await delay(API_DELAY);
+  }
+  
+  if (pageCount >= maxPages) {
+    console.warn(`[Instagram Comments] Reached maxPages (${maxPages}) for media ${mediaId}`);
+  }
+  
+  return allComments;
 };
 
 // Instagram - 검색 결과를 Row 데이터로 변환 (댓글 포함)
@@ -622,7 +702,7 @@ export const fetchAllInstagramSearchResults = async (
       if (!detailInfo && baseRow.ID) {
         try {
           console.log(`[Instagram Search] Step 5.${i + 1}a: Fetching detail for username ${baseRow.ID}...`);
-          detailInfo = await fetchInstagramDetail(baseRow.ID);
+          detailInfo = await fetchInstagramDetail(baseRow.ID, headers);
           detailCache.set(baseRow.ID, detailInfo);
           // Detail API 호출 간 딜레이
           await delay(API_DELAY * 2); // Puppeteer는 시간이 걸리므로 더 긴 딜레이
@@ -642,11 +722,11 @@ export const fetchAllInstagramSearchResults = async (
       
       try {
         console.log(`[Instagram Search] Step 5.${i + 1}b: Fetching comments for media ${mediaPk}...`);
-        const commentsResponse = await fetchInstagramComments(mediaPk, headers);
+        const comments = await fetchAllInstagramComments(mediaPk, headers);
         
-        if (commentsResponse.comments && commentsResponse.comments.length > 0) {
+        if (comments.length > 0) {
           // 각 댓글마다 행 생성
-          for (const comment of commentsResponse.comments) {
+          for (const comment of comments) {
             const commentDate = comment.created_at 
               ? new Date(comment.created_at * 1000).toISOString().split('T')[0]
               : '';

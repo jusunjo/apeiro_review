@@ -154,7 +154,9 @@ export interface InstagramCommentResponse {
   comments: InstagramComment[];
   comment_count: number;
   has_more_comments: boolean;
+  has_more_headload_comments?: boolean;
   next_max_id?: string | null;
+  next_min_id?: string | null;
   status: string;
 }
 
