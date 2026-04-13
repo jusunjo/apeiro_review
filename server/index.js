@@ -146,15 +146,17 @@ app.post('/api/instagram/user-id', async (req, res) => {
     
     console.log('[Instagram User ID] Calling Instagram API:', profileUrl);
     
+    const { 'accept-encoding': _ae1, ...cleanHeaders1 } = headers;
     const response = await axios.get(profileUrl, {
       headers: {
-        ...headers,
+        ...cleanHeaders1,
         'accept': '*/*',
         'accept-language': headers['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
         'referer': headers.referer || `https://www.instagram.com/${username}/`,
         'x-requested-with': 'XMLHttpRequest',
       },
       timeout: 10000,
+      decompress: true,
     });
     
     console.log('[Instagram User ID] Response status:', response.status);
@@ -220,24 +222,41 @@ app.get('/api/instagram/search', async (req, res) => {
     console.log('[Instagram Search] Searching for query:', query);
     
     // Instagram 검색 API URL
-    const searchUrl = `https://www.instagram.com/api/v1/fbsearch/web/top_serp/?enable_metadata=true&query=${encodeURIComponent(query)}&search_session_id=05dba6cb-78c6-4852-9899-4ca819bbff2d`;
+    const searchUrl = `https://www.instagram.com/api/v1/fbsearch/web/top_serp/?enable_metadata=true&query=${encodeURIComponent(query)}&search_session_id=32a75d45-902c-4dc4-80d8-3bbdbc6ed0e7`;
     
     console.log('[Instagram Search] Calling Instagram API:', searchUrl);
     
     // referer를 검색어에 맞게 동적으로 설정 (없으면 기본값 사용)
     const referer = headers.referer || `https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(query)}`;
-    
+
+    // accept-encoding 제거: 브라우저 헤더를 그대로 전달하면 gzip 압축 응답이 오는데
+    // Node.js axios가 자동으로 처리하지 못하는 경우가 있음. axios가 직접 관리하도록 제거.
+    const { 'accept-encoding': _ae, ...cleanHeaders } = headers;
+
     const response = await axios.get(searchUrl, {
       headers: {
-        ...headers,
+        ...cleanHeaders,
         'referer': referer,
       },
       timeout: 30000,
+      maxRedirects: 0,
+      decompress: true,
     });
-    
+
     console.log('[Instagram Search] Response status:', response.status);
-    console.log('[Instagram Search] Response has data:', !!response.data);
-    
+    console.log('[Instagram Search] Response data type:', typeof response.data);
+
+    if (typeof response.data === 'string') {
+      console.log('[Instagram Search] HTML response (first 500):', response.data.slice(0, 500));
+      return res.status(401).json({
+        error: 'Instagram이 HTML을 반환했습니다. 헤더에 올바른 cookie가 포함되어 있는지 확인하세요.',
+        code: 'INSTAGRAM_HTML_RESPONSE',
+        data: null,
+      });
+    }
+
+    console.log('[Instagram Search] Response top-level keys:', Object.keys(response.data));
+
     res.json(response.data);
   } catch (error) {
     console.error('[Instagram Search] Error:', {
@@ -247,18 +266,21 @@ app.get('/api/instagram/search', async (req, res) => {
       statusText: error.response?.statusText,
       stack: error.stack,
     });
-    
+
     if (!res.headersSent) {
+      // 리다이렉트 에러 = Instagram 인증 실패 (쿠키 만료/무효)
+      if (error.code === 'ERR_FR_TOO_MANY_REDIRECTS' || (error.response?.status >= 300 && error.response?.status < 400)) {
+        return res.status(401).json({
+          error: 'Instagram 인증 실패: 쿠키가 만료되었거나 유효하지 않습니다. 브라우저에서 Instagram에 로그인 후 헤더(특히 cookie)를 다시 복사해주세요.',
+          code: 'INSTAGRAM_AUTH_FAILED',
+          data: null,
+        });
+      }
+
       const statusCode = error.response?.status || 500;
       const errorMessage = error.message || 'Unknown error';
       const errorData = error.response?.data || null;
-      
-      console.error('[Instagram Search] Sending error response:', {
-        statusCode,
-        errorMessage,
-        hasErrorData: !!errorData,
-      });
-      
+
       res.status(statusCode).json({
         error: errorMessage,
         code: error.code || 'UNKNOWN_ERROR',
@@ -309,13 +331,18 @@ app.get('/api/instagram/comments', async (req, res) => {
     
     // referer는 전달된 헤더의 값을 사용하거나 기본값 사용
     const referer = headers.referer || 'https://www.instagram.com/';
-    
+
+    // accept-encoding 제거: gzip 압축 응답을 axios가 직접 처리하도록
+    const { 'accept-encoding': _ae, ...cleanHeaders } = headers;
+
     const response = await axios.get(commentsUrl, {
       headers: {
-        ...headers,
+        ...cleanHeaders,
         'referer': referer,
       },
       timeout: 30000,
+      decompress: true,
+      maxRedirects: 0,
     });
     
     console.log(`[인스타 댓글] 응답 상태: ${response.status}`);
@@ -366,16 +393,17 @@ app.get('/api/instagram/detail', async (req, res) => {
     if (parsedHeaders && parsedHeaders.cookie) {
       try {
         const profileInfoUrl = `https://www.instagram.com/api/v1/users/web_profile_info/?username=${username}`;
+        const { 'accept-encoding': _ae2, ...cleanParsedHeaders } = parsedHeaders;
         const response = await axios.get(profileInfoUrl, {
           headers: {
-            ...parsedHeaders,
+            ...cleanParsedHeaders,
             'accept': '*/*',
-            'accept-encoding': 'gzip, deflate, br',
             'accept-language': parsedHeaders['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
             'referer': parsedHeaders.referer || `https://www.instagram.com/${username}/`,
             'x-requested-with': 'XMLHttpRequest',
           },
           timeout: 10000,
+          decompress: true,
         });
         
         const user = response.data?.data?.user;
@@ -595,15 +623,17 @@ app.post('/api/instagram/followers', async (req, res) => {
     
     console.log('[Instagram Followers] Calling Instagram API:', followersUrl);
     
+    const { 'accept-encoding': _ae3, ...cleanHeaders3 } = headers;
     const response = await axios.get(followersUrl, {
       headers: {
-        ...headers,
+        ...cleanHeaders3,
         'accept': '*/*',
         'accept-language': headers['accept-language'] || 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
         'referer': headers.referer || `https://www.instagram.com/`,
         'x-requested-with': 'XMLHttpRequest',
       },
       timeout: 15000,
+      decompress: true,
     });
     
     console.log('[Instagram Followers] Response status:', response.status);
