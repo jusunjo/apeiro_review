@@ -58,31 +58,7 @@ const HomePage = () => {
   
   // 통일된 Instagram 헤더 (search, detail, comment 모두 동일)
   // zstd는 axios가 자동 디코딩하지 못하므로 제거
-  const getInstagramHeaders = (referer?: string): InstagramHeaders => ({
-    'accept': '*/*',
-    'accept-encoding': 'gzip, deflate, br',
-    'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
-    'cookie': 'datr=pplIaROuaDR-Eteezj66cqMu; ig_did=B58512E5-3D06-429B-9DAA-D7764F93040A; mid=aUiZpgAEAAGIUG6ENeYq6qCQjWjJ; ig_nrcb=1; dpr=1; csrftoken=RmXzsdz237PHF7M0YzhbZnpdt51cbFx8; ds_user_id=2000629733; ps_l=1; ps_n=1; sessionid=2000629733%3Amaz7UtpYui3dL8%3A3%3AAYjmxO_IVfIA54zUoaOvrGon7rZCezUHakpRPOG6ZA; wd=967x458; rur="HIL\\0542000629733\\0541799125315:01fea75235a2d65bda93f926b83d414d7bddf1c82c8d5e2ddb3ef212d16659362cd00747"',
-    'priority': 'u=1, i',
-    'referer': referer || 'https://www.instagram.com/',
-    'sec-ch-prefers-color-scheme': 'dark',
-    'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-    'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-model': '""',
-    'sec-ch-ua-platform': '"macOS"',
-    'sec-ch-ua-platform-version': '"15.6.0"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
-    'x-asbd-id': '359341',
-    'x-csrftoken': 'RmXzsdz237PHF7M0YzhbZnpdt51cbFx8',
-    'x-ig-app-id': '936619743392459',
-    'x-ig-www-claim': 'hmac.AR0dSxfApOzgibnur3BvQQ8sbUZRzBbJoly1580wKwSKMaab',
-    'x-requested-with': 'XMLHttpRequest',
-    'x-web-session-id': 's1tqxu:mbq8y9:56c8fg',
-  });
+  // 헤더 폴백 없음 - 사용자가 반드시 cookie 포함한 헤더를 직접 입력해야 함
 
   // 헤더 텍스트를 파싱하여 헤더 객체로 변환
   // 지원 형식:
@@ -96,58 +72,32 @@ const HomePage = () => {
     try {
       const headers: Record<string, string> = {};
       const lines = headersText.split('\n');
-      
+
       let currentKey = '';
-      let currentValue = '';
-      
+
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i].trim();
-        
-        // 빈 줄은 무시
-        if (!line) {
-          continue;
-        }
-        
-        // 콜론이 있는 경우 (헤더명: 값 형식)
-        if (line.includes(':')) {
-          // 이전 키-값 쌍 저장
-          if (currentKey && currentValue) {
-            headers[currentKey.toLowerCase()] = currentValue.trim();
-          }
-          
+
+        if (!line) continue;
+
+        if (currentKey) {
+          // 이전 줄이 헤더명이었으면 현재 줄은 무조건 값 (콜론 포함 여부 무관)
+          headers[currentKey.toLowerCase()] = line;
+          currentKey = '';
+        } else if (line.includes(':')) {
+          // "헤더명: 값" 형식 (같은 줄)
           const colonIndex = line.indexOf(':');
-          currentKey = line.substring(0, colonIndex).trim();
-          currentValue = line.substring(colonIndex + 1).trim();
-          
-          // 값이 있으면 바로 저장하고 초기화
-          if (currentValue) {
-            headers[currentKey.toLowerCase()] = currentValue;
-            currentKey = '';
-            currentValue = '';
+          const key = line.substring(0, colonIndex).trim();
+          const value = line.substring(colonIndex + 1).trim();
+          if (key && value) {
+            headers[key.toLowerCase()] = value;
+          } else if (key) {
+            currentKey = key;
           }
         } else {
-          // 콜론이 없는 경우
-          if (!currentKey) {
-            // 키가 없으면 헤더명으로 간주
-            currentKey = line;
-          } else {
-            // 키가 있으면 값으로 간주 (여러 줄 값 지원)
-            if (currentValue) {
-              currentValue += ' ' + line;
-            } else {
-              currentValue = line;
-            }
-            // 값이 설정되었으므로 저장
-            headers[currentKey.toLowerCase()] = currentValue.trim();
-            currentKey = '';
-            currentValue = '';
-          }
+          // 콜론이 없으면 헤더명으로 간주, 다음 줄이 값
+          currentKey = line;
         }
-      }
-      
-      // 마지막 키-값 쌍 저장 (값이 있는 경우만)
-      if (currentKey && currentValue) {
-        headers[currentKey.toLowerCase()] = currentValue.trim();
       }
       
       return headers as Partial<InstagramHeaders>;
@@ -198,9 +148,9 @@ const HomePage = () => {
         } as InstagramHeaders;
         console.log('[App] 3. Headers prepared from user input');
       } else {
-        headers = getInstagramHeaders();
-        headers.referer = instagramUrl.endsWith('/') ? `${instagramUrl}followers/` : `${instagramUrl}/followers/`;
-        console.log('[App] 3. Headers prepared (default)');
+        alert('헤더에 cookie가 없습니다. Instagram DevTools에서 cookie를 포함한 전체 헤더를 복사해주세요.');
+        setIsLoading(false);
+        return;
       }
 
       // 1. Target ID 추출
@@ -283,8 +233,9 @@ const HomePage = () => {
         } as InstagramHeaders;
         console.log('[App] 3. Headers prepared from user input (search)');
       } else {
-        headers = getInstagramHeaders(searchReferer);
-        console.log('[App] 3. Headers prepared (default, search)');
+        alert('헤더에 cookie가 없습니다. Instagram DevTools에서 cookie를 포함한 전체 헤더를 복사해주세요.');
+        setIsLoading(false);
+        return;
       }
       
       setStatus(`검색어 "${instagramSearchQuery}"로 검색 중...`);

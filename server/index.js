@@ -1,10 +1,24 @@
 import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
+import { execFile } from 'child_process';
+import { promisify } from 'util';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { Builder } from 'selenium-webdriver';
 import chrome from 'selenium-webdriver/chrome.js';
+
+const execFileAsync = promisify(execFile);
+
+// curl을 사용한 Instagram API 요청 (libcurl TLS 핑거프린트 - Postman과 동일)
+async function instagramFetch(url, headers) {
+  const args = ['-s', '-L', '--max-redirs', '5', url];
+  for (const [key, value] of Object.entries(headers)) {
+    args.push('-H', `${key}: ${value}`);
+  }
+  const { stdout } = await execFileAsync('curl', args, { maxBuffer: 10 * 1024 * 1024 });
+  return JSON.parse(stdout);
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -222,38 +236,18 @@ app.get('/api/instagram/search', async (req, res) => {
     console.log('[Instagram Search] Searching for query:', query);
     
     // Instagram 검색 API URL
-    const searchUrl = `https://www.instagram.com/api/v1/fbsearch/web/top_serp/?enable_metadata=true&query=${encodeURIComponent(query)}&search_session_id=32a75d45-902c-4dc4-80d8-3bbdbc6ed0e7`;
+    const searchUrl = `https://www.instagram.com/api/v1/fbsearch/web/top_serp/?enable_metadata=true&query=${encodeURIComponent(query)}&search_session_id=a8c0e268-bea0-45ab-9fc2-d6a5206dae7f`;
     
     console.log('[Instagram Search] Calling Instagram API:', searchUrl);
     
     // referer를 검색어에 맞게 동적으로 설정 (없으면 기본값 사용)
     const referer = headers.referer || `https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(query)}`;
 
-    // accept-encoding 제거: 브라우저 헤더를 그대로 전달하면 gzip 압축 응답이 오는데
-    // Node.js axios가 자동으로 처리하지 못하는 경우가 있음. axios가 직접 관리하도록 제거.
-    const { 'accept-encoding': _ae, ...cleanHeaders } = headers;
+    const { 'accept-encoding': _ae, 'host': _h, 'connection': _c, ...cleanHeaders } = headers;
+    const requestHeaders = { ...cleanHeaders, 'referer': referer };
 
-    const response = await axios.get(searchUrl, {
-      headers: {
-        ...cleanHeaders,
-        'referer': referer,
-      },
-      timeout: 30000,
-      maxRedirects: 0,
-      decompress: true,
-    });
-
-    console.log('[Instagram Search] Response status:', response.status);
-    console.log('[Instagram Search] Response data type:', typeof response.data);
-
-    if (typeof response.data === 'string') {
-      console.log('[Instagram Search] HTML response (first 500):', response.data.slice(0, 500));
-      return res.status(401).json({
-        error: 'Instagram이 HTML을 반환했습니다. 헤더에 올바른 cookie가 포함되어 있는지 확인하세요.',
-        code: 'INSTAGRAM_HTML_RESPONSE',
-        data: null,
-      });
-    }
+    const data = await instagramFetch(searchUrl, requestHeaders);
+    const response = { data };
 
     console.log('[Instagram Search] Response top-level keys:', Object.keys(response.data));
 
@@ -261,9 +255,11 @@ app.get('/api/instagram/search', async (req, res) => {
   } catch (error) {
     console.error('[Instagram Search] Error:', {
       message: error.message,
+      cause: error.cause?.message || error.cause,
       code: error.code,
       status: error.response?.status,
       statusText: error.response?.statusText,
+      redirectLocation: error.response?.headers?.location,
       stack: error.stack,
     });
 
@@ -332,33 +328,21 @@ app.get('/api/instagram/comments', async (req, res) => {
     // referer는 전달된 헤더의 값을 사용하거나 기본값 사용
     const referer = headers.referer || 'https://www.instagram.com/';
 
-    // accept-encoding 제거: gzip 압축 응답을 axios가 직접 처리하도록
-    const { 'accept-encoding': _ae, ...cleanHeaders } = headers;
+    const { 'accept-encoding': _ae, 'host': _h, 'connection': _c, ...cleanHeaders } = headers;
+    const commentRequestHeaders = { ...cleanHeaders, 'referer': referer };
 
-    const response = await axios.get(commentsUrl, {
-      headers: {
-        ...cleanHeaders,
-        'referer': referer,
-      },
-      timeout: 30000,
-      decompress: true,
-      maxRedirects: 0,
-    });
-    
-    console.log(`[인스타 댓글] 응답 상태: ${response.status}`);
-    
-    res.json(response.data);
+    const data = await instagramFetch(commentsUrl, commentRequestHeaders);
+    console.log(`[인스타 댓글] 완료`);
+    res.json(data);
   } catch (error) {
     console.error('[인스타 댓글] 에러:', {
       message: error.message,
-      status: error.response?.status,
     });
-    
+
     if (!res.headersSent) {
-      res.status(error.response?.status || 500).json({
+      res.status(500).json({
         error: error.message,
         code: error.code,
-        data: error.response?.data,
       });
     }
   }
